@@ -1,0 +1,21 @@
+// Your variable overrides
+// @import "./utilities/_variables";
+
+
+// Your custom styles
+@import "./base/_global";
+@import "./base/_reset";
+@import "./base/_colors";
+
+// Layout
+@import "./layout/_footer";
+@import "./layout/_NavBar";
+
+// Components
+
+// Utils
+@import "./utilities/_mixins";
+@import "./utilities/_functions";
+
+// Pages
+@import "./pages/Home.scss";
