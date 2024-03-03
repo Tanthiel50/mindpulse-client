@@ -2,7 +2,7 @@
 
 function Footer() {
   return (
-<p>Footer</p>
+<div>Footer</div>
   )
 }
 

@@ -1,4 +1,4 @@
-import "./styles/App.css";
+// import "./styles/App.css";
 import RouterOutlet from "./RouterOutlet";
 import { UserProvider } from "./context/UserProvider";
 import Layout from "./pages/components/layout/Layout";
