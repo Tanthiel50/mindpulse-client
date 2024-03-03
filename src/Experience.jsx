@@ -11,7 +11,7 @@ const GradientMaterial = shaderMaterial(
     uTime: 0,
     uColorStart: new THREE.Color("#8390C8"),
     uColorEnd: new THREE.Color("#AE8ABE"),
-    uBlackColor: new THREE.Color("#01030D"),
+    uBlackColor: new THREE.Color("#000000"),
   },
   gradientVertexShader,
   gradientFragmentShader
