@@ -6,14 +6,12 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
 import Experience from "./Experience.jsx";
 
 function App() {
   return (
     <>
       <div
-        // style={{ position: "fixed", width: "100%", height: "100%", zIndex: -1 }}
         style={{
           position: "absolute",
           top: 0,
@@ -31,7 +29,6 @@ function App() {
             position: [0, 4, 0],
           }}
         >
-          <OrbitControls />
           <Experience />
         </Canvas>
       </div>

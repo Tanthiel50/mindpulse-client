@@ -1,30 +1,16 @@
-export const waterVertexShader =  `uniform float uTime;
-uniform float uBigWavesSpeed;
-uniform float uBigWavesElevation;
-uniform vec2 uBigWavesFrequency;
+export const gradientFragmentShader = `uniform float uTime;
+uniform vec3 uColorStart;
+uniform vec3 uColorEnd;
+uniform vec3 uBlackColor;
 
-uniform float uSmallWaveElevation;
-uniform float uSmallWaveFrequency;
-uniform float uSmallWaveSpeed;
-uniform float uSmallWaveIteration;
+varying vec2 vUv;
 
-varying float vElevation;
-
-// Classic Perlin 3D Noise 
-// by Stefan Gustavson
+//    Classic Perlin 3D Noise 
+//    by Stefan Gustavson
 //
-vec4 permute(vec4 x)
-{
-    return mod(((x*34.0)+1.0)*x, 289.0);
-}
-vec4 taylorInvSqrt(vec4 r)
-{
-    return 1.79284291400159 - 0.85373472095314 * r;
-}
-vec3 fade(vec3 t)
-{
-    return t*t*t*(t*(t*6.0-15.0)+10.0);
-}
+vec4 permute(vec4 x){ return mod(((x*34.0)+1.0)*x, 289.0); }
+vec4 taylorInvSqrt(vec4 r){ return 1.79284291400159 - 0.85373472095314 * r; }
+vec3 fade(vec3 t) { return t*t*t*(t*(t*6.0-15.0)+10.0); }
 
 float cnoise(vec3 P)
 {
@@ -92,41 +78,34 @@ float cnoise(vec3 P)
     vec4 n_z = mix(vec4(n000, n100, n010, n110), vec4(n001, n101, n011, n111), fade_xyz.z);
     vec2 n_yz = mix(n_z.xy, n_z.zw, fade_xyz.y);
     float n_xyz = mix(n_yz.x, n_yz.y, fade_xyz.x); 
+
     return 2.2 * n_xyz;
 }
 
 void main()
 {
-    vec4 modelPosition = modelMatrix * vec4(position, 1.0);
+    // Displace the UV
+    vec2 displacedUv = vUv + cnoise(vec3(vUv * 5.0, uTime * 0.1));
 
-    // Elevation 
-    float elevation = sin(modelPosition.x * uBigWavesFrequency.x + uTime * uBigWavesSpeed) 
-                    * sin(modelPosition.z * uBigWavesFrequency.y + uTime * uBigWavesSpeed) * 
-                     uBigWavesElevation;
+    // Perlin noise
+    float strength = cnoise(vec3(displacedUv * 8.0, uTime * 0.1));
 
-    ;
-    ;                
+    // Outer glow
+    float outerGlow = distance(vUv, vec2(0.5)) * 5.0 - 1.4;
+    //strength += outerGlow;
 
-    for(float i =1.0; i<=uSmallWaveIteration; i++)
-    {
-        elevation -= abs(
-            cnoise(
-                vec3(
-                    modelPosition.xz * uSmallWaveFrequency * i,
-                     uTime * uSmallWaveSpeed
-                    )
-                )*uSmallWaveElevation/i
-            );
-    }
+    // Apply cool step
+     //strength += step(- 0.2, strength)*0.3;
 
-    modelPosition.y += elevation;
+    // // Clamp the value from 0 to 1
+    // strength = clamp(strength, 0.0, 1.0);
 
+    // Final color 1 
+    //vec3 color = mix(uColorStart, uColorEnd, strength);
 
-    vec4 viewPosition = viewMatrix * modelPosition;
-    vec4 projectedPosition = projectionMatrix * viewPosition;
+    // Final color 2
+    float h = 0.5; // adjust position of middleColor
+    vec3 color = mix(mix(uColorStart, uColorEnd, strength/h), mix(uColorEnd, uBlackColor, (strength - h)/(1.0 - h)), step(h, strength));
 
-    gl_Position = projectedPosition;
-
-    //Varyings
-    vElevation = elevation;
+    gl_FragColor = vec4(color, 0.5);
 }`;
