@@ -5,7 +5,7 @@ import { gradientVertexShader } from "./Shaders/gradient/vertex.js";
 import { gradientFragmentShader } from "./Shaders/gradient/fragment.js";
 import * as THREE from "three";
 import { Perf } from "r3f-perf";
-// import { Model } from "./models/logoMindPulse.jsx";
+import { Model } from "./logoMindPulse.jsx";
 
 const GradientMaterial = shaderMaterial(
   {
@@ -36,7 +36,7 @@ export default function Experience() {
         <planeGeometry args={[15, 15]} />
         <gradientMaterial ref={gradientMaterial} side={THREE.DoubleSide} />{" "}
       </mesh>
-      {/* <Model /> */}
+      <Model />
     </>
   );
 }

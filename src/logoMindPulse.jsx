@@ -11,8 +11,9 @@ export function Model(props) {
           receiveShadow
           geometry={nodes.Curve002.geometry}
           material={nodes.Curve002.material}
-          scale={150.0}
+          scale={200.0}
           rotation={[Math.PI * 0.5, 0, 0]}
+          position={[0, 4.5, 0]}
         />
       </group>
     </>
