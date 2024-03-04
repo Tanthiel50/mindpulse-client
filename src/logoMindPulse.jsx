@@ -1,7 +1,5 @@
 import React from "react";
-import { useGLTF } from "@react-three/drei";
-import { Color } from "three";
-import * as THREE from 'three'
+import { useGLTF, GradientTexture } from "@react-three/drei";
 
 export function Model(props) {
   const { nodes, materials } = useGLTF("/models/logo_mindpulse.glb");
@@ -13,11 +11,17 @@ export function Model(props) {
           receiveShadow
           geometry={nodes.Curve002.geometry}
           material={materials.material}
-          scale={200.0}
+          scale={150.0}
           rotation={[Math.PI * 0.5, 0, 0]}
-          position={[0, 4.5, 0]}
+          position={[2, 4.5, 1]}
         >
-        <meshBasicMaterial color={"#000000"} />
+          <meshStandardMaterial>
+            <GradientTexture
+              stops={[0.0, 1.0]}
+              colors={["#8390C8", "#AE8ABE"]}
+              size={128}
+            />
+          </meshStandardMaterial>
         </mesh>
       </group>
     </>

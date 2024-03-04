@@ -1,4 +1,4 @@
-import { shaderMaterial, OrbitControls } from "@react-three/drei";
+import { shaderMaterial, OrbitControls, Float } from "@react-three/drei";
 import { useRef } from "react";
 import { useFrame, extend } from "@react-three/fiber";
 import { gradientVertexShader } from "./Shaders/gradient/vertex.js";
@@ -32,11 +32,27 @@ export default function Experience() {
       <Perf position="top-left" />
       <OrbitControls makeDefault />
       <color args={["#030202"]} attach="background" />
+      <rectAreaLight
+        position={[3, 4.5, 5]}
+        lookAt={[2, 4.5, -1]}
+        intensity={6.5}
+        width={6}
+        height={6}
+      />
       <mesh>
-        <planeGeometry args={[15, 15]} />
+        <planeGeometry receiveShadow args={[15, 15]} />
         <gradientMaterial ref={gradientMaterial} side={THREE.DoubleSide} />{" "}
       </mesh>
-      <Model />
+      <Float
+        floatIntensity={5}
+        scale={1}
+        rotationIntensity={0.3}
+        rotationSpeed={0.2}
+        floatingRange={[0.015, -0.015]}
+        speed={6}
+      >
+        <Model />
+      </Float>
     </>
   );
 }
