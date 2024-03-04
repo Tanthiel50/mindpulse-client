@@ -16,7 +16,7 @@ const Navbar = () => {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        <Logo style={{ height: "20%", width: "100%" }}/>
+        <Logo style={{ height: "20%", width: "50%" }}/>
       </Typography>
       <List>
         {['Home', 'Mind Pulse', 'Notre Accompagnement', 'Contact', 'Blog'].map((text) => (
