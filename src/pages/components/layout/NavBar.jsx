@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, Typography, IconButton, Drawer, List, ListItem, ListItemText, useTheme, useMediaQuery, Box } from '@mui/material';
+import { AppBar, Toolbar, Typography, IconButton, Drawer, List, ListItem, ListItemText, useTheme, useMediaQuery, Box, useScrollTrigger } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import {ReactComponent as Logo} from '../../../../src/assets/logo/logo1.svg';
 
@@ -7,6 +7,7 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const trigger = useScrollTrigger();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -29,7 +30,11 @@ const Navbar = () => {
 
   return (
     <>
-      <AppBar position="fixed" sx={{ background: 'transparent', transition: 'background 0.3s' }}>
+      <AppBar position="fixed"         sx={{ 
+          backgroundColor: trigger ? '#121212' : 'transparent', 
+          transition: 'background-color 0.8s',
+        }}
+      >
         <Toolbar>
           {isMobile ? (
             <IconButton
