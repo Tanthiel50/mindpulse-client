@@ -5,6 +5,8 @@ import { styled } from '@mui/material/styles';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import CachedIcon from '@mui/icons-material/Cached';
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const data = [
   { color: '#FFADAD', title: 'Marketing', description: 'Innovative and effective design solutions.' },
@@ -32,6 +34,9 @@ const CustomPaper = styled(Paper)({
 });
 
 const Home = () => {
+
+  
+
   const BootstrapButton = styled(Button)({
     boxShadow: 'none',
     textTransform: 'none',
@@ -153,16 +158,16 @@ const Home = () => {
 
       <Box sx={{ flexGrow: 1, backgroundColor: theme.palette.background, paddingBottom: 15 }}>
       <Grid container spacing={0} alignItems="stretch">
-        <Grid item xs={2}>
+        <Grid item xs={2} sx={{ display: { xs: 'none', sm: 'block' } }}>
           <StyledPaper>
             <IconBox>
-              <AcUnitIcon color="theme.palette.white" style={{fontSize: 50 }} />
+              <AcUnitIcon color="theme.palette.white" style={{fontSize: 50 }} /> {/* Remplacez avec l'icône appropriée */}
             </IconBox>
             <Typography variant="subtitle1">ACQUISITION</Typography>
             <Typography variant="body2" style={{ color: theme.palette.white }} >Explication de l'acquisition.</Typography>
           </StyledPaper>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={2} sx={{ display: { xs: 'none', sm: 'block' } }}>
           <StyledPaper>
             <IconBox>
               <CachedIcon color="theme.palette.white" style={{fontSize: 50 }} />
@@ -171,7 +176,7 @@ const Home = () => {
             <Typography variant="body2" style={{ color: theme.palette.white }}>Explication de la conversion.</Typography>
           </StyledPaper>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={2} sx={{ display: { xs: 'none', sm: 'block' } }}>
           <StyledPaper>
             <IconBox>
               <LoyaltyIcon color="theme.palette.white" style={{fontSize: 50 }} />
