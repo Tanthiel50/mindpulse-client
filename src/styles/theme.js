@@ -9,7 +9,7 @@ export const theme= {
     // gradient: 'rgba(174, 138, 190, 1) 0%, rgba(131, 144, 200, 1) 100%',
   },
   button :{
-    backgroundColor: 'rgba(174, 138, 190, 1)',
+    background: 'linear-gradient(321deg, rgba(131,144,200,1) 0%, rgba(174,138,190,1) 100%)',
     color: 'white',
     padding: '16px 32px',
   }

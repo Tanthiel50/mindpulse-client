@@ -37,5 +37,23 @@
         font-size: 1.2rem;
     }
 
+    @media (max-width: 600px) {
+        h1 {
+          font-size: 3.5rem; /* Taille plus petite pour les écrans mobiles */
+        }
+
+        h2 {
+          font-size: 2rem; /* Taille plus petite pour les écrans mobiles */
+        }
+
+        h3 {
+          font-size: 1.5rem; /* Taille plus petite pour les écrans mobiles */
+        }
+
+        h4 {
+          font-size: 1rem; /* Taille plus petite pour les écrans mobiles */
+        }
+      }
+
 }
     

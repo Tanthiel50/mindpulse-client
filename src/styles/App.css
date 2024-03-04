@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap");
 
 @font-face {
@@ -29,6 +30,20 @@
 }
 :root h4 {
   font-size: 1.2rem;
+}
+@media (max-width: 600px) {
+  :root h1 {
+    font-size: 3.5rem; /* Taille plus petite pour les écrans mobiles */
+  }
+  :root h2 {
+    font-size: 2rem; /* Taille plus petite pour les écrans mobiles */
+  }
+  :root h3 {
+    font-size: 1.5rem; /* Taille plus petite pour les écrans mobiles */
+  }
+  :root h4 {
+    font-size: 1rem; /* Taille plus petite pour les écrans mobiles */
+  }
 }
 
 html, body, div, span, applet, object, iframe,

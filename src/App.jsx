@@ -37,9 +37,9 @@ function App() {
     </Portal>
       <Router>
         <UserProvider>
-          {/* <Layout> */}
+          <Layout>
             <RouterOutlet />
-          {/* </Layout> */}
+          </Layout>
         </UserProvider>
         <ToastContainer position="bottom-right" />
       </Router>

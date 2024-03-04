@@ -2,6 +2,9 @@
 import { Typography, Box, Container, Grid, Paper, Button } from '@mui/material';
 import {theme} from '../styles/theme';
 import { styled } from '@mui/material/styles';
+import AcUnitIcon from '@mui/icons-material/AcUnit';
+import CachedIcon from '@mui/icons-material/Cached';
+import LoyaltyIcon from '@mui/icons-material/Loyalty';
 
 const data = [
   { color: '#FFADAD', title: 'Marketing', description: 'Innovative and effective design solutions.' },
@@ -10,9 +13,9 @@ const data = [
   { color: '#FFD6A5', title: 'Development', description: 'High-quality web and mobile app development.' },
   { color: '#FFD6A5', title: 'Development', description: 'High-quality web and mobile app development.' },
   { color: '#FFD6A5', title: 'Development', description: 'High-quality web and mobile app development.' },
-  // { color: '#FFD6A5', title: 'Development', description: 'High-quality web and mobile app development.' },
-  // { color: '#FFD6A5', title: 'Development', description: 'High-quality web and mobile app development.' },
-  // { color: '#FFD6A5', title: 'Development', description: 'High-quality web and mobile app development.' },
+  { color: '#FFD6A5', title: 'Development', description: 'High-quality web and mobile app development.' },
+  { color: '#FFD6A5', title: 'Development', description: 'High-quality web and mobile app development.' },
+  { color: '#FFD6A5', title: 'Development', description: 'High-quality web and mobile app development.' },
 ];
 
 const CustomPaper = styled(Paper)({
@@ -46,6 +49,26 @@ const Home = () => {
     },
   });
 
+  const StyledPaper = styled(Paper)({
+    background: theme.palette.bluish,
+    padding: '1rem',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    height: '100%',
+  });
+  
+  const IconBox = styled(Box)({
+    color: theme.palette.white,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: '1rem',
+    borderRadius: '50%',
+    marginBottom: '1rem',
+  });
+
   return (
     <>
       <Box sx={{ color: theme.palette.white, minHeight: '90vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -62,7 +85,7 @@ const Home = () => {
         </Container>
       </Box>
 
-      <Container maxWidth="lg" sx={{ mt: -15, mb: 8}}>
+      <Container maxWidth="lg" sx={{ mt: 0, mb: 8}}>
         <Grid container justifyContent="center">
           <Grid item xs={12} sm={4}>
             <Paper  sx={{ py: 4, px: 2, textAlign: 'center', height: '100%', borderRadius:'0'}}>
@@ -97,6 +120,8 @@ const Home = () => {
         </Grid>
       </Container>
 
+
+
       <Box sx={{ p: 8, backgroundColor: theme.palette.background, color: theme.palette.white }}>
         <Container maxWidth="md">
           <Grid container spacing={4} alignItems="center">
@@ -125,6 +150,38 @@ const Home = () => {
           </Grid>
         </Container>
       </Box>
+
+      <Box sx={{ flexGrow: 1, backgroundColor: theme.palette.background, paddingBottom: 15 }}>
+      <Grid container spacing={0} alignItems="stretch">
+        <Grid item xs={2}>
+          <StyledPaper>
+            <IconBox>
+              <AcUnitIcon color="theme.palette.white" style={{fontSize: 50 }} />
+            </IconBox>
+            <Typography variant="subtitle1">ACQUISITION</Typography>
+            <Typography variant="body2" style={{ color: theme.palette.white }} >Explication de l'acquisition.</Typography>
+          </StyledPaper>
+        </Grid>
+        <Grid item xs={2}>
+          <StyledPaper>
+            <IconBox>
+              <CachedIcon color="theme.palette.white" style={{fontSize: 50 }} />
+            </IconBox>
+            <Typography variant="subtitle1">CONVERSION</Typography>
+            <Typography variant="body2" style={{ color: theme.palette.white }}>Explication de la conversion.</Typography>
+          </StyledPaper>
+        </Grid>
+        <Grid item xs={2}>
+          <StyledPaper>
+            <IconBox>
+              <LoyaltyIcon color="theme.palette.white" style={{fontSize: 50 }} />
+            </IconBox>
+            <Typography variant="subtitle1">FIDÉLISATION</Typography>
+            <Typography variant="body2" style={{ color: theme.palette.white }}>Explication de la fidélisation.</Typography>
+          </StyledPaper>
+        </Grid>
+      </Grid>
+    </Box>
 
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <Container maxWidth="lg">
