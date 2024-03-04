@@ -7,10 +7,12 @@ import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Canvas } from "@react-three/fiber";
 import Experience from "./Experience.jsx";
+import { Portal } from '@mui/base/Portal';
 
 function App() {
   return (
     <>
+    <Portal>
       <div
         style={{
           position: "absolute",
@@ -32,11 +34,12 @@ function App() {
           <Experience />
         </Canvas>
       </div>
+    </Portal>
       <Router>
         <UserProvider>
-          <Layout>
+          {/* <Layout> */}
             <RouterOutlet />
-          </Layout>
+          {/* </Layout> */}
         </UserProvider>
         <ToastContainer position="bottom-right" />
       </Router>

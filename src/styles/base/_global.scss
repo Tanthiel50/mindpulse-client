@@ -6,9 +6,17 @@
 
 
 :root{
+    body{
+
+        position: relative;
+    }
+
+    p{
+        font-family: 'Archivo', sans-serif;
+    }
 
     h1, h2, h3, h4, h5, h6 {
-        font-family: 'TT Rounds Neue', sans-serif ;
+        font-family: 'TT Rounds Neue',  ;
         font-weight: 700 ;
     }
     
