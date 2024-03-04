@@ -30,7 +30,7 @@ export default function Experience() {
       <Perf position="top-left" />
       <OrbitControls makeDefault />
       <color args={["#000000"]} attach="background" />
-      <mesh rotation={[Math.PI*0.5, 0, 0]}>
+      <mesh>
         <planeGeometry args={[15, 15]} />
         <gradientMaterial ref={gradientMaterial} side={THREE.DoubleSide} />{" "}
       </mesh>
