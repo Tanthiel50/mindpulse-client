@@ -1,11 +1,29 @@
 
 import { Typography, Box, Container, Grid, Paper, Button } from '@mui/material';
 import {theme} from '../styles/theme';
+import { styled } from '@mui/material/styles';
 
 const Home = () => {
+  const BootstrapButton = styled(Button)({
+    boxShadow: 'none',
+    textTransform: 'none',
+    fontSize: 16,
+    padding: '6px 12px',
+    lineHeight: 1.5,
+    backgroundColor: '#AE8ABE',
+    '&:hover': {
+      backgroundColor: 'white',
+      color:'#AE8ABE',
+      boxShadow: 'none',
+    },
+    '&:focus': {
+      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
+    },
+  });
+
   return (
     <>
-      <Box sx={{ color: theme.palette.purplish, height: '90vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <Box sx={{ color: theme.palette.white, height: '90vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <Container sx={{ textAlign: 'left', position: 'relative', zIndex: 2 }}>
           <Box sx={{ maxWidth: '50%' }}>
             <Typography variant="h2" component="h2" gutterBottom sx={{ textTransform: 'uppercase' }}>
@@ -14,7 +32,7 @@ const Home = () => {
             <Typography variant="body1" sx={{ mb: 4 }}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
             </Typography>
-            <Button variant="contained" sx={{ backgroundColor:theme.palette.purplish, paddingTop: 2, paddingBottom: 2, paddingLeft: 4, paddingRight: 4  }} >Read More</Button>
+            <BootstrapButton variant="contained" sx={{ backgroundColor:theme.palette.purplish, paddingTop: 2, paddingBottom: 2, paddingLeft: 4, paddingRight: 4  }} >Read More</BootstrapButton>
           </Box>
         </Container>
       </Box>

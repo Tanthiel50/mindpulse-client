@@ -1,17 +1,11 @@
 @import "./colors.scss";
 
-@font-face {
-    font-family: 'TT Rounds Neue';
-    src: url('../../assets/fonts/TT-rounds-neue/TT-Rounds-Neue-Trial-Bold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
-}
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap');
+
+
 
 
 :root{
-    // body{
-    //     background-color: $background;
-    // }
 
     h1, h2, h3, h4, h5, h6 {
         font-family: 'TT Rounds Neue', sans-serif ;
