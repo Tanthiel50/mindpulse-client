@@ -107,5 +107,5 @@ void main()
     float h = 0.5; // adjust position of middleColor
     vec3 color = mix(mix(uColorStart, uColorEnd, strength/h), mix(uColorEnd, uBlackColor, (strength - h)/(1.0 - h)), step(h, strength));
 
-    gl_FragColor = vec4(color, 0.5);
+    gl_FragColor = vec4(color, 1.0);
 }`;

@@ -12,29 +12,31 @@ import { Portal } from '@mui/base/Portal';
 function App() {
   return (
     <>
-    <Portal>
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          height: "100%",
-          width: "100%",
-          zIndex: -1,
-        }}
-      >
-        <Canvas
-          camera={{
-            fov: 45,
-            near: 0.1,
-            far: 20,
-            position: [0, 0, 4],
+      <Portal>
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            height: "100%",
+            width: "100%",
+            zIndex: -1,
           }}
         >
-          <Experience />
-        </Canvas>
-      </div>
-    </Portal>
+          <Canvas
+            flat
+            orthographic
+            camera={{
+              zoom: 200,
+              near: 0.1,
+              far: 200,
+              position: [0, 0, 4],
+            }}
+          >
+            <Experience />
+          </Canvas>
+        </div>
+      </Portal>
       <Router>
         <UserProvider>
           <Layout>
