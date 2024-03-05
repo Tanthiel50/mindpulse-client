@@ -63,7 +63,9 @@ export const DataBox = ({ background, title, description, color, IconComponent }
         }}
         elevation={3}
       >
-        <IconWrapper className='iconBox' sx={{
+        <IconWrapper 
+        className='iconBox' 
+        sx={{
             display: {
                 xs: 'none',
                 sm: 'flex',
@@ -71,7 +73,8 @@ export const DataBox = ({ background, title, description, color, IconComponent }
         }}>
           {React.createElement(IconComponent, { style: { fontSize: '80%', color: color } })}
         </IconWrapper>
-        <ContentWrapper className='textBox'
+        <ContentWrapper 
+        className='textBox'
         sx={{
             opacity: {
                 xs: 1,
@@ -79,10 +82,20 @@ export const DataBox = ({ background, title, description, color, IconComponent }
             }
         }}
         >
-          <Typography variant="h6" component="h3" sx={{ textTransform: 'uppercase', fontWeight: 'bold' }}>
+          <Typography 
+          variant="h6" 
+          component="h3" 
+          sx={{ 
+            textTransform: 'uppercase', 
+            fontWeight: 'bold' 
+            }}
+            >
             {title}
           </Typography>
-          <Typography variant="body2" sx={{ mt: 1 }}>
+          <Typography 
+          variant="body2" 
+          sx={{ mt: 1 }}
+          >
             {description}
           </Typography>
         </ContentWrapper>

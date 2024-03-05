@@ -36,8 +36,11 @@ export const Footer = () => {
             >
             <Container sx={{
               display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between"
+              flexDirection: {
+                xs: "column",
+                sm: "row"
+              },
+              justifyContent: "space-between",
             }}>
               <Link to="/#" style={{ color: "white" }}>
                 Mentions légales
@@ -48,7 +51,11 @@ export const Footer = () => {
               <Link to="/login" style={{ color: "white" }}>
                 Login
               </Link>
-              <Link to="/#" style={{ color: "white" }}>
+              <Link to="/admin" 
+              style={{ 
+                color: "white" 
+                }}
+                >
                 Administration
               </Link>
             </Container>

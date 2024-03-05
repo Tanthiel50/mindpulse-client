@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { axiosInstance as axios } from '../../../http-common/axios-configuration';
-import { Button, Table } from 'react-bootstrap';
+import { Button, Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Sidebar from './Sidebar';
@@ -53,21 +53,25 @@ const GenericTablePage = ({
   };
 
   return (
-    <div className="admin-container">
-      <Sidebar />
-      <div className="admin-content">
+    <div className="admin-container" style={{
+      height: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      marginTop: '5rem',
+      backgroundColor: 'white',
+    }}>
         <h1>{title}</h1>
         <Button onClick={handleCreateNewClick} className="mb-3">Créer nouveau</Button>
-        <Table striped bordered hover responsive>
-          <thead>
-            <tr>{columns.map((column) => <th key={column}>{column}</th>)}</tr>
-          </thead>
-          <tbody>
+        <Table>
+          <TableHead>
+            <TableRow>{columns.map((column) => <TableCell key={column}>{column}</TableCell>)}</TableRow>
+          </TableHead>
+          <TableBody>
             {data.map(mapDataToRow(handleEditClick, handleDelete))}
-          </tbody>
+          </TableBody>
         </Table>
       </div>
-    </div>
   );
 };
 
@@ -77,8 +81,6 @@ GenericTablePage.propTypes = {
   fetchDataUrl: PropTypes.string.isRequired,
   deleteDataUrl: PropTypes.string.isRequired,
   editPathPrefix: PropTypes.string.isRequired,
-  columns: PropTypes.arrayOf(PropTypes.string).isRequired,
-  mapDataToRow: PropTypes.func.isRequired,
 };
 
 export default GenericTablePage;
