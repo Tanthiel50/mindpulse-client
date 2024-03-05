@@ -11,9 +11,9 @@ export function Model(props) {
           receiveShadow
           geometry={nodes.Curve002.geometry}
           material={materials.material}
-          scale={[60,10,60]}
+          scale={[150,50,150]}
           rotation={[Math.PI * 0.5, 0, 0]}
-          position={[0.9,1.95, 0.25]}
+          position={[2,5, 0.25]}
         >
           <meshStandardMaterial>
             <GradientTexture

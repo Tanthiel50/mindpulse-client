@@ -37,12 +37,12 @@ export default function Experience() {
 
       {/* lights */}
       <rectAreaLight
-        width={3}
-        height={3}
+        width={7}
+        height={7}
         color={"white"}
-        intensity={6}
-        position={[0.9, 1.95, 5]}
-        lookAt={[0.9, 1.95, 0.25]}
+        intensity={3}
+        position={[2, 5, 5]}
+        lookAt={[2, 5, 0.25]}
         penumbra={1}
         castShadow
       />
