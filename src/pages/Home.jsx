@@ -270,6 +270,20 @@ const Home = () => {
         </Grid>
       </Box>
 
+      <Container>
+      <Typography 
+      variant="h2" 
+      component="h2" 
+      sx={{ 
+        textTransform: 'uppercase', 
+        fontWeight: 'bold',
+        color: 'white',
+        paddingTop: 8, 
+        }}
+        >
+            Services
+        </Typography>
+      </Container>
       <Box
         sx={{ 
           display: "flex", 
