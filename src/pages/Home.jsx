@@ -306,6 +306,7 @@ const Home = () => {
             justifyContent="center"
             >
               {data.map((item, index) => (
+              <Grid item xs={12} sm={6} md={4}>
                 <DataBox
                 key={index}
                 background={item.background}
@@ -314,6 +315,7 @@ const Home = () => {
                 color={item.color}
                 IconComponent={item.icon}
               />
+              </Grid>
               ))}
             </Grid>
           </Box>

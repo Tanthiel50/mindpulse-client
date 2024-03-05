@@ -10,15 +10,12 @@ const CustomPaper = styled(Paper)(({ theme }) => ({
   justifyContent: 'center',
   alignItems: 'center',
   position: 'relative',
-  overflow: 'hidden',
+//   overflow: 'hidden',
   transition: '0.3s ease-in-out', 
-
 }));
 
-const IconWrapper = styled(Box)(({ theme, hover }) => ({
-  visibility: hover ? 'hidden' : 'visible',
+const IconWrapper = styled(Box)(({ theme }) => ({
   fontSize: '4rem',
-  display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   width: '100%',
@@ -27,7 +24,6 @@ const IconWrapper = styled(Box)(({ theme, hover }) => ({
 
 const ContentWrapper = styled(Box)(({ theme }) => ({
   transition: 'opacity 0.3s ease-in-out',
-  opacity: 0,
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
@@ -40,28 +36,49 @@ const ContentWrapper = styled(Box)(({ theme }) => ({
 }));
 
 export const DataBox = ({ background, title, description, color, IconComponent }) => {
-  const [hover, setHover] = useState(false);
+//   const [hover, setHover] = useState(false);
 
-  const handleMouseEnter = () => {
-    setHover(true);
-  };
+//   const handleMouseEnter = () => {
+//     setHover(true);
+//   };
 
-  const handleMouseLeave = () => {
-    setHover(false);
-  };
+//   const handleMouseLeave = () => {
+//     setHover(false);
+//   };
 
   return (
-    <Grid item xs={12} sm={6} md={4}>
+    
       <CustomPaper
-        sx={{ backgroundColor: background, color: color }}
+        sx={{ 
+            backgroundColor: background, 
+            color: color,
+            '&:hover': {
+                '.iconBox': {
+                    opacity: 0,
+                },
+                '.textBox': {
+                    opacity: 1,
+                }
+            }
+        }}
         elevation={3}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
       >
-        <IconWrapper hover={hover}>
+        <IconWrapper className='iconBox' sx={{
+            display: {
+                xs: 'none',
+                sm: 'flex',
+            }
+        }}>
           {React.createElement(IconComponent, { style: { fontSize: '80%', color: color } })}
         </IconWrapper>
-        <ContentWrapper sx={{ opacity: hover ? 1 : 0 }}>
+        <ContentWrapper className='textBox'
+        sx={{
+            opacity: {
+                xs: 1,
+                sm: 0,
+            }
+        }}
+        >
           <Typography variant="h6" component="h3" sx={{ textTransform: 'uppercase', fontWeight: 'bold' }}>
             {title}
           </Typography>
@@ -70,6 +87,6 @@ export const DataBox = ({ background, title, description, color, IconComponent }
           </Typography>
         </ContentWrapper>
       </CustomPaper>
-    </Grid>
+    
   );
 };
