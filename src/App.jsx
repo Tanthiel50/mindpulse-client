@@ -26,9 +26,7 @@ function App() {
         >
           <Canvas
             flat
-            orthographic
             camera={{
-              zoom: 200,
               near: 0.1,
               far: 200,
               position: [0, 0, 4],

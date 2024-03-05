@@ -29,20 +29,30 @@ export default function Experience() {
 
   return (
     <>
+      {/* outils de staging */}
       <Perf position="top-left" />
       <OrbitControls makeDefault />
       <color args={["#030202"]} attach="background" />
+      {/* <ambientLight intensity={3} /> */}
+
+      {/* lights */}
       <rectAreaLight
-        position={[3, 4.5, 5]}
-        lookAt={[2, 4.5, -1]}
-        intensity={6.5}
-        width={6}
-        height={6}
+        width={3}
+        height={3}
+        color={"white"}
+        intensity={6}
+        position={[0.9, 1.95, 5]}
+        lookAt={[0.9, 1.95, 0.25]}
+        penumbra={1}
+        castShadow
       />
+
+      {/* rectangle dégradé + perlin noise */}
       <mesh>
-        <planeGeometry receiveShadow args={[15, 15]} />
-        <gradientMaterial ref={gradientMaterial} side={THREE.DoubleSide} />{" "}
+        <planeGeometry args={[15, 15]} />
+        <gradientMaterial ref={gradientMaterial} side={THREE.DoubleSide} />
       </mesh>
+      {/* logo flottant */}
       <Float
         floatIntensity={5}
         scale={1}
