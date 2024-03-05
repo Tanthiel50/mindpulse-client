@@ -1,5 +1,5 @@
-
 import { Box, Container, Grid, Typography } from "@mui/material";
+import { Link } from 'react-router-dom';
 
 export const Footer = () => {
   return (
@@ -16,13 +16,44 @@ export const Footer = () => {
       <Container maxWidth="lg">
         <Grid container direction="column" alignItems="center">
           <Grid item xs={12}>
-            <Typography variant="h5">
+            {/* <Typography variant="h5">
               Mind Pulse
-            </Typography>
+            </Typography> */}
           </Grid>
-          <Grid item xs={12}>
-            <Typography variant="subtitle1">
-              {`${new Date().getFullYear()} | Link 1 | Link 2 | Link 3`}
+          <Grid item xs={12}
+          sx={{
+            width: "100%"
+          }}
+          >
+            <Typography 
+            variant="subtitle1"
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+            >
+            <Container sx={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between"
+            }}>
+              <Link to="/#" style={{ color: "white" }}>
+                Mentions légales
+              </Link>
+              <Link to="/#" style={{ color: "white" }}>
+                Charte de confidentialité
+              </Link>
+              <Link to="/login" style={{ color: "white" }}>
+                Login
+              </Link>
+              <Link to="/#" style={{ color: "white" }}>
+                Administration
+              </Link>
+            </Container>
+
+
             </Typography>
           </Grid>
         </Grid>

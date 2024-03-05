@@ -30,7 +30,8 @@ const Navbar = () => {
 
   return (
     <>
-      <AppBar position="fixed"         sx={{ 
+      <AppBar position="fixed"         
+      sx={{ 
           backgroundColor: trigger ? '#121212' : 'transparent', 
           transition: 'background-color 0.8s',
         }}
@@ -48,11 +49,40 @@ const Navbar = () => {
             </IconButton>
           ) : (
             <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
-              <Typography sx={{ paddingX: 5 }}>HOME</Typography>
-              <Typography sx={{ paddingX: 5 }}>MIND PULSE</Typography>
-              <Typography sx={{ paddingX: 5 }}>NOTRE ACCOMPAGNEMENT</Typography>
-              <Typography sx={{ paddingX: 5 }}>CONTACT</Typography>
-              <Typography sx={{ paddingX: 5 }}>BLOG</Typography>
+              <Typography 
+              sx={{ 
+                paddingX: 5 
+                }}
+                >
+                  HOME
+              </Typography>
+              <Typography 
+              sx={{ 
+                paddingX: 5 
+                }}
+              >
+                MIND PULSE
+              </Typography>
+              <Typography 
+              sx={{ 
+                paddingX: 5 
+                }}
+              >
+                NOTRE ACCOMPAGNEMENT
+              </Typography>
+              <Typography 
+              sx={{ 
+                paddingX: 5 
+              }}>
+                CONTACT
+              </Typography>
+              <Typography 
+              sx={{ 
+                paddingX: 5 
+                }}
+              >
+                BLOG
+              </Typography>
             </Box>
           )}
         </Toolbar>
