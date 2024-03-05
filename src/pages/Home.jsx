@@ -4,71 +4,76 @@ import { styled } from "@mui/material/styles";
 import AcUnitIcon from "@mui/icons-material/AcUnit";
 import CachedIcon from "@mui/icons-material/Cached";
 import LoyaltyIcon from "@mui/icons-material/Loyalty";
-import { useTheme } from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
 import PercentageBoxes from "./components/home/PercentageBoxes";
 import BoxesRight from "./components/home/BoxesRight";
+import { DataBox } from "./components/home/DataBox";
 
 const data = [
   {
-    color: "#FFADAD",
+    icon: AcUnitIcon,
+    background: "#000",
     title: "Marketing",
     description: "Innovative and effective design solutions.",
+    color: "white",
   },
   {
-    color: "#FFD6A5",
+    icon: CachedIcon,
+    background: "#AE8ABE",
     title: "Development",
     description: "High-quality web and mobile app development.",
+    color: "white",
   },
   {
-    color: "#FFD6A5",
+    icon: LoyaltyIcon,
+    background: "#8390C8",
     title: "Development",
     description: "High-quality web and mobile app development.",
+    color: "white",
   },
   {
-    color: "#FFD6A5",
+    icon: AcUnitIcon,
+    background: "#AE8ABE",
     title: "Development",
     description: "High-quality web and mobile app development.",
+    color: "white",
   },
   {
-    color: "#FFD6A5",
+    icon: CachedIcon,
+    background: "#fff",
     title: "Development",
     description: "High-quality web and mobile app development.",
+    color: "black",
   },
   {
-    color: "#FFD6A5",
+    icon: LoyaltyIcon,
+    background: "#000",
     title: "Development",
     description: "High-quality web and mobile app development.",
+    color: "white",
   },
   {
-    color: "#FFD6A5",
+    icon: AcUnitIcon,
+    background: "#000",
     title: "Development",
     description: "High-quality web and mobile app development.",
+    color: "white",
   },
   {
-    color: "#FFD6A5",
+    icon: CachedIcon,
+    background: "#8390C8",
     title: "Development",
     description: "High-quality web and mobile app development.",
+    color: "white",
   },
   {
-    color: "#FFD6A5",
+    icon: LoyaltyIcon,
+    background: "#fff",
     title: "Development",
     description: "High-quality web and mobile app development.",
+    color: "black",
   },
 ];
 
-const CustomPaper = styled(Paper)({
-  cursor: "pointer",
-  height: 200,
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "center",
-  transition: "transform 0.3s ease-in-out",
-  "&:hover": {
-    transform: "scale(1.05)",
-  },
-});
 
 const Home = () => {
   const BootstrapButton = styled(Button)({
@@ -181,7 +186,6 @@ const Home = () => {
           spacing={4} 
           alignItems="center"
           >
-            {/* Colonne Image */}
             <Grid 
             item 
             xs={12} 
@@ -259,10 +263,10 @@ const Home = () => {
           description="Explication de la conversion." 
           />
           <BoxesRight
-           icon={LoyaltyIcon} 
-           title="FIDÉLISATION" 
-           description="Explication de la fidélisation." 
-            />
+          icon={LoyaltyIcon} 
+          title="FIDÉLISATION" 
+          description="Explication de la fidélisation." 
+          />
         </Grid>
       </Box>
 
@@ -288,34 +292,13 @@ const Home = () => {
             justifyContent="center"
             >
               {data.map((item, index) => (
-                <Grid 
-                item 
-                xs={12} 
-                sm={6} 
-                md={4} 
+                <DataBox
                 key={index}
-                >
-                  <CustomPaper
-                    sx={{ backgroundColor: item.color }}
-                    elevation={3}
-                  >
-                    <Typography
-                      variant="h5"
-                      component="h3"
-                      sx={{ color: "#fff" }}
-                    >
-                      {item.title}
-                    </Typography>
-                    <Typography 
-                    variant="body2" 
-                    sx={{ 
-                      color: "#fff", 
-                      mt: 1 }}
-                      >
-                      {item.description}
-                    </Typography>
-                  </CustomPaper>
-                </Grid>
+                background={item.background}
+                title={item.title}
+                description={item.description}
+                color = {item.color}
+              />
               ))}
             </Grid>
           </Box>

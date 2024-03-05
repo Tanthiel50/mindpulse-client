@@ -8,6 +8,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { Canvas } from "@react-three/fiber";
 import Experience from "./Experience.jsx";
 import { Portal } from '@mui/base/Portal';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
         <UserProvider>
           <Layout>
             <RouterOutlet />
+            <SpeedInsights />
           </Layout>
         </UserProvider>
         <ToastContainer position="bottom-right" />

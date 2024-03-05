@@ -36,8 +36,8 @@ const BoxesRight = ({ icon: Icon, title, description }) => {
             background: "linear-gradient(0deg, rgba(131,144,200,1) 0%, rgba(174,138,190,1) 100%)",
           }} />
         </IconBox>
-        <Typography variant="subtitle1">{title}</Typography>
-        <Typography variant="body2">{description}</Typography>
+        <Typography variant="h4">{title}</Typography>
+        <Typography variant="body1">{description}</Typography>
       </StyledPaper>
     </Grid>
   );
