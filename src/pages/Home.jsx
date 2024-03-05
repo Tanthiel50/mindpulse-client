@@ -19,56 +19,56 @@ const data = [
   {
     icon: CachedIcon,
     background: "#AE8ABE",
-    title: "Development",
+    title: "Communication",
     description: "High-quality web and mobile app development.",
     color: "white",
   },
   {
     icon: LoyaltyIcon,
     background: "#8390C8",
-    title: "Development",
+    title: "UI/UX",
     description: "High-quality web and mobile app development.",
     color: "white",
   },
   {
     icon: AcUnitIcon,
     background: "#AE8ABE",
-    title: "Development",
+    title: "Stratégie",
     description: "High-quality web and mobile app development.",
     color: "white",
   },
   {
     icon: CachedIcon,
     background: "#fff",
-    title: "Development",
+    title: "SEO/SEA",
     description: "High-quality web and mobile app development.",
     color: "black",
   },
   {
     icon: LoyaltyIcon,
     background: "#000",
-    title: "Development",
+    title: "DEV",
     description: "High-quality web and mobile app development.",
     color: "white",
   },
   {
     icon: AcUnitIcon,
     background: "#000",
-    title: "Development",
+    title: "Data",
     description: "High-quality web and mobile app development.",
     color: "white",
   },
   {
     icon: CachedIcon,
     background: "#8390C8",
-    title: "Development",
+    title: "Positionnement",
     description: "High-quality web and mobile app development.",
     color: "white",
   },
   {
     icon: LoyaltyIcon,
     background: "#fff",
-    title: "Development",
+    title: "Analyse",
     description: "High-quality web and mobile app development.",
     color: "black",
   },
@@ -297,7 +297,8 @@ const Home = () => {
                 background={item.background}
                 title={item.title}
                 description={item.description}
-                color = {item.color}
+                color={item.color}
+                IconComponent={item.icon}
               />
               ))}
             </Grid>
