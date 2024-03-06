@@ -22,7 +22,7 @@ export function Model(props) {
           material={materials.material}
           scale={[150, 50, 150]}
           rotation={[Math.PI * 0.5, 0, 0]}
-          position={[2.4, 5.4, 0.25]}
+          position={[2.4, 5.2, 0.25]}
         >
           <meshStandardMaterial colors={"white"} />
         </mesh>
