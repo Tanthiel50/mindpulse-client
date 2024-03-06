@@ -21,6 +21,7 @@ const TableView = ({
   tableHeaders,
   fetchUrl,
   userFriendlyHeaders,
+  actionButtonConfig, // Ajoutez cette prop pour la configuration des boutons d'action
 }) => {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
@@ -54,8 +55,28 @@ const TableView = ({
         alignItems="center"
         mb={2}
       >
-        <Typography variant="h4">{title}</Typography>
-        <Button variant="contained" onClick={handleCreateNew}>
+        <Typography 
+        variant="h2"
+        sx={{
+            fontWeight: "bold",
+            color: "white"
+        }}
+        >
+            {title}
+        </Typography>
+        <Button 
+        variant="contained" 
+        onClick={handleCreateNew}
+        sx={{
+            backgroundColor: "white",
+            color: "black",
+            fontWeight: "bold",
+            "&:hover": {
+                backgroundColor: "black",
+                color: "white"
+            }
+        }}
+        >
           Créer nouveau
         </Button>
       </Box>
@@ -73,9 +94,14 @@ const TableView = ({
               <TableRow key={row.id}>
                 {tableHeaders.map((header) => {
                   if (header === "actions") {
+                    // Utiliser ici les props de configuration pour les boutons d'action
                     return (
                       <TableCell key={`${row.id}-${header}`}>
-                        <ActionButtons row={row} />
+                        <ActionButtons
+                          row={row}
+                          editPath={actionButtonConfig.editPath.replace(":id", row.id)}
+                          deletePath={actionButtonConfig.deletePath.replace(":id", row.id)}
+                        />
                       </TableCell>
                     );
                   }

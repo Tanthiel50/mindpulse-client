@@ -30,6 +30,10 @@ const Dashboard = () => {
           ]}
           fetchUrl="/users"
           userFriendlyHeaders={userFriendlyHeaders}
+          actionButtonConfig={{
+            editPath: "/admin/users/edit/:id",
+            deletePath: "/admin/users/delete/:id",
+          }}
         />
       </Box>
     </Box>

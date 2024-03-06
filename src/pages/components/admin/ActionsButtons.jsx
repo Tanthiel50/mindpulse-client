@@ -18,10 +18,16 @@ const ActionButtons = ({ row }) => {
     return (
       <>
         <Button onClick={handleEdit}>
-          <EditIcon />
+          <EditIcon sx={{
+            color: "black"
+          }} 
+          />
         </Button>
         <Button onClick={handleDelete}>
-          <DeleteIcon />
+          <DeleteIcon sx={{
+            color: "red"
+          }}  
+          />
         </Button>
       </>
     );
