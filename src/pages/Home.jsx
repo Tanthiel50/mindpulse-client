@@ -179,7 +179,11 @@ const Home = () => {
         }}
       >
         <Container 
-        maxWidth="md"
+        maxWidth="lg"
+        sx={{
+          paddingBottom: 8,
+          paddingTop: 8,
+        }}
         >
           <Grid 
           container 
