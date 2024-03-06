@@ -6,10 +6,18 @@ axios.defaults.baseURL = `http://127.0.0.1:8000/api`;
 axios.defaults.withCredentials = false;
 
 // Ajout du token d'authentification aux headers par défaut s'il existe
-const TOKEN = localStorage.getItem("token");
-if (TOKEN) {
-  axios.defaults.headers.common["Authorization"] = `Bearer ${TOKEN}`;
-}
+axios.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      config.headers["Authorization"] = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 // Exportation de l'instance axios configurée
 export const axiosInstance = axios;

@@ -30,7 +30,7 @@ export default function Experience() {
   return (
     <>
       {/* outils de staging */}
-      <Perf position="top-left" />
+      {/* <Perf position="top-left" /> */}
       <OrbitControls makeDefault />
       <color args={["#030202"]} attach="background" />
       {/* <ambientLight intensity={3} /> */}

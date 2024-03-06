@@ -13,49 +13,43 @@ import { useNavigate } from 'react-router-dom';
 import { useUserContext } from '../context/UserProvider';
 import { axiosInstance } from '../http-common/axios-configuration';
 import { toast } from 'react-toastify';
+import { useState } from 'react';
 
 
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
-
-export default function SignIn() {
-  const { setUser } = useUserContext();
-  const navigate = useNavigate();
-
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
-
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    try {
-      const response = await axiosInstance.post('/login', {
-        email,
-        password,
-      });
-
-      // Stocker le token dans le localStorage
-      localStorage.setItem('token', response.data.token);
-
-      // Mettre à jour l'état de l'utilisateur
-      setUser(response.data.user);
-      toast.success('Connexion réussie');
-      navigate('/');
-    } catch (error) {
-      console.error('Error logging in:', error);
-      toast.error('Erreur lors de la connexion');
-    }
-  };
+  
+  export default function LoginForm() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const { login } = useUserContext();
+    const navigate = useNavigate();
+    const handleEmailChange = (event) => {
+      setEmail(event.target.value);
+    };
+  
+    const handlePasswordChange = (event) => {
+      setPassword(event.target.value);
+    };
+    
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+    
+      try {
+        const response = await login(email, password);
+    
+        if (response.status === 200) {
+          toast.success('Connexion réussie !');
+          navigate('/admin');
+        } else {
+          throw new Error('Erreur de connexion. Veuillez vérifier vos informations de connexion.');
+        }
+      } catch (error) {
+        toast.error('Erreur de connexion. Veuillez vérifier vos informations de connexion.');
+      }
+    };
 
   const BootstrapButton = styled(Button)({
     boxShadow: "none",

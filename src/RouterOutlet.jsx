@@ -21,6 +21,7 @@ import CreateImage from "./pages/admin/images/CreateImage";
 import EditImage from "./pages/admin/images/EditImage";
 import MessagePage from "./pages/admin/messages/MessagePage";
 import ViewMessage from "./pages/admin/messages/ViewMessage";
+import PrivateRoute from "./PrivateRoute";
 
 
 const RouterOutlet = () => {
@@ -28,7 +29,6 @@ const RouterOutlet = () => {
     <Routes>
         {/* USER NAVIGATION */}
       <Route path="/" element={<Home />} />
-      <Route path="/admin" element={<Dashboard />} />
       <Route path="/login" element={<LoginForm />} />
       <Route path="/accompagnement" element={<Accompagnement/>} />
       <Route path="/blog" element={<Blog/>} />
@@ -38,10 +38,39 @@ const RouterOutlet = () => {
       {/* <Route path="/register" element={<RegisterForm />} /> */}
 
       {/* ADMIN NAVIGATION */}
+      <Route
+        path="/admin"
+        element={
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
+        }
+      />
       {/* POST */}
-      <Route path="/admin/posts" element={<PostPage />} />
-      <Route path="/admin/create-posts" element={<CreatePost />} />
-      <Route path="/admin/edit-posts/:id" element={<EditPost />} />
+      <Route
+        path="/admin/posts"
+        element={
+          <PrivateRoute>
+            <PostPage />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/admin/create-posts"
+        element={
+          <PrivateRoute>
+            <CreatePost />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/admin/edit-posts/:id"
+        element={
+          <PrivateRoute>
+            <EditPost />
+          </PrivateRoute>
+        }
+      />
       {/* CATEGORIES */}
       <Route path="/admin/categories" element={<CategoryPage />} />
       <Route path="/admin/create-categorie" element={<CreateCategorie />} />

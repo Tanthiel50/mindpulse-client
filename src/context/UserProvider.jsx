@@ -1,6 +1,5 @@
-import { createContext, useContext, useState, useEffect } from "react";
-import PropTypes from 'prop-types';
-import { axiosInstance as axios } from '../http-common/axios-configuration';
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import { axiosInstance } from '../http-common/axios-configuration';
 
 const UserContext = createContext();
 
@@ -9,30 +8,42 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const token = localStorage.getItem("token");
-      if (token) {
-        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-        try {
-          const response = await axios.get("/me");
+      try {
+        const token = localStorage.getItem('token');
+
+        if (token) {
+          axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+          const response = await axiosInstance.get('/me');
           setUser(response.data);
-        } catch (error) {
-          console.error("Erreur lors de la récupération des informations de l'utilisateur", error);
-          // Gérer l'erreur, par exemple en supprimant le token invalide
-          localStorage.removeItem("token");
         }
+      } catch (error) {
+        console.error('Error fetching user:', error);
       }
     };
 
     fetchUser();
   }, []);
 
-  UserProvider.propTypes = {
-    children: PropTypes.node.isRequired,
+  const login = async (email, password) => {
+    try {
+      const response = await axiosInstance.post('/login', { email, password });
+      localStorage.setItem('token', response.data.token);
+      setUser(response.data.user);
+      return response;
+    } catch (error) {
+      console.error('Error logging in:', error);
+      throw error;
+    }
   };
 
-  // Exposer l'état et les fonctions de mise à jour
+  const logout = () => {
+    localStorage.removeItem('token');
+    setUser(null);
+  };
+
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ user, login, logout }}>
       {children}
     </UserContext.Provider>
   );
