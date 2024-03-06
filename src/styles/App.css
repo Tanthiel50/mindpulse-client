@@ -8,7 +8,6 @@
   font-style: normal;
 }
 
-
 :root body {
   position: relative;
 }
@@ -24,7 +23,7 @@
 }
 :root h2 {
   font-weight: 700;
-  font-size: 3.3rem;
+  font-size: 2.5rem;
 }
 :root h3 {
   font-size: 2.5rem;

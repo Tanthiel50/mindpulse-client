@@ -21,7 +21,7 @@ const TableView = ({
   tableHeaders,
   fetchUrl,
   userFriendlyHeaders,
-  actionButtonConfig, // Ajoutez cette prop pour la configuration des boutons d'action
+  actionButtonConfig,
 }) => {
   const [data, setData] = useState([]);
   const navigate = useNavigate();

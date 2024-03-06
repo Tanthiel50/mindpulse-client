@@ -206,6 +206,10 @@ const Home = () => {
             item 
             xs={12} 
             md={6}
+            sx={{
+                  width: "100%",
+                  height: "auto",
+                }}
             >
               <Typography
                 gutterBottom

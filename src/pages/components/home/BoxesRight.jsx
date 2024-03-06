@@ -4,36 +4,36 @@ import { Typography, Paper, Box, Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
-  padding: theme.spacing(4),
+  padding: theme.spacing(1),
   textAlign: 'center',
-  height: '100%',
+  height: '50%',
   borderRadius: 0,
   color: "white",
-  background: "#121212",
+  background: "rgb(131,144,200)",
+  background: "linear-gradient(0deg, rgba(131,144,200,1) 0%, rgba(174,138,190,1) 100%)",
 }));
 
 const IconBox = styled(Box)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  padding: theme.spacing(2),
+  // padding: theme.spacing(2),
   borderRadius: '50%',
-  marginBottom: theme.spacing(2),
-  fontSize: "15rem",
+  marginBottom: theme.spacing(3), 
 }));
 
 
 
 const BoxesRight = ({ icon: Icon, title, description }) => {
   return (
-    <Grid item xs={2} sx={{ display: { xs: 'none', sm: 'block' } }}>
+    <Grid item xs={3} sx={{ display: { xs: 'none', sm: 'block' } }}>
       <StyledPaper>
         <IconBox>
           <Icon sx = {{
             padding: "1rem",
             borderRadius: "50%",
-            background: "rgb(131,144,200)",
-            background: "linear-gradient(0deg, rgba(131,144,200,1) 0%, rgba(174,138,190,1) 100%)",
+            fontSize: "5rem",
+            // background: "#121212", 
           }} />
         </IconBox>
         <Typography variant="h4">{title}</Typography>
