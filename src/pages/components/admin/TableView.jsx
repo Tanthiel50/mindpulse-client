@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -10,11 +10,18 @@ import {
   TableRow,
   Paper,
   Typography,
-} from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import { axiosInstance } from '../../../http-common/axios-configuration';
+} from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { axiosInstance } from "../../../http-common/axios-configuration";
+import ActionButtons from "./ActionsButtons";
 
-const TableView = ({ title, createPath, tableHeaders, fetchUrl }) => {
+const TableView = ({
+  title,
+  createPath,
+  tableHeaders,
+  fetchUrl,
+  userFriendlyHeaders,
+}) => {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
 
@@ -24,7 +31,7 @@ const TableView = ({ title, createPath, tableHeaders, fetchUrl }) => {
         const response = await axiosInstance.get(fetchUrl);
         setData(response.data);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
     };
 
@@ -36,10 +43,17 @@ const TableView = ({ title, createPath, tableHeaders, fetchUrl }) => {
   };
 
   return (
-    <Box sx={{
-        marginTop: '5rem' 
-    }}>
-      <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
+    <Box
+      sx={{
+        marginTop: "5rem",
+      }}
+    >
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        mb={2}
+      >
         <Typography variant="h4">{title}</Typography>
         <Button variant="contained" onClick={handleCreateNew}>
           Créer nouveau
@@ -49,17 +63,28 @@ const TableView = ({ title, createPath, tableHeaders, fetchUrl }) => {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              {tableHeaders.map((header) => (
-                <TableCell key={header}>{header}</TableCell>
+              {tableHeaders.map((header, index) => (
+                <TableCell key={index}>{userFriendlyHeaders[header]}</TableCell>
               ))}
             </TableRow>
           </TableHead>
           <TableBody>
             {data.map((row) => (
               <TableRow key={row.id}>
-                {tableHeaders.map((header) => (
-                  <TableCell key={`${row.id}-${header}`}>{row[header]}</TableCell>
-                ))}
+                {tableHeaders.map((header) => {
+                  if (header === "actions") {
+                    return (
+                      <TableCell key={`${row.id}-${header}`}>
+                        <ActionButtons row={row} />
+                      </TableCell>
+                    );
+                  }
+                  return (
+                    <TableCell key={`${row.id}-${header}`}>
+                      {row[header]}
+                    </TableCell>
+                  );
+                })}
               </TableRow>
             ))}
           </TableBody>
