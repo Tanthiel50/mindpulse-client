@@ -80,7 +80,7 @@ export default function Experience() {
         floatingRange={[0.015, -0.015]}
         speed={6}
       >
-        <Model position={[mousePositionX*0.5, mousePositionY*0.5,0]}/>
+        {window.innerWidth>768 ? <Model position={[mousePositionX*0.5, mousePositionY*0.5,0]}/>:null}
       </Float>
     </>
   );

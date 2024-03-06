@@ -9,13 +9,13 @@ export function Model(props) {
   // useFrame(({ clock }) => {
   //   const a = clock.getElapsedTime();
   //   logo.current.position.y = (Math.abs(Math.sin(a*0.6))*0.3)+5.3
-  // }); 
+  // });
 
   return (
     <>
       <group receiveShadow castShadow {...props} dispose={null}>
         <mesh
-        //ref={logo}
+          //ref={logo}
           castShadow
           receiveShadow
           geometry={nodes.Curve002.geometry}
