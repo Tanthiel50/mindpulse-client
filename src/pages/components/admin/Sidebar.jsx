@@ -1,38 +1,63 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import { Typography } from '@mui/material';
+import {
+  Box,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+} from '@mui/material';
+import { useLocation, useNavigate } from 'react-router-dom';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import PeopleIcon from '@mui/icons-material/People';
+import SettingsIcon from '@mui/icons-material/Settings';
+
+const sidebarWidth = '10%';
+
+const routes = [
+  { path: '/admin/dashboard', label: 'Dashboard', icon: <DashboardIcon /> },
+  { path: '/admin/users', label: 'Users', icon: <PeopleIcon /> },
+  { path: '/admin/settings', label: 'Settings', icon: <SettingsIcon /> },
+];
 
 const Sidebar = () => {
+  const location = useLocation();
   const navigate = useNavigate();
 
-  const menuItems = [
-    { text: 'Dashboard', path: '/admin' },
-    { text: 'Mots', path: '/admin/words' },
-    { text: 'Catégories', path: '/admin/categories' },
-    { text: 'Users', path: '/admin/users' },
-  ];
-
-  const handleItemClick = (path) => {
+  const handleRouteChange = (path) => {
     navigate(path);
   };
 
   return (
-    <Drawer variant="permanent" sx={{ width: 240, '& .MuiDrawer-paper': { width: 240, boxSizing: 'border-box' } }}>
-      <Typography variant="h6" sx={{ padding: 2 }}>
-        MindPulse
-      </Typography>
-      <List>
-        {menuItems.map((item, index) => (
-          <ListItem key={item.text} onClick={() => handleItemClick(item.path)}>
-            <ListItemText primary={item.text} />
-          </ListItem>
-        ))}
-      </List>
-    </Drawer>
+    <Box
+      component="nav"
+      sx={{ width: { sm: sidebarWidth }, flexShrink: { sm: 0 } }}
+    >
+      <Drawer
+        variant="permanent"
+        open
+        sx={{
+          width: sidebarWidth,
+          flexShrink: 0,
+          '& .MuiDrawer-paper': { width: sidebarWidth, boxSizing: 'border-box' },
+        }}
+      >
+        <List>
+          {routes.map((route) => (
+            <ListItem key={route.path} disablePadding>
+              <ListItemButton
+                selected={location.pathname === route.path}
+                onClick={() => handleRouteChange(route.path)}
+              >
+                <ListItemIcon>{route.icon}</ListItemIcon>
+                <ListItemText primary={route.label} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+      </Drawer>
+    </Box>
   );
 };
 

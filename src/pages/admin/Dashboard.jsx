@@ -1,41 +1,26 @@
 import React from 'react';
-import { Button, TableCell, TableRow } from '@mui/material';
-import Navbar from '../components/layout/NavBar';
 import Sidebar from '../components/admin/Sidebar';
-import GenericTablePage from '../components/admin/GenericTablePage';
+import TableView from '../components/admin/TableView';
+import Box from '@mui/material/Box';
 
 const Dashboard = () => {
   return (
-    <>
-      <div 
-      style={{ 
-        display: 'flex', 
-        }}
-        >
-        <Sidebar />
-        <div style={{ marginLeft: '240px', padding: '1rem' }}>
-          <GenericTablePage
-            title="Exemple de tableau"
-            createPath="/admin/exemple/create"
-            fetchDataUrl="http://127.0.0.1:8000/api/users"
-            deleteDataUrl="http://127.0.0.1:8000/api/users"
-            editPathPrefix="/admin/users"
-            columns={['ID', 'Nom', 'Description']}
-            mapDataToRow={(handleEditClick, handleDelete) => (item) => (
-              <TableRow key={item.id}>
-                <TableCell>{item.id}</TableCell>
-                <TableCell>{item.name}</TableCell>
-                <TableCell>{item.description}</TableCell>
-                <TableCell>
-                  <Button onClick={() => handleEditClick(item.id)}>Modifier</Button>
-                  <Button onClick={() => handleDelete(item.id)}>Supprimer</Button>
-                </TableCell>
-              </TableRow>
-            )}
-          />
-        </div>
-      </div>
-    </>
+    <Box 
+    sx={{ 
+      display: 'flex',
+      height: '100vh' 
+      }}
+      >
+    <Sidebar />
+    <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <TableView
+        title="Utilisateurs"
+        createPath="/admin/users/create"
+        tableHeaders={['ID', 'Nom', 'Email', 'Rôle']}
+        fetchUrl="/users"
+      />
+    </Box>
+  </Box>
   );
 };
 
