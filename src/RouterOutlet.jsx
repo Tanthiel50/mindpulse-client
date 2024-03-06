@@ -72,20 +72,98 @@ const RouterOutlet = () => {
         }
       />
       {/* CATEGORIES */}
-      <Route path="/admin/categories" element={<CategoryPage />} />
-      <Route path="/admin/create-categorie" element={<CreateCategorie />} />
-      <Route path="/admin/edit-categorie/:id" element={<EditCategorie />} />
+      <Route
+        path="/admin/categories"
+        element={
+          <PrivateRoute>
+            <CategoryPage />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/admin/create-categorie"
+        element={
+          <PrivateRoute>
+            <CreateCategorie />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/admin/edit-categorie/:id"
+        element={
+          <PrivateRoute>
+            <EditCategorie />
+          </PrivateRoute>
+        }
+      />
+
       {/* IMAGES */}
-      <Route path="/admin/images" element={<ImagePage />} />
-      <Route path="/admin/create-image" element={<CreateImage />} />
-      <Route path="/admin/edit-image/:id" element={<EditImage />} />
+      <Route
+        path="/admin/images"
+        element={
+          <PrivateRoute>
+            <ImagePage />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/admin/create-image"
+        element={
+          <PrivateRoute>
+            <CreateImage />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/admin/edit-image/:id"
+        element={
+          <PrivateRoute>
+            <EditImage />
+          </PrivateRoute>
+        }
+      />
       {/* USERS */}
-      <Route path="/admin/users" element={<UserPage />} />
-      <Route path="/admin/create-user" element={<CreateUser />} />
-      <Route path="/admin/edit-user/:id" element={<EditUser />} />
+      <Route
+        path="/admin/users"
+        element={
+          <PrivateRoute>
+            <UserPage />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/admin/create-user"
+        element={
+          <PrivateRoute>
+            <CreateUser />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/admin/edit-user/:id"
+        element={
+          <PrivateRoute>
+            <EditUser />
+          </PrivateRoute>
+        }
+      />
       {/* MESSAGE */}
-      <Route path="/admin/message" element={<MessagePage />} />
-      <Route path="/admin/message/:id" element={<ViewMessage />} />
+      <Route
+        path="/admin/message"
+        element={
+          <PrivateRoute>
+            <MessagePage />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/admin/message/:id"
+        element={
+          <PrivateRoute>
+            <ViewMessage />
+          </PrivateRoute>
+        }
+      />
     </Routes>
   );
 };

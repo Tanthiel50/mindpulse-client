@@ -19,7 +19,7 @@ const Dashboard = () => {
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <TableView
           title="Utilisateurs"
-          createPath="/admin/users/create"
+          createPath="/admin/create-user"
           tableHeaders={[
             "id",
             "name",
@@ -31,7 +31,7 @@ const Dashboard = () => {
           fetchUrl="/users"
           userFriendlyHeaders={userFriendlyHeaders}
           actionButtonConfig={{
-            editPath: "/admin/users/edit/:id",
+            editPath: "/admin/edit-user/:id",
             deletePath: "/admin/users/delete/:id",
           }}
         />
