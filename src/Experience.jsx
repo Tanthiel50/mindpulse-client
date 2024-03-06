@@ -60,7 +60,7 @@ export default function Experience() {
   return (
     <>
       {/* outils de staging */}
-      {/* <Perf position="top-left" /> */}
+      <Perf position="top-left" />
       <color args={["#030202"]} attach="background" />
       {/* <ambientLight intensity={3} /> */}
 
@@ -68,7 +68,7 @@ export default function Experience() {
       <ambientLight intensity={3} />
       {/* rectangle dégradé + perlin noise */}
       <mesh>
-        <planeGeometry args={[15, 15]} />
+        <planeGeometry args={[45, 45]} />
         <gradientMaterial ref={gradientMaterial} side={THREE.DoubleSide} />
       </mesh>
       {/* logo flottant */}
