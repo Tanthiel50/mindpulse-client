@@ -1,4 +1,5 @@
 export const gradientVertexShader = `varying vec2 vUv;
+uniform vec2 uMouse;
 
 void main()
 {
@@ -8,5 +9,6 @@ void main()
 
     gl_Position = projectionPosition;
 
+    //vUv = vec2(uv.x+(uMouse.x*0.5),uv.y+(uMouse.y*0.5));
     vUv = uv;
-}`
+}`;

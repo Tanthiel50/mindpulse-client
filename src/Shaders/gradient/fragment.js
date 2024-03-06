@@ -2,6 +2,7 @@ export const gradientFragmentShader = `uniform float uTime;
 uniform vec3 uColorStart;
 uniform vec3 uColorEnd;
 uniform vec3 uBlackColor;
+uniform vec2 uMouse;
 
 varying vec2 vUv;
 
@@ -85,10 +86,10 @@ float cnoise(vec3 P)
 void main()
 {
     // Displace the UV
-    vec2 displacedUv = vUv + cnoise(vec3(vUv * 5.0, uTime * 0.1));
+    vec2 displacedUv = vUv + cnoise(vec3((vUv.x+(1.0-uMouse.x*0.2)) * 5.0,(vUv.y+uMouse.y*0.2) * 5.0, uTime * 0.1));
 
     // Perlin noise
-    float strength = cnoise(vec3(displacedUv * 8.0, uTime * 0.1));
+    float strength = cnoise(vec3((displacedUv.x+abs(uMouse.x*0.1)) * 8.0,(displacedUv.y + abs(uMouse.y*0.1)) * 8.0, uTime * 0.1));
 
     // Outer glow
     float outerGlow = distance(vUv, vec2(0.5)) * 5.0 - 1.4;
@@ -107,5 +108,5 @@ void main()
     float h = 0.5; // adjust position of middleColor
     vec3 color = mix(mix(uColorStart, uColorEnd, strength/h), mix(uColorEnd, uBlackColor, (strength - h)/(1.0 - h)), step(h, strength));
 
-    gl_FragColor = vec4(color, 1.0);
+    gl_FragColor = vec4(color, 1);
 }`;

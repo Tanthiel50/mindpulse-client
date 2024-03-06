@@ -1,5 +1,5 @@
 import { shaderMaterial, OrbitControls, Float } from "@react-three/drei";
-import { useRef } from "react";
+import React, { useRef } from "react";
 import { useFrame, extend } from "@react-three/fiber";
 import { gradientVertexShader } from "./Shaders/gradient/vertex.js";
 import { gradientFragmentShader } from "./Shaders/gradient/fragment.js";
@@ -13,6 +13,7 @@ const GradientMaterial = shaderMaterial(
     uColorStart: new THREE.Color("#8390C8"),
     uColorEnd: new THREE.Color("#AE8ABE"),
     uBlackColor: new THREE.Color("#000000"),
+    uMouse: new THREE.Vector2(0, 0),
   },
   gradientVertexShader,
   gradientFragmentShader
@@ -20,11 +21,40 @@ const GradientMaterial = shaderMaterial(
 
 extend({ GradientMaterial });
 
+  const MouseMove = () => {
+    const [mousePosition, setMousePosition] = React.useState({
+      x: null,
+      y: null,
+    });
+    React.useEffect(() => {
+      const updateMousePosition = (ev) => {
+        setMousePosition({ x: ev.clientX, y: ev.clientY });
+      };
+      window.addEventListener("mousemove", updateMousePosition);
+      return () => {
+        window.removeEventListener("mousemove", updateMousePosition);
+      };
+    }, []);
+    return mousePosition;
+  };
+  extend({ MouseMove });
+
+
 export default function Experience() {
+
+
+  const mousePosition = MouseMove();
+  
+  const normalizeRatio = (value, min, max) => (value - min) / (max - min);
+
   const gradientMaterial = useRef();
 
   useFrame((state, delta) => {
     gradientMaterial.current.uTime += delta;
+    gradientMaterial.current.uMouse = new THREE.Vector2(
+      normalizeRatio(mousePosition.x, 0, window.innerWidth) - 0.5,
+      normalizeRatio(mousePosition.y, 0, window.innerHeight) - 0.5
+    );
   });
 
   return (
