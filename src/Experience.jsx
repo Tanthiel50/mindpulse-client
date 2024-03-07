@@ -1,4 +1,4 @@
-import { shaderMaterial, OrbitControls, Float } from "@react-three/drei";
+import { shaderMaterial, Float } from "@react-three/drei";
 import React, { useRef } from "react";
 import { useFrame, extend } from "@react-three/fiber";
 import { gradientVertexShader } from "./Shaders/gradient/vertex.js";
@@ -39,47 +39,36 @@ extend({ GradientMaterial });
   };
   extend({ MouseMove });
 
-
 export default function Experience() {
 
-
-  const mousePosition = MouseMove();
-  
   const normalizeRatio = (value, min, max) => (value - min) / (max - min);
+  const mousePosition = MouseMove();
+  const mousePositionX =
+    normalizeRatio(mousePosition.x, 0, window.innerWidth) - 0.5;
+  const mousePositionY =
+    normalizeRatio(mousePosition.y, 0, window.innerWidth) - 0.5;
 
   const gradientMaterial = useRef();
 
   useFrame((state, delta) => {
     gradientMaterial.current.uTime += delta;
     gradientMaterial.current.uMouse = new THREE.Vector2(
-      normalizeRatio(mousePosition.x, 0, window.innerWidth) - 0.5,
-      normalizeRatio(mousePosition.y, 0, window.innerHeight) - 0.5
-    );
-  });
+      mousePositionX,
+      mousePositionY)
+    });
 
   return (
     <>
       {/* outils de staging */}
-      {/* <Perf position="top-left" /> */}
-      <OrbitControls makeDefault />
+      <Perf position="top-left" />
       <color args={["#030202"]} attach="background" />
       {/* <ambientLight intensity={3} /> */}
 
       {/* lights */}
-      <rectAreaLight
-        width={7}
-        height={7}
-        color={"white"}
-        intensity={3}
-        position={[2, 5, 5]}
-        lookAt={[2, 5, 0.25]}
-        penumbra={1}
-        castShadow
-      />
-
+      <ambientLight intensity={3} />
       {/* rectangle dégradé + perlin noise */}
       <mesh>
-        <planeGeometry args={[15, 15]} />
+        <planeGeometry args={[45, 45]} />
         <gradientMaterial ref={gradientMaterial} side={THREE.DoubleSide} />
       </mesh>
       {/* logo flottant */}
@@ -91,7 +80,7 @@ export default function Experience() {
         floatingRange={[0.015, -0.015]}
         speed={6}
       >
-        <Model />
+        {window.innerWidth>768 ? <Model position={[mousePositionX*0.5, mousePositionY*0.5,0]}/>:null}
       </Float>
     </>
   );
