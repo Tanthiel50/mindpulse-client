@@ -1,9 +1,15 @@
+import EditForm from "../../components/admin/EditForm";
 
 function EditCategorie() {
   
 
   return (
-    <div>Test</div>
+    <EditForm
+    formHeaders={["name", "description"]}
+    fetchDetailsUrl="/categories"
+    submitUrl="/categories/edit"
+    title="Catégorie"
+  />
   );
 }
 

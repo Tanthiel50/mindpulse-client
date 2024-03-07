@@ -1,27 +1,28 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Box, Button, TextField, Typography } from "@mui/material";
+import { useNavigate, useParams } from "react-router-dom";
 import { axiosInstance } from "../../../http-common/axios-configuration";
-import CreateForm from "./CreateForm";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import Sidebar from "./Sidebar";
 
-const EditForm = ({ formHeaders, editPath, submitUrl, title }) => {
-  const { id } = useParams();
+const EditForm = ({ formHeaders, fetchDetailsUrl, submitUrl, title }) => {
   const [formData, setFormData] = useState({});
   const navigate = useNavigate();
+  const { id } = useParams(); // Utiliser useParams pour récupérer l'ID depuis l'URL
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchDetails = async () => {
       try {
-        const response = await axiosInstance.get(`${submitUrl}/${id}`);
+        const response = await axiosInstance.get(`${fetchDetailsUrl}/${id}`);
         setFormData(response.data);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        toast.error("Erreur lors de la récupération des détails.");
+        console.error("Erreur de récupération des détails:", error);
       }
     };
 
-    fetchData();
-  }, [id, submitUrl]);
+    fetchDetails();
+  }, [id, fetchDetailsUrl]);
 
   const handleInputChange = (e) => {
     setFormData({
@@ -33,38 +34,75 @@ const EditForm = ({ formHeaders, editPath, submitUrl, title }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axiosInstance.put(`${submitUrl}/${id}`, formData);
+      await axiosInstance.put(`${submitUrl}/${id}`, formData);
       toast.success(`${title} mis à jour avec succès`);
-      navigate(editPath);
+      navigate(-1); // Naviguer vers la page précédente
     } catch (error) {
       // Vérification de la présence d'un message d'erreur dans la réponse du back-end
       if (error.response && error.response.data && error.response.data.message) {
-        // Si l'erreur contient une structure détaillée (par exemple, des champs spécifiques en erreur)
-        if (typeof error.response.data.message === "object") {
-          const messages = Object.values(error.response.data.message).join(". ");
-          toast.error(`Erreur : ${messages}`);
+          // Si l'erreur contient une structure détaillée (par exemple, des champs spécifiques en erreur)
+          if (typeof error.response.data.message === 'object') {
+            const messages = Object.values(error.response.data.message).join('. ');
+            toast.error(`Erreur : ${messages}`);
+          } else {
+            // Si l'erreur est une chaîne simple
+            toast.error(`Erreur : ${error.response.data.message}`);
+          }
         } else {
-          // Si l'erreur est une chaîne simple
-          toast.error(`Erreur : ${error.response.data.message}`);
+          // Message d'erreur générique si la réponse du back-end ne contient pas de détail
+          toast.error('Une erreur est survenue lors de la création du mot.');
         }
-      } else {
-        // Message d'erreur générique si la réponse du back-end ne contient pas de détail
-        toast.error("Une erreur est survenue lors de la mise à jour du mot.");
+        console.error('Erreur de soumission:', error);
       }
-      console.error("Erreur de soumission :", error);
-    }
   };
 
   return (
-    <EditForm
-      formHeaders={formHeaders}
-      createPath={editPath}
-      submitUrl={submitUrl}
-      title={title}
-      formData={formData}
-      handleInputChange={handleInputChange}
-      handleSubmit={handleSubmit}
-    />
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        height: "100vh",
+      }}
+    >
+      <Sidebar />
+      <Typography variant="h4" sx={{ marginBottom: "1rem", marginTop: "5rem" }}>
+        Modifier {title}
+      </Typography>
+      <Box component="form" onSubmit={handleSubmit} sx={{ width: "50%" }}>
+        {formHeaders.map((header) => (
+          <TextField
+            key={header}
+            label={header}
+            name={header}
+            value={formData[header] || ""}
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            required
+            onChange={handleInputChange}
+            sx={{
+              backgroundColor: "white",
+            }}
+          />
+        ))}
+        <Button
+          type="submit"
+          variant="contained"
+          sx={{
+            backgroundColor: "white",
+            color: "black",
+            fontWeight: "bold",
+            "&:hover": {
+              backgroundColor: "black",
+              color: "white",
+            },
+          }}
+        >
+          Mettre à jour
+        </Button>
+      </Box>
+    </Box>
   );
 };
 
