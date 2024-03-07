@@ -4,15 +4,15 @@ import { useNavigate } from 'react-router-dom'
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
 
-const ActionButtons = ({ row }) => {
+const ActionButtons = ({ row, onEdit, onDelete }) => {
     const navigate = useNavigate();
   
     const handleEdit = () => {
-      navigate(`/admin/users/edit/${row.id}`);
+      if (onEdit) onEdit(row.id);
     };
   
     const handleDelete = () => {
-      navigate(`/admin/users/delete/${row.id}`);
+      if (onDelete) onDelete(row.id);
     };
   
     return (

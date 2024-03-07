@@ -1,9 +1,10 @@
 
-
 function EditCategorie() {
+  
+
   return (
-    <div>EditCategorie</div>
-  )
+    <div>Test</div>
+  );
 }
 
 export default EditCategorie

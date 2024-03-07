@@ -14,6 +14,8 @@ import {
 import { useNavigate } from "react-router-dom";
 import { axiosInstance } from "../../../http-common/axios-configuration";
 import ActionButtons from "./ActionsButtons";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const TableView = ({
   title,
@@ -22,6 +24,8 @@ const TableView = ({
   fetchUrl,
   userFriendlyHeaders,
   actionButtonConfig,
+  onDelete,
+  columns,
 }) => {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
@@ -43,6 +47,16 @@ const TableView = ({
     navigate(createPath);
   };
 
+  const handleDelete = async (id) => {
+    try {
+      if (onDelete) {
+        await onDelete(id);
+      }
+    } catch (error) {
+      console.error("Erreur lors de la suppression:", error);
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -55,27 +69,27 @@ const TableView = ({
         alignItems="center"
         mb={2}
       >
-        <Typography 
-        variant="h2"
-        sx={{
+        <Typography
+          variant="h2"
+          sx={{
             fontWeight: "bold",
-            color: "white"
-        }}
+            color: "white",
+          }}
         >
-            {title}
+          {title}
         </Typography>
-        <Button 
-        variant="contained" 
-        onClick={handleCreateNew}
-        sx={{
+        <Button
+          variant="contained"
+          onClick={handleCreateNew}
+          sx={{
             backgroundColor: "white",
             color: "black",
             fontWeight: "bold",
             "&:hover": {
-                backgroundColor: "black",
-                color: "white"
-            }
-        }}
+              backgroundColor: "black",
+              color: "white",
+            },
+          }}
         >
           Créer nouveau
         </Button>
@@ -96,11 +110,15 @@ const TableView = ({
                   if (header === "actions") {
                     // Utiliser ici les props de configuration pour les boutons d'action
                     return (
-                      <TableCell key={`${row.id}-${header}`}>
+                      <TableCell key={`${row.id}-actions`}>
                         <ActionButtons
                           row={row}
-                          editPath={actionButtonConfig.editPath.replace(":id", row.id)}
-                          deletePath={actionButtonConfig.deletePath.replace(":id", row.id)}
+                          onEdit={() =>
+                            navigate(
+                              actionButtonConfig.editPath.replace(":id", row.id)
+                            )
+                          }
+                          onDelete={handleDelete}
                         />
                       </TableCell>
                     );

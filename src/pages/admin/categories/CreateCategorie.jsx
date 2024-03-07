@@ -1,9 +1,20 @@
+import React from "react";
+import CreateForm from "../../components/admin/CreateForm";
 
 
-function CreateCategorie() {
+const CreateCategorie = () => {
+  const formHeaders = ["name", "slug", "description"];
+  const createPath = "/admin/categories";
+  const submitUrl = "/categories";
+
   return (
-    <div>CreateCategorie</div>
-  )
-}
+    <CreateForm
+      title="Categorie"
+      formHeaders={formHeaders}
+      createPath={createPath}
+      submitUrl={submitUrl}
+    />
+  );
+};
 
-export default CreateCategorie
+export default CreateCategorie;
