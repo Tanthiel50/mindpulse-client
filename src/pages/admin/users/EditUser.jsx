@@ -1,8 +1,14 @@
+import EditForm from "../../components/admin/EditForm"
 
 
 function EditUser() {
   return (
-    <div>EditUser</div>
+    <EditForm
+    formHeaders={["name", "email", "role", "password"]}
+    fetchDetailsUrl="/users"
+    submitUrl="/users/edit"
+    title="Utilisateur"
+  />
   )
 }
 

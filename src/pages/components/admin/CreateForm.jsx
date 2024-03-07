@@ -1,14 +1,23 @@
-import React, { useState } from "react";
-import { Box, Button, TextField } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { Box, Button, TextField, MenuItem } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { axiosInstance } from "../../../http-common/axios-configuration";
 import Typography from "@mui/material/Typography";
 import Sidebar from "./Sidebar";
 import { toast } from "react-toastify";
 
-const CreateForm = ({ formHeaders, createPath, submitUrl, title }) => {
+const CreateForm = ({ formHeaders, createPath, submitUrl, title, specialFields  }) => {
   const [formData, setFormData] = useState({});
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Initialiser formData pour les champs spéciaux si nécessaire
+    specialFields?.forEach(field => {
+      if(field.type === "select") {
+        setFormData(prev => ({ ...prev, [field.name]: field.options[0].value }));
+      }
+    });
+  }, [specialFields]);
 
   const handleInputChange = (e) => {
     setFormData({
@@ -63,30 +72,42 @@ const CreateForm = ({ formHeaders, createPath, submitUrl, title }) => {
         Créer {title}
       </Typography>
       <Box component="form" onSubmit={handleSubmit} sx={{ width: "50%" }}>
-        {formHeaders.map((header) => (
-          <TextField
-            key={header}
-            label={header}
-            name={header}
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            required
-            onChange={handleInputChange}
-            sx={{
-                backgroundColor: "white", 
-            }}
-          />
-        ))}
-        <Button type="submit" variant="contained" sx={{
-            backgroundColor: "white",
-            color: "black",
-            fontWeight: "bold",
-            "&:hover": {
-                backgroundColor: "black",
-                color: "white"
-            }
-        }}>
+        {formHeaders.map(header => {
+          const specialField = specialFields?.find(field => field.name === header);
+          return specialField && specialField.type === "select" ? (
+            <TextField
+              select
+              label={specialField.label}
+              name={specialField.name}
+              value={formData[specialField.name]}
+              onChange={handleInputChange}
+              fullWidth
+              margin="normal"
+              required
+              sx={{ backgroundColor: "white" }}
+              key={specialField.name}
+            >
+              {specialField.options.map(option => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+          ) : (
+            <TextField
+              key={header}
+              label={header}
+              name={header}
+              value={formData[header] || ''}
+              onChange={handleInputChange}
+              fullWidth
+              margin="normal"
+              required
+              sx={{ backgroundColor: "white" }}
+            />
+          );
+        })}
+        <Button type="submit" variant="contained" sx={{ backgroundColor: "white", color: "black", fontWeight: "bold", "&:hover": { backgroundColor: "black", color: "white" } }}>
           Soumettre
         </Button>
       </Box>
