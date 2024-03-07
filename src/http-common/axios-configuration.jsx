@@ -21,3 +21,13 @@ axios.interceptors.request.use(
 
 // Exportation de l'instance axios configurée
 export const axiosInstance = axios;
+
+export const getImageUrl = async (imageId) => {
+  try {
+    const response = await axiosInstance.get(`/media/${imageId}`);
+    return response.data.file_name;
+  } catch (error) {
+    console.error("Error fetching image URL:", error);
+    return null;
+  }
+};
