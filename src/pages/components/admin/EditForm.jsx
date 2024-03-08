@@ -34,7 +34,7 @@ const EditForm = ({ formHeaders, fetchDetailsUrl, submitUrl, title }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axiosInstance.put(`${submitUrl}/${id}`, formData);
+      await axiosInstance.post(`${submitUrl}/${id}`, formData);
       toast.success(`${title} mis à jour avec succès`);
       navigate(-1); // Naviguer vers la page précédente
     } catch (error) {
@@ -79,7 +79,6 @@ const EditForm = ({ formHeaders, fetchDetailsUrl, submitUrl, title }) => {
             variant="outlined"
             margin="normal"
             fullWidth
-            required
             onChange={handleInputChange}
             sx={{
               backgroundColor: "white",
