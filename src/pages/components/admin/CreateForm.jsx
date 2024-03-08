@@ -1,14 +1,33 @@
 import React, { useState, useEffect } from "react";
-import { Box, Button, TextField, MenuItem } from "@mui/material";
+import { Box, Button, TextField, MenuItem, Typography, CircularProgress } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { axiosInstance } from "../../../http-common/axios-configuration";
-import Typography from "@mui/material/Typography";
 import Sidebar from "./Sidebar";
 import { toast } from "react-toastify";
+import { useLoading } from "../../../context/LoadingContext";
 
 const CreateForm = ({ formHeaders, createPath, submitUrl, title, specialFields  }) => {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState(() => {
+    const initialData = {};
+    
+    // Initialiser tous les formHeaders avec une chaîne vide
+    formHeaders.forEach(header => {
+      initialData[header] = '';
+    });
+
+    // Initialiser les champs spéciaux si specialFields est défini
+    if (specialFields && specialFields.length > 0) {
+      specialFields.forEach(field => {
+        if (field.type === 'select') {
+          initialData[field.name] = field.options[0].value;
+        }
+      });
+    }
+
+    return initialData;
+  });
   const navigate = useNavigate();
+  const { isLoading, setIsLoading } = useLoading();
 
   useEffect(() => {
     // Initialiser formData pour les champs spéciaux si nécessaire
@@ -28,6 +47,7 @@ const CreateForm = ({ formHeaders, createPath, submitUrl, title, specialFields  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
         const response = await axiosInstance.post(submitUrl, formData);
         toast.success(`${title} créé avec succès`);
@@ -48,6 +68,8 @@ const CreateForm = ({ formHeaders, createPath, submitUrl, title, specialFields  
             toast.error('Une erreur est survenue lors de la création du mot.');
           }
           console.error('Erreur de soumission:', error);
+        }finally{
+          setIsLoading(false);
         }
   };
 
@@ -60,7 +82,12 @@ const CreateForm = ({ formHeaders, createPath, submitUrl, title, specialFields  
         height: "100vh",
       }}
     >
+      
         <Sidebar />
+        {isLoading ? (
+          <CircularProgress />
+        ) :  (
+      <>
       <Typography 
       variant="h4" 
       sx={{ 
@@ -111,6 +138,8 @@ const CreateForm = ({ formHeaders, createPath, submitUrl, title, specialFields  
           Soumettre
         </Button>
       </Box>
+      </>
+        )}
     </Box>
   );
 };
