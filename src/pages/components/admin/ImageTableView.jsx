@@ -23,6 +23,7 @@ const ImageTableView = ({
   userFriendlyHeaders,
   actionButtonConfig,
   imageColumn,
+  onDelete
 }) => {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
@@ -31,7 +32,6 @@ const ImageTableView = ({
     const fetchData = async () => {
       try {
         const response = await axiosInstance.get(fetchUrl);
-        console.log(response.data);
         setData(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -43,6 +43,16 @@ const ImageTableView = ({
 
   const handleCreateNew = () => {
     navigate(createPath);
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      if (onDelete) {
+        await onDelete(id);
+      }
+    } catch (error) {
+      console.error("Erreur lors de la suppression:", error);
+    }
   };
 
   return (
@@ -85,8 +95,12 @@ const ImageTableView = ({
                     {header === "actions" ? (
                       <ActionButtons
                         row={row}
-                        editPath={actionButtonConfig.editPath.replace(":id", row.id)}
-                        deletePath={actionButtonConfig.deletePath.replace(":id", row.id)}
+                        onEdit={() =>
+                          navigate(
+                            actionButtonConfig.editPath.replace(":id", row.id)
+                          )
+                        }
+                        onDelete={handleDelete}
                       />
                     ) : (
                       row[header]
