@@ -9,10 +9,15 @@ import { Canvas } from "@react-three/fiber";
 import Experience from "./Experience.jsx";
 import { Portal } from '@mui/base/Portal';
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import { useLoading } from "./context/LoadingContext.jsx";
+import LoadingIndicator from "./pages/components/LoadingIndicator.jsx";
 
 function App() {
+  const { isLoading } = useLoading();
+
   return (
     <>
+  {isLoading && <LoadingIndicator />}
       <Portal>
         <div
           style={{

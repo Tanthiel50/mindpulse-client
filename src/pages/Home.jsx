@@ -314,9 +314,8 @@ const Home = () => {
             justifyContent="center"
             >
               {data.map((item, index) => (
-              <Grid item xs={12} sm={6} md={4}>
+              <Grid item xs={12} sm={6} md={4} key={index}>
                 <DataBox
-                key={index}
                 background={item.background}
                 title={item.title}
                 description={item.description}
