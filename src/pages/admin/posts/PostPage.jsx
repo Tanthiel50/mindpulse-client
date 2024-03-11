@@ -13,6 +13,7 @@ function PostPage() {
     imageAlt: "Nom image",
     created_at: "Date de création",
     metaDescription: "Meta description",
+    categories: "Catégories",
     actions: "Actions",
   };
 
