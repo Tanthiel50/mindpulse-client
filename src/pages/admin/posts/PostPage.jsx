@@ -26,7 +26,6 @@ function PostPage() {
     const fetchPosts = async () => {
       try {
         const response = await axiosInstance.get("/posts");
-        console.log(response.data);
         setPosts(response.data);
       } catch (error) {
         toast.error("Erreur lors du chargement des articles");
@@ -60,16 +59,42 @@ function PostPage() {
     }
   };
 
+  const handleCreateNew = () => {
+    navigate("/admin/create-post");
+  }
+
   return (
     <Box sx={{ display: "flex", height: "100vh" }}>
       <Sidebar />
-      <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: "5rem" }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: "5rem" }} >
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        mb={2}
+      >
         <Typography
           variant="h2"
           sx={{ fontWeight: "bold", color: "white", mb: 2 }}
         >
           Articles
         </Typography>
+        <Button
+          variant="contained"
+          onClick={handleCreateNew}
+          sx={{
+            backgroundColor: "white",
+            color: "black",
+            fontWeight: "bold",
+            "&:hover": {
+              backgroundColor: "black",
+              color: "white",
+            },
+          }}
+        >
+          Créer nouveau
+        </Button>
+        </Box>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
