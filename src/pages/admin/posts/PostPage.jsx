@@ -45,6 +45,7 @@ function PostPage() {
     created_at: "Date de création",
     metaDescription: "Meta description",
     categories: "Catégories",
+    mediaImages: "Images Média",
     actions: "Actions",
   };
 
@@ -87,21 +88,38 @@ function PostPage() {
                     if (header === "image") {
                       const imageUrl = `/storage/images/${post[header]}`;
                       return (
-<TableCell key={`${post.id}-image`}>
-    {post.image_url && (
-        <img
-            src={post.image_url}
-            alt={post.imageAlt || "Post image"}
-            style={{ width: 100, height: "auto" }}
-        />
-    )}
-</TableCell>
+                        <TableCell key={`${post.id}-image`}>
+                          {post.image_url && (
+                            <img
+                              src={post.image_url}
+                              alt={post.imageAlt || "Post image"}
+                              style={{ width: 100, height: "auto" }}
+                            />
+                          )}
+                        </TableCell>
                       );
                     } else if (header === "categories") {
                       // Votre logique existante pour afficher les catégories
                       return (
                         <TableCell key={`${post.id}-${header}`}>
                           {post.categories.map((cat) => cat.name).join(", ")}
+                        </TableCell>
+                      );
+                    } else if (header === "mediaImages") {
+                      // Nouvelle logique pour afficher les images provenant de la table media
+                      return (
+                        <TableCell key={`${post.id}-media-image`}>
+                          {post.media_image_url && (
+                            <img
+                              src={post.media_image_url}
+                              alt={
+                                post.images[0]
+                                  ? post.images[0].title || "Media image"
+                                  : ""
+                              }
+                              style={{ width: 100, height: "auto" }}
+                            />
+                          )}
                         </TableCell>
                       );
                     } else if (header !== "actions") {
@@ -114,19 +132,6 @@ function PostPage() {
                     }
                     return null;
                   })}
-<TableCell key={`${post.id}-media-image`}>
-    {post.media_image_url && (
-        <img
-            src={post.media_image_url}
-            alt={post.images[0].title || "Media image"}
-            style={{ width: 100, height: "auto" }}
-        />
-    )}
-</TableCell>
-
-
-
-
                   <TableCell>
                     <ActionButtons
                       row={post}
