@@ -63,7 +63,10 @@ function PostPage() {
     <Box sx={{ display: "flex", height: "100vh" }}>
       <Sidebar />
       <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: "5rem" }}>
-        <Typography variant="h2" sx={{ fontWeight: "bold", color: "white", mb: 2 }}>
+        <Typography
+          variant="h2"
+          sx={{ fontWeight: "bold", color: "white", mb: 2 }}
+        >
           Articles
         </Typography>
         <TableContainer component={Paper}>
@@ -71,39 +74,59 @@ function PostPage() {
             <TableHead>
               <TableRow>
                 {Object.keys(userFriendlyHeaders).map((header, index) => (
-                  <TableCell key={index}>{userFriendlyHeaders[header]}</TableCell>
+                  <TableCell key={index}>
+                    {userFriendlyHeaders[header]}
+                  </TableCell>
                 ))}
               </TableRow>
             </TableHead>
             <TableBody>
-            {posts.map((post) => (
-  <TableRow key={post.id}>
-    {Object.keys(userFriendlyHeaders).map((header) => {
-      if (header === 'image') {
-        // Assurez-vous que le chemin correspond à la manière dont vos images sont servies par Laravel
-        const imageUrl = `/storage/images/${post[header]}`;
-        return (
+              {posts.map((post) => (
+                <TableRow key={post.id}>
+                  {Object.keys(userFriendlyHeaders).map((header) => {
+                    if (header === "image") {
+                      const imageUrl = `/storage/images/${post[header]}`;
+                      return (
 <TableCell key={`${post.id}-image`}>
-    {post.image_url && <img src={post.image_url} alt={post.imageAlt || 'Post image'} style={{ width: 100, height: 'auto' }} />}
+    {post.image_url && (
+        <img
+            src={post.image_url}
+            alt={post.imageAlt || "Post image"}
+            style={{ width: 100, height: "auto" }}
+        />
+    )}
 </TableCell>
-        );
-      } else if (header === 'categories') {
-        // Votre logique existante pour afficher les catégories
-        return (
-          <TableCell key={`${post.id}-${header}`}>
-            {post.categories.map((cat) => cat.name).join(', ')}
-          </TableCell>
-        );
-      } else if (header !== 'actions') {
-        // Votre logique existante pour afficher d'autres champs
-        return (
-          <TableCell key={`${post.id}-${header}`}>
-            {post[header]}
-          </TableCell>
-        );
-      }
-      return null;
+                      );
+                    } else if (header === "categories") {
+                      // Votre logique existante pour afficher les catégories
+                      return (
+                        <TableCell key={`${post.id}-${header}`}>
+                          {post.categories.map((cat) => cat.name).join(", ")}
+                        </TableCell>
+                      );
+                    } else if (header !== "actions") {
+                      // Votre logique existante pour afficher d'autres champs
+                      return (
+                        <TableCell key={`${post.id}-${header}`}>
+                          {post[header]}
+                        </TableCell>
+                      );
+                    }
+                    return null;
                   })}
+<TableCell key={`${post.id}-media-image`}>
+    {post.media_image_url && (
+        <img
+            src={post.media_image_url}
+            alt={post.images[0].title || "Media image"}
+            style={{ width: 100, height: "auto" }}
+        />
+    )}
+</TableCell>
+
+
+
+
                   <TableCell>
                     <ActionButtons
                       row={post}
