@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
-import { Button, TextField, Box, Typography, CircularProgress } from "@mui/material";
+import { Button, TextField, Box, Typography, CircularProgress, Select, InputLabel, MenuItem } from "@mui/material";
 import { axiosInstance } from "../../../http-common/axios-configuration";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
@@ -21,24 +21,32 @@ const EditPost = () => {
   const [thumbnail, setThumbnail] = useState(null); 
   const [thumbnailUrl, setThumbnailUrl] = useState(""); 
   const [imageList, setImageList] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
+
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchCategoriesAndPostData = async () => {
       try {
-        const postResponse = await axiosInstance.get(`/posts/${id}`);
         const imagesResponse = await axiosInstance.get("/images");
-        console.log(postResponse.data);
+        const [postRes, categoriesRes] = await Promise.all([
+          axiosInstance.get(`/posts/${id}`),
+          axiosInstance.get("/categories")
+        ]);
+        const postCategories = postRes.data.categories.map(cat => cat.id); // Assurez-vous que cela correspond à votre structure de données
+        setCategories(categoriesRes.data);
+        setSelectedCategories(postCategories);
 
         
         setFormData({
-          title: postResponse.data.title,
-          slug: postResponse.data.slug,
-          body: postResponse.data.body,
-          thumbnailAlt: postResponse.data.thumbnailAlt,
-          metaDescription: postResponse.data.metaDescription,
-          isActive: postResponse.data.isActive,
+          title: postRes.data.title,
+          slug: postRes.data.slug,
+          body: postRes.data.body,
+          thumbnailAlt: postRes.data.thumbnailAlt,
+          metaDescription: postRes.data.metaDescription,
+          isActive: postRes.data.isActive,
         });
-        setThumbnailUrl(postResponse.data.thumbnail_url);
+        setThumbnailUrl(postRes.data.thumbnail_url);
 
         const formattedImages = imagesResponse.data.map(image => ({
           title: image.title,
@@ -51,7 +59,7 @@ const EditPost = () => {
       }
     };
 
-    fetchData();
+    fetchCategoriesAndPostData();
   }, [id]);
 
   const handleInputChange = (e) => {
@@ -78,6 +86,9 @@ const EditPost = () => {
     if (thumbnail) {
       submitData.append('thumbnail', thumbnail);
     }
+    selectedCategories.forEach(catId => {
+      submitData.append('category_id[]', catId);
+    });
 
     try {
       await axiosInstance.post(`/posts/edit/${id}`, submitData, {
@@ -135,6 +146,19 @@ const EditPost = () => {
           value={formData.slug}
           onChange={handleInputChange}
         />
+        <InputLabel>Catégories</InputLabel>
+  <Select
+    multiple
+    value={selectedCategories}
+    onChange={(event) => setSelectedCategories(event.target.value)}
+    renderValue={(selected) => selected.map(id => categories.find(cat => cat.id === id).name).join(', ')}
+  >
+    {categories.map((category) => (
+      <MenuItem key={category.id} value={category.id}>
+        {category.name}
+      </MenuItem>
+    ))}
+  </Select>
         <TextField
           margin="normal"
           required
