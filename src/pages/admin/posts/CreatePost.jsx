@@ -177,7 +177,10 @@ const CreatePost = () => {
     multiple
     value={selectedCategories}
     onChange={(event) => setSelectedCategories(event.target.value)}
-    renderValue={(selected) => selected.join(', ')}
+    renderValue={(selected) => (
+      // Mappez les identifiants sélectionnés aux noms des catégories pour les afficher
+      selected.map((id) => categories.find((cat) => cat.id === id).name).join(', ')
+    )}
   >
     {categories.map((category) => (
       <MenuItem key={category.id} value={category.id}>
