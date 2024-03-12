@@ -20,7 +20,6 @@ const Navbar = () => {
     { name: "ACCOMPAGNEMENT", path: "/accompagnement" },
     { name: "BLOG", path: "/blog" },
     { name: "CONTACT", path: "/contact" },
-    // Ajoutez d'autres éléments de menu au besoin
   ];
 
   const drawer = (

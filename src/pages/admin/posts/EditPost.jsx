@@ -135,9 +135,9 @@ const EditPost = () => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
+        alignItems: "center", 
         minHeight: "100vh",
-        marginBottom: "2rem",
+        marginBottom: "2rem"
       }}
     >
       <Sidebar />
@@ -157,7 +157,7 @@ const EditPost = () => {
         onSubmit={handleSubmit}
         noValidate
         sx={{
-          mt: 1,
+          height: "auto", marginBottom: "2rem"
         }}
       >
         <Typography variant="h6" sx={{ mt: 2, color: "white" }}>
@@ -206,7 +206,6 @@ const EditPost = () => {
             <img
               src={thumbnailUrl}
               alt="Thumbnail actuel"
-              style={{ maxWidth: 200, maxHeight: 200 }}
             />
           </Box>
         )}
