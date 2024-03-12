@@ -56,7 +56,7 @@ const RouterOutlet = () => {
         }
       />
       <Route
-        path="/admin/create-posts"
+        path="/admin/create-post"
         element={
           <PrivateRoute>
             <CreatePost />
