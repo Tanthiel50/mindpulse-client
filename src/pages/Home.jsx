@@ -105,7 +105,7 @@ const Home = () => {
         }}
       >
         <Container sx={{ textAlign: "left", position: "absolute", zIndex: 2 }}>
-          <Box sx={{ maxWidth: "50%" }}>
+          <Box sx={{ maxWidth: "100%" }}>
             <Typography
               variant="h2"
               component="h2"

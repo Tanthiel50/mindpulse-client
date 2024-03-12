@@ -135,9 +135,9 @@ const defaultTheme = createTheme();
             </BootstrapButton>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                {/* <Link href="#" variant="body2">
                   Forgot password?
-                </Link>
+                </Link> */}
               </Grid>
               <Grid item>
               </Grid>
