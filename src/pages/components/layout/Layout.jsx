@@ -2,13 +2,16 @@
 import MyNavbar from './NavBar';
 import Footer from './Footer';
 import PropTypes from 'prop-types';
+import { UserProvider, useUserContext } from "../../../context/UserProvider";
 
 const Layout = ({ children }) => {
+  const { user, logout } = useUserContext();
+
   return (
     <>
       <MyNavbar />
         <main>{children}</main>
-      <Footer />
+        <Footer isLoggedIn={!!user} handleLogout={logout} />
     </>
   );
 };

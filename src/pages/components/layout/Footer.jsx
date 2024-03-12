@@ -5,7 +5,7 @@ import XIcon from '@mui/icons-material/X';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import FacebookIcon from '@mui/icons-material/Facebook';
 
-export const Footer = () => {
+export const Footer = ({ isLoggedIn, handleLogout }) => {
   const footerStyle = {
     backgroundColor: "#121212",
     padding: "2rem 0",
@@ -22,6 +22,11 @@ export const Footer = () => {
       textDecoration: "underline", 
     },
     fontFamily: 'Archivo', 
+  };
+
+  const handleLogoutClick = (event) => {
+    event.preventDefault();
+    handleLogout();
   };
 
   return (
@@ -67,7 +72,20 @@ export const Footer = () => {
             }}>AUTRES</Typography>
             <MuiLink component={Link} to="/" sx={linkStyle}>CONFIDENTIALITE</MuiLink>
             <MuiLink component={Link} to="/" sx={linkStyle}>MENTIONS LEGALES</MuiLink>
-            <MuiLink component={Link} to="/login" sx={linkStyle}>CONNEXION</MuiLink>
+            {isLoggedIn ? (
+      <>
+        <MuiLink component={Link} to="/admin" sx={linkStyle}>
+          ADMINISTRATION
+        </MuiLink>
+        <MuiLink component={Link} to="/" onClick={handleLogoutClick} sx={linkStyle}>
+          DECONNEXION
+        </MuiLink>
+      </>
+    ) : (
+      <MuiLink component={Link} to="/login" sx={linkStyle}>
+        CONNEXION
+      </MuiLink>
+    )}
           </Grid>
           <Grid item xs={12} sm={2} sx={{
             display: "flex",

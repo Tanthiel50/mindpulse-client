@@ -12,8 +12,10 @@ import { SpeedInsights } from '@vercel/speed-insights/react';
 import { useLoading } from "./context/LoadingContext.jsx";
 import LoadingIndicator from "./pages/components/LoadingIndicator.jsx";
 
+
 function App() {
   const { isLoading } = useLoading();
+  
 
   return (
     <>
