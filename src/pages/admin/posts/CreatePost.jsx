@@ -22,6 +22,7 @@ const CreatePost = () => {
     body: "",
     thumbnailAlt: "",
     metaDescription: "",
+    publishedAt:"",
   });
   const [thumbnail, setThumbnail] = useState(null);
   const [editorConfig, setEditorConfig] = useState({});
@@ -168,6 +169,20 @@ const CreatePost = () => {
           variant="outlined"
           fullWidth
         />
+        <TextField
+  margin="normal"
+  required
+  fullWidth
+  id="publishedAt"
+  label="Date de publication"
+  type="date"
+  name="publishedAt"
+  value={formData.publishedAt}
+  onChange={handleInputChange}
+  InputLabelProps={{
+    shrink: true, // Cela permet de s'assurer que le label ne chevauche pas la valeur du champ
+  }}
+/>
         <TextField
           margin="normal"
           required
