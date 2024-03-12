@@ -16,7 +16,6 @@ const EditPost = () => {
     body: "",
     thumbnailAlt: "",
     metaDescription: "",
-    isActive: true,
   });
   const [thumbnail, setThumbnail] = useState(null); 
   const [thumbnailUrl, setThumbnailUrl] = useState(""); 
@@ -44,7 +43,7 @@ const EditPost = () => {
           body: postRes.data.body,
           thumbnailAlt: postRes.data.thumbnailAlt,
           metaDescription: postRes.data.metaDescription,
-          isActive: postRes.data.isActive,
+          publishedAt: postRes.data.publishedAt ? new Date(postRes.data.publishedAt).toISOString().split('T')[0] : '',
         });
         setThumbnailUrl(postRes.data.thumbnail_url);
 
@@ -89,6 +88,7 @@ const EditPost = () => {
     selectedCategories.forEach(catId => {
       submitData.append('category_id[]', catId);
     });
+    
 
     try {
       await axiosInstance.post(`/posts/edit/${id}`, submitData, {
@@ -169,6 +169,20 @@ const EditPost = () => {
           value={formData.thumbnailAlt}
           onChange={handleInputChange}
         />
+        <TextField
+  margin="normal"
+  required
+  fullWidth
+  id="publishedAt"
+  label="Date de publication"
+  type="date"
+  name="publishedAt"
+  value={formData.publishedAt}
+  onChange={handleInputChange}
+  InputLabelProps={{
+    shrink: true,
+  }}
+/>
         <TextField
           margin="normal"
           required
