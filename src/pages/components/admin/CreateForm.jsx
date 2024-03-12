@@ -70,29 +70,32 @@ const CreateForm = ({ formHeaders, createPath, submitUrl, title, specialFields  
 
   return (
     <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        minHeight: "100vh"
-      }}
+    sx={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      minHeight: "100vh",
+      marginBottom: "2rem",
+    }}
     >
       
         <Sidebar />
       <Typography 
-      variant="h4" 
-      sx={{ 
-        marginBottom: "1rem",
-        marginTop: "5rem" 
-
-        }}
+      variant="h2"
+      sx={{
+        fontWeight: "bold",
+        color: "white",
+        marginTop: "5rem",
+      }}
         >
         Créer {title}
       </Typography>
+      
       <Box component="form" onSubmit={handleSubmit} sx={{ width: "50%" }}>
         {formHeaders.map(header => {
           const specialField = specialFields?.find(field => field.name === header);
           return specialField && specialField.type === "select" ? (
+            
             <TextField
               select
               label={specialField.label}

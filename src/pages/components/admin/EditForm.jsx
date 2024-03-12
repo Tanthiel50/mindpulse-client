@@ -66,11 +66,21 @@ const EditForm = ({ formHeaders, fetchDetailsUrl, submitUrl, title }) => {
       }}
     >
       <Sidebar />
-      <Typography variant="h4" sx={{ marginBottom: "1rem", marginTop: "5rem" }}>
+      <Typography variant="h2" 
+      sx={{
+            fontWeight: "bold",
+            color: "white",
+            marginTop: "5rem",
+        }}
+        >
         Modifier {title}
       </Typography>
       <Box component="form" onSubmit={handleSubmit} sx={{ width: "50%" }}>
         {formHeaders.map((header) => (
+          <>
+            <Typography variant="h6" sx={{ mt: 2, color: "white" }}>
+              {header} 
+            </Typography>
           <TextField
             key={header}
             label={header}
@@ -84,6 +94,7 @@ const EditForm = ({ formHeaders, fetchDetailsUrl, submitUrl, title }) => {
               backgroundColor: "white",
             }}
           />
+          </>
         ))}
         <Button
           type="submit"
@@ -96,6 +107,7 @@ const EditForm = ({ formHeaders, fetchDetailsUrl, submitUrl, title }) => {
               backgroundColor: "black",
               color: "white",
             },
+            mt: 2,
           }}
         >
           Mettre à jour

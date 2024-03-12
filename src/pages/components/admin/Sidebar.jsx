@@ -20,7 +20,7 @@ import TocIcon from '@mui/icons-material/Toc';
 const sidebarWidth = '10%';
 
 const routes = [
-  { path: '/admin/dashboard', label: 'Dashboard', icon: <DashboardIcon /> },
+  { path: '/admin', label: 'Dashboard', icon: <DashboardIcon /> },
   { path: '/admin/users', label: 'Utilisateurs', icon: <PeopleIcon /> },
   { path: '/admin/posts', label: 'Posts', icon: <ArticleIcon /> },
   { path: '/admin/categories', label: 'Catégories', icon: <TocIcon /> },

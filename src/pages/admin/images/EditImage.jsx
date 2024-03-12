@@ -71,11 +71,17 @@ function EditImage() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center", 
-        minHeight: "100vh"
+        minHeight: "100vh",
+        marginBottom: "2rem"
       }}
     >
       <Sidebar />
-          <Typography variant="h4" sx={{ marginBottom: "1rem", marginTop: "5rem" }}>
+          <Typography variant="h2" 
+      sx={{
+            fontWeight: "bold",
+            color: "white",
+            marginTop: "5rem",
+        }}>
             Éditer l'Image
           </Typography>
           {imageData.media_url && (
@@ -87,6 +93,9 @@ function EditImage() {
             />
           )}
           <Box component="form" onSubmit={handleSubmit} sx={{ width: "50%" }}>
+          <Typography variant="h6" sx={{ mt: 2, color: "white" }}>
+              Titre de l'image
+            </Typography>
             <TextField
               label="Titre"
               name="title"
@@ -97,6 +106,9 @@ function EditImage() {
               required
               sx={{ backgroundColor: "white" }}
             />
+                        <Typography variant="h6" sx={{ mt: 2, color: "white" }}>
+              Alt de l'image
+            </Typography>
             <TextField
               label="Description Alt"
               name="alt"

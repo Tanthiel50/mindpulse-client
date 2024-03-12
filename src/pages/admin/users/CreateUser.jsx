@@ -51,14 +51,18 @@ function CreateUser() {
       }}
     >
       <Sidebar />
-      <Typography variant="h4" sx={{ 
-        marginBottom: "1rem",
-        marginTop: "5rem" 
-
+      <Typography variant="h2" 
+      sx={{
+            fontWeight: "bold",
+            color: "white",
+            marginTop: "5rem",
         }}>
         Créer un Utilisateur
       </Typography>
       <Box component="form" onSubmit={handleSubmit} sx={{ width: "50%", '& .MuiTextField-root': { mb: 2 } }}>
+      <Typography variant="h6" sx={{ mt: 2, color: "white" }}>
+        Nom 
+        </Typography>
         <TextField
           label="Nom"
           name="name"
@@ -68,6 +72,9 @@ function CreateUser() {
           required
           sx={{ backgroundColor: "white" }}
         />
+              <Typography variant="h6" sx={{ mt: 2, color: "white" }}>
+        Email
+        </Typography>
         <TextField
           label="Email"
           name="email"
@@ -78,6 +85,9 @@ function CreateUser() {
           required
           sx={{ backgroundColor: "white" }}
         />
+              <Typography variant="h6" sx={{ mt: 2, color: "white" }}>
+        Mot de passe
+        </Typography>
         <TextField
           label="Mot de Passe"
           sx={{ backgroundColor: "white" }}
@@ -97,6 +107,9 @@ function CreateUser() {
             ),
           }}
         />
+              <Typography variant="h6" sx={{ mt: 2, color: "white" }}>
+        Role
+        </Typography>
         <TextField
           select
           label="Rôle"

@@ -124,7 +124,13 @@ function PostPage() {
                         </TableCell>
                       );
                     
-                    } if (header === "publishedAt") {
+                    }
+                    // if (header === "body") {
+                    //   return (
+                    //     <TableCell key={`${post.id}-${header}`} dangerouslySetInnerHTML={{ __html: post[header] }} />
+                    //   );
+                    // }
+                     if (header === "publishedAt") {
                       return (
                       <TableCell key={`${post.id}-${header}`}>
                         {post.publishedAt.split("T")[0]}

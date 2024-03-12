@@ -22,7 +22,7 @@ const CreatePost = () => {
     body: "",
     thumbnailAlt: "",
     metaDescription: "",
-    publishedAt:"",
+    publishedAt: "",
   });
   const [thumbnail, setThumbnail] = useState(null);
   const [editorConfig, setEditorConfig] = useState({});
@@ -124,11 +124,19 @@ const CreatePost = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        minHeight: "100vh"
+        minHeight: "100vh",
+        marginBottom: "2rem",
       }}
     >
       <Sidebar />
-      <Typography variant="h4" sx={{ marginBottom: "1rem", marginTop: "5rem" }}>
+      <Typography
+        variant="h2"
+        sx={{
+          fontWeight: "bold",
+          color: "white",
+          marginTop: "5rem",
+        }}
+      >
         Créer un article
       </Typography>
       <Box
@@ -139,6 +147,9 @@ const CreatePost = () => {
           mt: 1,
         }}
       >
+        <Typography variant="h6" sx={{ mt: 2, color: "white" }}>
+          Titre de l'article
+        </Typography>
         <TextField
           margin="normal"
           required
@@ -149,7 +160,11 @@ const CreatePost = () => {
           autoFocus
           value={formData.title}
           onChange={handleInputChange}
+          sx={{ backgroundColor: "white" }}
         />
+        <Typography variant="h6" sx={{ mt: 2, color: "white" }}>
+          Contenu de l'article
+        </Typography>
         {imageList.length > 0 && (
           <Editor
             apiKey="2qq1i55w5ls7inhry7iv14yjlpgenygiusraie5995o13uz0"
@@ -163,26 +178,52 @@ const CreatePost = () => {
             onEditorChange={handleEditorChange}
           />
         )}
+        <Typography variant="h6" sx={{ mt: 2, color: "white" }}>
+          Image de l'article
+        </Typography>
         <TextField
           type="file"
           onChange={handleThumbnailChange}
           variant="outlined"
           fullWidth
+          sx={{ backgroundColor: "white" }}
         />
+        <Typography variant="h6" sx={{ mt: 2, color: "white" }}>
+          Nom de l'image
+        </Typography>
         <TextField
-  margin="normal"
-  required
-  fullWidth
-  id="publishedAt"
-  label="Date de publication"
-  type="date"
-  name="publishedAt"
-  value={formData.publishedAt}
-  onChange={handleInputChange}
-  InputLabelProps={{
-    shrink: true, // Cela permet de s'assurer que le label ne chevauche pas la valeur du champ
-  }}
-/>
+          margin="normal"
+          required
+          fullWidth
+          id="thumbnailAlt"
+          label="Description Alt de l'image"
+          name="thumbnailAlt"
+          autoFocus
+          value={formData.thumbnailAlt}
+          onChange={handleInputChange}
+          sx={{ backgroundColor: "white" }}
+        />
+        <Typography variant="h6" sx={{ mt: 2, color: "white" }}>
+          Date de publication
+        </Typography>
+        <TextField
+          margin="normal"
+          required
+          fullWidth
+          id="publishedAt"
+          label="Date de publication"
+          type="date"
+          name="publishedAt"
+          value={formData.publishedAt}
+          onChange={handleInputChange}
+          sx={{ backgroundColor: "white" }}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+        <Typography variant="h6" sx={{ mt: 2, color: "white" }}>
+          Slug de l'article
+        </Typography>
         <TextField
           margin="normal"
           required
@@ -193,10 +234,15 @@ const CreatePost = () => {
           autoFocus
           value={formData.slug}
           onChange={handleInputChange}
+          sx={{ backgroundColor: "white" }}
         />
+        <Typography variant="h6" sx={{ mt: 2, color: "white" }}>
+          Catégories
+        </Typography>
         <InputLabel>Catégories</InputLabel>
         <Select
           multiple
+          sx={{ backgroundColor: "white" }}
           value={selectedCategories}
           onChange={(event) => setSelectedCategories(event.target.value)}
           renderValue={(selected) =>
@@ -212,17 +258,10 @@ const CreatePost = () => {
             </MenuItem>
           ))}
         </Select>
-        <TextField
-          margin="normal"
-          required
-          fullWidth
-          id="thumbnailAlt"
-          label="Description Alt de l'image"
-          name="thumbnailAlt"
-          autoFocus
-          value={formData.thumbnailAlt}
-          onChange={handleInputChange}
-        />
+
+        <Typography variant="h6" sx={{ mt: 2, color: "white" }}>
+          Meta description
+        </Typography>
         <TextField
           margin="normal"
           required
@@ -233,12 +272,19 @@ const CreatePost = () => {
           autoFocus
           value={formData.metaDescription}
           onChange={handleInputChange}
+          sx={{ backgroundColor: "white" }}
         />
         <Button
           type="submit"
           fullWidth
           variant="contained"
-          sx={{ mt: 3, mb: 2 }}
+          sx={{
+            backgroundColor: "white",
+            color: "black",
+            fontWeight: "bold",
+            marginTop: "2rem",
+            "&:hover": { backgroundColor: "black", color: "white" },
+          }}
         >
           Publier le Post
         </Button>
