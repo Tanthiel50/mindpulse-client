@@ -1,221 +1,201 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Editor } from "@tinymce/tinymce-react";
+import { Button, TextField, Box, Typography, CircularProgress } from "@mui/material";
 import { axiosInstance } from "../../../http-common/axios-configuration";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { useNavigate, useParams } from "react-router-dom";
 import Sidebar from "../../components/admin/Sidebar";
-import ActionButtons from "../../components/admin/ActionsButtons";
-import { Box, Typography } from "@mui/material";
 
-function EditPost() {
-  const [post, setPost] = useState({});
-  const [categories, setCategories] = useState([]);
-  const [mediaImages, setMediaImages] = useState([]);
-  const [selectedCategories, setSelectedCategories] = useState([]);
-  const [selectedMediaImages, setSelectedMediaImages] = useState([]);
+const EditPost = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+  const [formData, setFormData] = useState({
+    title: "",
+    slug: "",
+    body: "",
+    thumbnailAlt: "",
+    metaDescription: "",
+    isActive: true,
+  });
+  const [thumbnail, setThumbnail] = useState(null); 
+  const [thumbnailUrl, setThumbnailUrl] = useState(""); 
+  const [imageList, setImageList] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [postResponse, categoriesResponse, mediaImagesResponse] =
-          await Promise.all([
-            axiosInstance.get(`/posts/${id}`),
-            axiosInstance.get("/categories"),
-            axiosInstance.get("/images"),
-          ]);
+        const postResponse = await axiosInstance.get(`/posts/${id}`);
+        const imagesResponse = await axiosInstance.get("/images");
+        console.log(postResponse.data);
 
-        setPost(postResponse.data);
-        setCategories(categoriesResponse.data);
-        setMediaImages(mediaImagesResponse.data);
+        
+        setFormData({
+          title: postResponse.data.title,
+          slug: postResponse.data.slug,
+          body: postResponse.data.body,
+          thumbnailAlt: postResponse.data.thumbnailAlt,
+          metaDescription: postResponse.data.metaDescription,
+          isActive: postResponse.data.isActive,
+        });
+        setThumbnailUrl(postResponse.data.thumbnail_url);
 
-        // set selected categories
-        const selectedCatsIds = postResponse.data.categories.map(
-          (cat) => cat.id
-        );
-        setSelectedCategories(selectedCatsIds);
-
-        // set selected media images
-        const selectedMediaIds = postResponse.data.images.map(
-          (image) => image.media_id
-        );
-        setSelectedMediaImages(selectedMediaIds);
+        const formattedImages = imagesResponse.data.map(image => ({
+          title: image.title,
+          value: image.media_url,
+        }));
+        setImageList(formattedImages);
       } catch (error) {
-        toast.error("Erreur lors du chargement des données");
-        console.error("Error fetching data:", error);
+        console.error("Erreur lors de la récupération des données:", error);
+        toast.error("Erreur lors du chargement des données du post");
       }
     };
 
     fetchData();
   }, [id]);
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setPost((prevPost) => ({ ...prevPost, [name]: value }));
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({ ...prevState, [name]: value }));
   };
 
-  const handleCategoryChange = (event) => {
-    setSelectedCategories(
-      event.target.value.map((id) => parseInt(id, 10))
-    );
+  const handleThumbnailChange = (event) => {
+    setThumbnail(event.target.files[0]);
   };
 
-  const handleMediaImageChange = (event) => {
-    setSelectedMediaImages(
-      event.target.value.map((id) => parseInt(id, 10))
-    );
+  const handleEditorChange = (content) => {
+    setFormData(prevState => ({ ...prevState, body: content }));
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+
+    const submitData = new FormData();
+    Object.keys(formData).forEach(key => {
+      submitData.append(key, formData[key]);
+    });
+    if (thumbnail) {
+      submitData.append('thumbnail', thumbnail);
+    }
 
     try {
-      const formData = new FormData();
-
-      formData.append("title", post.title);
-      formData.append("slug", post.slug);
-      formData.append("body", post.body);
-
-      if (post.image) {
-        formData.append("image", post.image);
-      }
-
-      selectedCategories.forEach((id) => {
-        formData.append("categories[]", id);
+      await axiosInstance.post(`/posts/edit/${id}`, submitData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       });
-
-      selectedMediaImages.forEach((id) => {
-        formData.append("images[]", id);
-      });
-
-      await axiosInstance.put(`/posts/${id}`, formData);
-
-      toast.success("Post mis à jour avec succès");
+      toast.success('Post mis à jour avec succès.');
+      navigate('/admin/posts');
     } catch (error) {
-      toast.error("Erreur lors de la mise à jour du post");
-      console.error("Error updating post:", error);
-    }
+      // Vérification de la présence d'un message d'erreur dans la réponse du back-end
+      if (error.response && error.response.data && error.response.data.message) {
+          // Si l'erreur contient une structure détaillée (par exemple, des champs spécifiques en erreur)
+          if (typeof error.response.data.message === 'object') {
+            const messages = Object.values(error.response.data.message).join('. ');
+            toast.error(`Erreur : ${messages}`);
+          } else {
+            // Si l'erreur est une chaîne simple
+            toast.error(`Erreur : ${error.response.data.message}`);
+          }
+        } else {
+          // Message d'erreur générique si la réponse du back-end ne contient pas de détail
+          toast.error('Une erreur est survenue lors de la création du mot.');
+        }
+        console.error('Erreur de soumission:', error);
+      } 
   };
 
+
   return (
-    <Box sx={{ display: "flex", height: "100vh" }}>
+    <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center"}}>
       <Sidebar />
-      <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: "5rem" }}>
-        <Typography variant="h2" sx={{ fontWeight: "bold", color: "white", mb: 2 }}>
-          Éditer un post
-        </Typography>
-        <form onSubmit={handleSubmit}>
-          <Box sx={{ mb: 3 }}>
-            <label htmlFor="title" style={{ color: "white" }}>
-              Titre
-            </label>
-            <input
-              type="text"
-              name="title"
-              id="title"
-              value={post.title || ""}
-              onChange={handleInputChange}
-              style={{ width: "100%" }}
-            />
+      <Typography variant="h4" sx={{ marginBottom: "1rem", marginTop: "5rem" }}>Éditer un article</Typography>
+      <Box component="form" onSubmit={handleSubmit} noValidate  sx={{
+          mt: 1,
+        }}>
+        <TextField
+          margin="normal"
+          required
+          fullWidth
+          id="title"
+          label="Titre du Post"
+          name="title"
+          autoFocus
+          value={formData.title}
+          onChange={handleInputChange}
+        />
+        <TextField
+          margin="normal"
+          required
+          fullWidth
+          id="slug"
+          label="Slug du Post"
+          name="slug"
+          value={formData.slug}
+          onChange={handleInputChange}
+        />
+        <TextField
+          margin="normal"
+          required
+          fullWidth
+          id="thumbnailAlt"
+          label="Description Alt de l'image"
+          name="thumbnailAlt"
+          value={formData.thumbnailAlt}
+          onChange={handleInputChange}
+        />
+        <TextField
+          margin="normal"
+          required
+          fullWidth
+          id="metaDescription"
+          label="Meta Description"
+          name="metaDescription"
+          value={formData.metaDescription}
+          onChange={handleInputChange}
+        />
+        {thumbnailUrl && (
+          <Box sx={{ my: 2 }}>
+            <Typography>Thumbnail actuel:</Typography>
+            <img src={thumbnailUrl} alt="Thumbnail actuel" style={{ maxWidth: 200, maxHeight: 200 }} />
           </Box>
-          <Box sx={{ mb: 3 }}>
-            <label htmlFor="slug" style={{ color: "white" }}>
-              Slug
-            </label>
-            <input
-              type="text"
-              name="slug"
-              id="slug"
-              value={post.slug || ""}
-              onChange={handleInputChange}
-              style={{ width: "100%" }}
-            />
-          </Box>
-          <Box sx={{ mb: 3 }}>
-            <label htmlFor="body" style={{ color: "white" }}>
-              Contenu
-            </label>
-            <textarea
-              name="body"
-              id="body"
-              value={post.body || ""}
-              onChange={handleInputChange}
-              style={{ width: "100%" }}
-            />
-          </Box>
-          <Box sx={{ mb: 3 }}>
-          {post.image_url && (
-  <Box sx={{ mb: 3 }}>
-    <Typography variant="h6" sx={{ color: "white", mb: 2 }}>
-      Image Actuelle
-    </Typography>
-    <img src={post.image_url} alt="Image du post" style={{ maxWidth: "30%", height: "auto" }} />
-  </Box>
-)}
-            <label htmlFor="image" style={{ color: "white" }}>
-              Image
-            </label>
-            <input type="file" name="image" id="image" onChange={handleInputChange} />
-          </Box>
-          <Box sx={{ mb: 3 }}>
-            <label htmlFor="categories" style={{ color: "white" }}>
-              Catégories
-            </label>
-            <select
-              name="categories"
-              id="categories"
-              multiple
-              value={selectedCategories}
-              onChange={handleCategoryChange}
-              style={{ width: "100%" }}
-            >
-              {categories.map((category) => (
-                <option key={category.id} value={category.id}>
-                  {category.name}
-                </option>
-              ))}
-            </select>
-          </Box>
-          <Box sx={{ mb: 3 }}>
-          {post.images && post.images.length > 0 && (
-  <Box sx={{ mb: 3 }}>
-    <Typography variant="h6" sx={{ color: "white", mb: 2 }}>
-      Images Liées
-    </Typography>
-    <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
-      {post.images.map((image) => (
-        image.media.map((media) => (
-          <Box key={media.id} sx={{ mb: 2 }}>
-            <img src={media.original_url} alt={image.alt || "Image liée"} style={{ width: 100, height: "auto" }} />
-          </Box>
-        ))
-      ))}
-    </Box>
-  </Box>
-)}
-            <label htmlFor="mediaImages" style={{ color: "white" }}>
-              Images Média
-            </label>
-            <select
-              name="mediaImages"
-              id="mediaImages"
-              multiple
-              value={selectedMediaImages}
-              onChange={handleMediaImageChange}
-              style={{ width: "100%" }}
-            >
-              {mediaImages.map((image) => (
-                <option key={image.id} value={image.id}>
-                  {image.name}
-                </option>
-              ))}
-            </select>
-          </Box>
-          <ActionButtons onSave={handleSubmit} onCancel={() => {}} />
-        </form>
+        )}
+        <TextField
+          type="file"
+          onChange={handleThumbnailChange}
+          variant="outlined"
+          fullWidth
+          sx={{ mb: 2 }}
+        />
+        {imageList.length > 0 && (
+          <Editor
+            apiKey="2qq1i55w5ls7inhry7iv14yjlpgenygiusraie5995o13uz0"
+            value={formData.body}
+            init={{
+              height: 500,
+              menubar: false,
+              plugins: [
+                "advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code fullscreen insertdatetime media table paste code help wordcount",
+              ],
+              toolbar: "undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help",
+              content_style: "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+              image_list: imageList,
+            }}
+            onEditorChange={handleEditorChange}
+          />
+        )}
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          sx={{ mt: 3, mb: 2 }}
+        >
+          Mettre à jour le Post
+        </Button>
       </Box>
     </Box>
   );
-}
+};
 
 export default EditPost;

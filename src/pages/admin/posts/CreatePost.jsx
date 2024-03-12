@@ -19,6 +19,7 @@ const CreatePost = () => {
   const [editorConfig, setEditorConfig] = useState({});
   const navigate = useNavigate();
   const [imageList, setImageList] = useState([]);
+  
 
   const handleEditorChange = (content) => {
     setFormData((prevState) => ({ ...prevState, body: content }));

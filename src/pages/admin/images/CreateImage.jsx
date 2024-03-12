@@ -3,7 +3,6 @@ import { Box, Button, TextField, Typography, CircularProgress, IconButton, Input
 import { useNavigate } from "react-router-dom";
 import { axiosInstance } from "../../../http-common/axios-configuration";
 import { toast } from "react-toastify";
-import { useLoading } from "../../../context/LoadingContext";
 import Sidebar from "../../components/admin/Sidebar";
 
 function CreateImage() {
@@ -14,7 +13,7 @@ function CreateImage() {
   });
   const [imagePreview, setImagePreview] = useState(null); // Pour stocker l'URL de l'aperçu
   const navigate = useNavigate();
-  const { isLoading, setIsLoading } = useLoading();
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -32,7 +31,6 @@ function CreateImage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
 
     const formData = new FormData();
     formData.append('title', imageData.title);
@@ -64,7 +62,6 @@ function CreateImage() {
         }
         console.error('Erreur de soumission:', error);
       } finally {
-      setIsLoading(false);
       URL.revokeObjectURL(imagePreview); // Nettoyer l'URL de l'aperçu
     }
   };
@@ -79,10 +76,6 @@ function CreateImage() {
       }}
     >
       <Sidebar />
-      {isLoading ? (
-        <CircularProgress />
-      ) : (
-        <>
           <Typography variant="h4" sx={{ marginBottom: "1rem", marginTop: "5rem" }}>
             Créer une Image
           </Typography>
@@ -131,8 +124,6 @@ function CreateImage() {
               Soumettre
             </Button>
           </Box>
-        </>
-      )}
     </Box>
   );
 }

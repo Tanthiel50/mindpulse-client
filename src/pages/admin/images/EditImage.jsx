@@ -3,7 +3,6 @@ import { Box, Button, TextField, Typography, CircularProgress } from "@mui/mater
 import { useNavigate, useParams } from "react-router-dom";
 import { axiosInstance } from "../../../http-common/axios-configuration";
 import { toast } from "react-toastify";
-import { useLoading } from "../../../context/LoadingContext";
 import Sidebar from "../../components/admin/Sidebar";
 
 function EditImage() {
@@ -14,11 +13,9 @@ function EditImage() {
     media_url: '', 
   });
   const navigate = useNavigate();
-  const { isLoading, setIsLoading } = useLoading();
 
   useEffect(() => {
     const fetchImageData = async () => {
-      setIsLoading(true);
       try {
         const response = await axiosInstance.get(`/images/${id}`);
         setImageData({
@@ -41,13 +38,11 @@ function EditImage() {
             toast.error('Une erreur est survenue lors de la création du mot.');
           }
           console.error('Erreur de soumission:', error);
-        } finally {
-        setIsLoading(false);
-      }
+        }
     };
 
     fetchImageData();
-  }, [id, setIsLoading]);
+  }, [id]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -56,7 +51,6 @@ function EditImage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
 
     try {
       await axiosInstance.post(`/images/edit/${id}`, {
@@ -68,8 +62,6 @@ function EditImage() {
     } catch (error) {
       toast.error("Erreur lors de la mise à jour de l'image");
       console.error("Erreur lors de la soumission :", error);
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -83,10 +75,6 @@ function EditImage() {
       }}
     >
       <Sidebar />
-      {isLoading ? (
-        <CircularProgress />
-      ) : (
-        <>
           <Typography variant="h4" sx={{ marginBottom: "1rem", marginTop: "5rem" }}>
             Éditer l'Image
           </Typography>
@@ -122,8 +110,6 @@ function EditImage() {
               Soumettre
             </Button>
           </Box>
-        </>
-      )}
     </Box>
   );
 }

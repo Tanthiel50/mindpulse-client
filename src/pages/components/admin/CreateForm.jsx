@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { axiosInstance } from "../../../http-common/axios-configuration";
 import Sidebar from "./Sidebar";
 import { toast } from "react-toastify";
-import { useLoading } from "../../../context/LoadingContext";
 
 const CreateForm = ({ formHeaders, createPath, submitUrl, title, specialFields  }) => {
   const [formData, setFormData] = useState(() => {
@@ -27,7 +26,6 @@ const CreateForm = ({ formHeaders, createPath, submitUrl, title, specialFields  
     return initialData;
   });
   const navigate = useNavigate();
-  const { isLoading, setIsLoading } = useLoading();
 
   useEffect(() => {
     // Initialiser formData pour les champs spéciaux si nécessaire
@@ -47,7 +45,6 @@ const CreateForm = ({ formHeaders, createPath, submitUrl, title, specialFields  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
     try {
         const response = await axiosInstance.post(submitUrl, formData);
         toast.success(`${title} créé avec succès`);
@@ -68,8 +65,6 @@ const CreateForm = ({ formHeaders, createPath, submitUrl, title, specialFields  
             toast.error('Une erreur est survenue lors de la création du mot.');
           }
           console.error('Erreur de soumission:', error);
-        }finally{
-          setIsLoading(false);
         }
   };
 
@@ -84,10 +79,6 @@ const CreateForm = ({ formHeaders, createPath, submitUrl, title, specialFields  
     >
       
         <Sidebar />
-        {isLoading ? (
-          <CircularProgress />
-        ) :  (
-      <>
       <Typography 
       variant="h4" 
       sx={{ 
@@ -138,8 +129,6 @@ const CreateForm = ({ formHeaders, createPath, submitUrl, title, specialFields  
           Soumettre
         </Button>
       </Box>
-      </>
-        )}
     </Box>
   );
 };
