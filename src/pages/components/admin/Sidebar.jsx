@@ -50,7 +50,9 @@ const Sidebar = () => {
           '& .MuiDrawer-paper': { width: sidebarWidth, boxSizing: 'border-box' },
         }}
       >
-        <List>
+        <List sx={{
+          marginTop: '5rem',
+        }}>
           {routes.map((route) => (
             <ListItem key={route.path} disablePadding>
               <ListItemButton
