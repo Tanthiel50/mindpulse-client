@@ -40,7 +40,7 @@ function PostPage() {
     title: "Titre",
     slug: "Slug",
     body: "Contenu",
-    image: "Thumbnail",
+    thumbnail: "Thumbnail",
     created_at: "Date de création",
     metaDescription: "Meta description",
     categories: "Catégories",
@@ -110,14 +110,14 @@ function PostPage() {
               {posts.map((post) => (
                 <TableRow key={post.id}>
                   {Object.keys(userFriendlyHeaders).map((header) => {
-                    if (header === "image") {
-                      const imageUrl = `/storage/images/${post[header]}`;
+                    if (header === "thumbnail") {
+                      const thumbnailUrl = `/storage/thumbnail/${post[header]}`;
                       return (
-                        <TableCell key={`${post.id}-image`}>
-                          {post.image_url && (
+                        <TableCell key={`${post.id}-thumbnail`}>
+                          {post.thumbnail_url && (
                             <img
-                              src={post.image_url}
-                              alt={post.imageAlt || "Post image"}
+                              src={post.thumbnail_url}
+                              alt={post.thumbnailAlt || "Post thumbnail"}
                               style={{ width: 100, height: "auto" }}
                             />
                           )}
@@ -160,7 +160,7 @@ function PostPage() {
                   <TableCell>
                     <ActionButtons
                       row={post}
-                      onEdit={() => navigate(`/admin/edit-post/${post.id}`)}
+                      onEdit={() => navigate(`/admin/edit-posts/${post.id}`)}
                       onDelete={() => handleDelete(post.id)}
                     />
                   </TableCell>
