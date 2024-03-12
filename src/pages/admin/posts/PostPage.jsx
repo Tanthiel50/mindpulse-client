@@ -64,7 +64,7 @@ function PostPage() {
   }
 
   return (
-    <Box sx={{ display: "flex", height: "100vh" }}>
+    <Box sx={{ display: "flex", minHeight: "100vh" }}>
       <Sidebar />
       <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: "5rem" }} >
       <Box
@@ -123,7 +123,14 @@ function PostPage() {
                           )}
                         </TableCell>
                       );
-                    } else if (header === "categories") {
+                    
+                    } if (header === "publishedAt") {
+                      return (
+                      <TableCell key={`${post.id}-${header}`}>
+                        {post.publishedAt.split("T")[0]}
+                      </TableCell>
+                      );
+                  } else if (header === "categories") {
                       // Votre logique existante pour afficher les catégories
                       return (
                         <TableCell key={`${post.id}-${header}`}>
@@ -135,12 +142,6 @@ function PostPage() {
                       return (
                         <TableCell key={`${post.id}-${header}`}>
                           {post[header]}
-                        </TableCell>
-                      );
-                    } if (header === "publishedAt") {
-                      return (
-                        <TableCell key={`${post.id}-${header}`}>
-                          {post.publishedAt.map(post[header])}
                         </TableCell>
                       );
                     }

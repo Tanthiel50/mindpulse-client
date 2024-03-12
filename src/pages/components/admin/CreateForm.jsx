@@ -74,7 +74,7 @@ const CreateForm = ({ formHeaders, createPath, submitUrl, title, specialFields  
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        height: "100vh",
+        minHeight: "100vh"
       }}
     >
       

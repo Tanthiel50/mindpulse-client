@@ -70,8 +70,8 @@ function EditImage() {
       sx={{
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
-        height: "100vh",
+        alignItems: "center", 
+        minHeight: "100vh"
       }}
     >
       <Sidebar />

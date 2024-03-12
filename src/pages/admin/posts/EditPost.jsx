@@ -119,7 +119,7 @@ const EditPost = () => {
 
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center"}}>
+    <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", minHeight: "100vh" }}>
       <Sidebar />
       <Typography variant="h4" sx={{ marginBottom: "1rem", marginTop: "5rem" }}>Éditer un article</Typography>
       <Box component="form" onSubmit={handleSubmit} noValidate  sx={{
