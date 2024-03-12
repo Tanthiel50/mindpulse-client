@@ -69,7 +69,8 @@ const Navbar = () => {
                     padding: "0 20px", 
                     color: "white", 
                     textDecoration: "none",
-                    textTransform: "uppercase" 
+                    textTransform: "uppercase" ,
+                    fontFamily: 'Archivo',
                   }}
                 >
                   {item.name}
