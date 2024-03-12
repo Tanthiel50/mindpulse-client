@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
-import { Button, TextField, Box, Typography } from "@mui/material";
+import { Button, TextField, Box, Typography, MenuItem, Select, InputLabel } from "@mui/material";
 import { axiosInstance } from "../../../http-common/axios-configuration";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -19,6 +19,8 @@ const CreatePost = () => {
   const [editorConfig, setEditorConfig] = useState({});
   const navigate = useNavigate();
   const [imageList, setImageList] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
   
 
   const handleEditorChange = (content) => {
@@ -42,6 +44,19 @@ const CreatePost = () => {
     fetchImages();
   }, []);
 
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const { data } = await axiosInstance.get("/categories");
+        setCategories(data);
+      } catch (error) {
+        console.error("Erreur lors de la récupération des catégories:", error);
+      }
+    };
+  
+    fetchCategories();
+  }, []);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({ ...prevState, [name]: value }));
@@ -62,6 +77,9 @@ const CreatePost = () => {
     if (thumbnail) {
       submitData.append("thumbnail", thumbnail);
     }
+    selectedCategories.forEach((catId) => {
+      submitData.append('category_id[]', catId);
+    });
 
     try {
       await axiosInstance.post("/posts", submitData, {
@@ -154,6 +172,19 @@ const CreatePost = () => {
           value={formData.slug}
           onChange={handleInputChange}
         />
+        <InputLabel>Catégories</InputLabel>
+  <Select
+    multiple
+    value={selectedCategories}
+    onChange={(event) => setSelectedCategories(event.target.value)}
+    renderValue={(selected) => selected.join(', ')}
+  >
+    {categories.map((category) => (
+      <MenuItem key={category.id} value={category.id}>
+        {category.name}
+      </MenuItem>
+    ))}
+  </Select>
         <TextField
           margin="normal"
           required
