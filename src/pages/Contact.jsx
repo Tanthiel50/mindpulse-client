@@ -309,7 +309,10 @@ const Contact = () => {
       </Box>
       <Box
         sx={{
-          backgroundColor: "#121212",
+          background: 'rgba(255, 255, 255, 0.16)',
+          boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
+          backdropFilter: 'blur(5px)',
+          webkitBackdropFilter: 'blur(5px)',
           color: "white",
           p: isMobile ? 2 : 8,
           pt: isMobile ? 4 : 10,

@@ -111,7 +111,15 @@ const Team = () => {
           </Box>
         </Container>
       </Box>
-      <Box sx={{ py: 8, backgroundColor: "#121212" }}>
+      <Box 
+      sx={{ 
+        py: 8, 
+        background: 'rgba(255, 255, 255, 0.16)',
+        boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
+        backdropFilter: 'blur(5px)',
+        webkitBackdropFilter: 'blur(5px)',
+        }}
+        >
   <Container>
     <Typography variant="h4" component="h2" gutterBottom sx={{ fontWeight: 'bold', color: 'white', mb: 4, textAlign: 'center' }}>
       Our Story
@@ -119,7 +127,7 @@ const Team = () => {
     <Grid container spacing={4}>
       {stories.map((story, index) => (
         <Grid item xs={12} sm={6} key={index}>
-          <Paper sx={{ padding: 3, backgroundColor: "#1e1e1e", color: 'white', mb: 2, display: 'flex</Grid>', flexDirection: 'column', justifyContent: 'center', minHeight: 200 }}>
+          <Paper sx={{ padding: 3, backgroundColor: "#1e1e1e", color: 'white', mb: 2, display: 'flex</Grid>', flexDirection: 'column', justifyContent: 'center', minHeight: 200, boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px' }}>
             <Box sx={{ display: 'flex', alignItems: 'center', minHeight: 64 }}>
               <Typography variant="h3" component="h3" sx={{ fontWeight: 'bold', fontSize: '6rem', color: "#AE8AB</Box>E", width: 'auto', minWidth: '64px' }}>
                 {story.number}
