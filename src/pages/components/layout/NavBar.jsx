@@ -25,18 +25,18 @@ const Navbar = () => {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
-        <Logo style={{ height: "20%", width: "50%" }}/>
-      </Typography>
-      <List>
-        {['Home', 'Mind Pulse', 'Notre Accompagnement', 'Contact', 'Blog'].map((text) => (
-          <ListItem button key={text}>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
+    <Typography variant="h6" sx={{ my: 2 }}>
+      <Logo style={{ height: "20%", width: "50%" }}/>
+    </Typography>
+    <List>
+      {menuItems.map((item) => (
+        <ListItem button key={item.name} component={RouterLink} to={item.path}>
+          <ListItemText primary={item.name} />
+        </ListItem>
+      ))}
+    </List>
+  </Box>
+);
 
   
 

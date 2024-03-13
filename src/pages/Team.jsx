@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import Button from "@mui/material/Button";
 import { Box, Container, Grid, Paper, Typography } from "@mui/material";
 import { theme } from "../styles/theme";
+import { Link } from "react-router-dom";
 
 const Team = () => {
   const BootstrapButton = styled(Button)({
@@ -69,8 +70,8 @@ const Team = () => {
           justifyContent: "center",
         }}
       >
-        <Container sx={{ textAlign: "left", position: "absolute", zIndex: 2 }}>
-          <Box sx={{ maxWidth: "50%" }}>
+        <Container sx={{ textAlign: "left", zIndex: 2 }}>
+          <Box sx={{ maxWidth: "100%" }}>
             <Typography
               variant="h2"
               component="h2"
@@ -95,6 +96,8 @@ const Team = () => {
             </Typography>
             <BootstrapButton
               variant="contained"
+              component={Link}
+              to="/contact"
               sx={{
                 backgroundColor: theme.palette.purplish,
                 paddingTop: 2,
@@ -103,35 +106,37 @@ const Team = () => {
                 paddingRight: 4,
               }}
             >
-              Nous contacter
+                Nous contacter
             </BootstrapButton>
           </Box>
         </Container>
       </Box>
       <Box sx={{ py: 8, backgroundColor: "#121212" }}>
-      <Container>
-        <Typography variant="h4" component="h2" gutterBottom sx={{ fontWeight: 'bold', color: 'white', mb: 4, textAlign: 'center' }}>
-          Our Story
-        </Typography>
-        <Grid container spacing={4}>
-          {stories.map((story, index) => (
-            <Grid item xs={12} sm={6} key={index}>
-              <Paper sx={{ padding: 2, backgroundColor: "#1e1e1e", color: 'white', mb: 2 }}>
-                <Typography variant="h3" component="h3" sx={{ fontWeight: 'bold', fontSize: '3rem', color: "#AE8ABE", mr: 2 }}>
-                  {story.number}
-                </Typography>
-                <Typography variant="h6" sx={{ fontWeight: 'bold', color: 'white', mb: 1 }}>
-                  {story.title}
-                </Typography>
-                <Typography variant="body1" sx={{ color: 'white' }}>
-                  {story.content}
-                </Typography>
-              </Paper>
-            </Grid>
-          ))}
+  <Container>
+    <Typography variant="h4" component="h2" gutterBottom sx={{ fontWeight: 'bold', color: 'white', mb: 4, textAlign: 'center' }}>
+      Our Story
+    </Typography>
+    <Grid container spacing={4}>
+      {stories.map((story, index) => (
+        <Grid item xs={12} sm={6} key={index}>
+          <Paper sx={{ padding: 3, backgroundColor: "#1e1e1e", color: 'white', mb: 2, display: 'flex</Grid>', flexDirection: 'column', justifyContent: 'center', minHeight: 200 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', minHeight: 64 }}>
+              <Typography variant="h3" component="h3" sx={{ fontWeight: 'bold', fontSize: '6rem', color: "#AE8AB</Box>E", width: 'auto', minWidth: '64px' }}>
+                {story.number}
+              </Typography>
+              <Typography variant="h6" component="h3" sx={{ fontWeight: 'bold', color: 'white', mb: 2, ml: 2 }}>
+                {story.title}
+              </Typography>
+            </Box>
+            <Typography variant="body1" sx={{ color: 'white' }}>
+              {story.content}
+            </Typography>
+          </Paper>
         </Grid>
-      </Container>
-    </Box>
+      ))}
+    </Grid>
+  </Container>
+</Box>
     </>
   );
 };

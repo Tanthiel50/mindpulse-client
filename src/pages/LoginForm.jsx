@@ -14,6 +14,7 @@ import { useUserContext } from '../context/UserProvider';
 import { axiosInstance } from '../http-common/axios-configuration';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
+import { InputLabel } from '@mui/material';
 
 
 
@@ -95,8 +96,8 @@ const defaultTheme = createTheme();
             Connexion
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <InputLabel id="subject-label" sx={{ color: "white" }}>Email</InputLabel>
           <TextField
-  margin="normal"
   required
   fullWidth
   id="email"
@@ -107,11 +108,12 @@ const defaultTheme = createTheme();
   value={email}
   onChange={handleEmailChange}
   sx={{
-    backgroundColor: "white"
+    backgroundColor: "white",
+    marginBottom: "20px",
   }}
 />
+<InputLabel id="subject-label" sx={{ color: "white" }}>Password</InputLabel>
 <TextField
-  margin="normal"
   required
   fullWidth
   name="password"
@@ -122,7 +124,8 @@ const defaultTheme = createTheme();
   value={password}
   onChange={handlePasswordChange}
   sx={{
-    backgroundColor: "white"
+    backgroundColor: "white",
+    marginBottom: "20px",
   }}
 />
             <BootstrapButton
