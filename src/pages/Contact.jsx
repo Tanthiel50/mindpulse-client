@@ -184,36 +184,40 @@ const Contact = () => {
             <Grid item xs={12} md={6}>
               <Box>
                 <form onSubmit={handleSubmit}>
-                <InputLabel id="subject-label" sx={{ color: "white" }}>Prénom</InputLabel>
-                  <TextField
-                    name="senderFirstName"
-                    label="Prénom"
-                    value={formData.senderFirstName}
-                    onChange={handleChange}
-                    fullWidth
-                    required
-                    sx={{
-                      backgroundColor: "white",
-                      marginBottom: "20px",
-                    }}
-                  />
-                  <InputLabel id="subject-label" sx={{ color: "white" }}>Nom</InputLabel>
-                  <TextField
-                    name="senderLastName"
-                    label="Nom"
-                    value={formData.senderLastName}
-                    onChange={handleChange}
-                    fullWidth
-                    required
-                    sx={{
-                      backgroundColor: "white",
-                      marginBottom: "20px",
-                    }}
-                  />
+                <Grid container spacing={2}>
+            <Grid item xs={6}>
+              <InputLabel id="first-name-label" sx={{ color: "white" }}>Prénom*</InputLabel>
+              <TextField
+                id="senderFirstName"
+                name="senderFirstName"
+                value={formData.senderFirstName}
+                onChange={handleChange}
+                fullWidth
+                required
+                sx={{
+                  backgroundColor: "white",
+                  marginBottom: "20px",
+                }}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <InputLabel id="last-name-label" sx={{ color: "white" }}>Nom*</InputLabel>
+              <TextField
+                id="senderLastName"
+                name="senderLastName"
+                value={formData.senderLastName}
+                onChange={handleChange}
+                fullWidth
+                required
+                sx={{
+                  backgroundColor: "white",
+                }}
+              />
+            </Grid>
+            </Grid>
                   <InputLabel id="subject-label" sx={{ color: "white" }}>Société</InputLabel>
                   <TextField
                     name="senderCompany"
-                    label="Société"
                     value={formData.senderCompany}
                     onChange={handleChange}
                     fullWidth
@@ -222,37 +226,41 @@ const Contact = () => {
                       marginBottom: "20px",
                     }}
                   />
-                  <InputLabel id="subject-label" sx={{ color: "white" }}>Téléphone</InputLabel>
-                  <TextField
-                    name="senderPhone"
-                    label="Téléphone"
-                    value={formData.senderPhone}
-                    onChange={handleChange}
-                    fullWidth
-                    sx={{
-                      backgroundColor: "white",
-                      marginBottom: "20px",
-                    }}
-                  />
-                  <InputLabel id="subject-label" sx={{ color: "white" }}>Email</InputLabel>
-                  <TextField
-                    name="senderEmail"
-                    label="Email"
-                    type="email"
-                    value={formData.senderEmail}
-                    onChange={handleChange}
-                    fullWidth
-                    required
-                    sx={{
-                      backgroundColor: "white",
-                      marginBottom: "20px",
-                    }}
-                  />
-                  <InputLabel id="subject-label" sx={{ color: "white" }}>Sujet</InputLabel>
+                  <Grid container spacing={2}>
+            <Grid item xs={6}>
+              <InputLabel id="phone-label" sx={{ color: "white" }}>Téléphone</InputLabel>
+              <TextField
+                id="senderPhone"
+                name="senderPhone"
+                value={formData.senderPhone}
+                onChange={handleChange}
+                fullWidth
+                sx={{
+                  backgroundColor: "white",
+                  marginBottom: "20px",
+                }}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <InputLabel id="email-label" sx={{ color: "white" }}>Email*</InputLabel>
+              <TextField
+                id="senderEmail"
+                name="senderEmail"
+                type="email"
+                value={formData.senderEmail}
+                onChange={handleChange}
+                fullWidth
+                required
+                sx={{
+                  backgroundColor: "white",
+                }}
+              />
+            </Grid>
+          </Grid>
+                  <InputLabel id="subject-label" sx={{ color: "white" }}>Sujet*</InputLabel>
                   <Select
                     labelId="subject-label"
                     name="subject"
-                    label="Sujet"
                     fullWidth
                     value={formData.subject}
                     onChange={handleChange}
@@ -272,10 +280,9 @@ const Contact = () => {
                       </MenuItem>
                     ))}
                   </Select>
-                  <InputLabel id="subject-label" sx={{ color: "white" }}>Titre</InputLabel>
+                  <InputLabel id="subject-label" sx={{ color: "white" }}>Titre*</InputLabel>
                   <TextField
                     name="title"
-                    label="Titre"
                     value={formData.title}
                     onChange={handleChange}
                     fullWidth
@@ -285,10 +292,9 @@ const Contact = () => {
                       marginBottom: "20px",
                     }}
                   />
-                  <InputLabel id="subject-label" sx={{ color: "white" }}>Message</InputLabel>
+                  <InputLabel id="subject-label" sx={{ color: "white" }}>Message*</InputLabel>
                   <TextField
                     name="message"
-                    label="Message"
                     multiline
                     rows={4}
                     value={formData.message}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Card, CardMedia, CardContent, Typography, Grid, Container, TextField, InputAdornment, Button, ButtonGroup } from '@mui/material';
+import { Box, Card, CardMedia, CardContent, Typography, Grid, Container, TextField, InputAdornment, Button, ButtonGroup, useTheme, useMediaQuery } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { useState } from 'react';
 
@@ -31,6 +31,8 @@ const categories = ['All', 'Cyber Security', 'Metaverse', 'Artificial Intelligen
 
 const Blog = () => {
   const [activeCategory, setActiveCategory] = useState('All');
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleCategoryClick = (category) => {
     setActiveCategory(category);
@@ -60,21 +62,22 @@ const Blog = () => {
               backgroundColor: 'rgba(255, 255, 255, 0.1)',
               borderRadius: 1,
               input: { color: 'white' },
-              width: '50%' // Set width to 50% to limit the width of the search bar
+              width: '50%'
             }}
           />
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'center', mb: 4 }}>
-          <ButtonGroup variant="contained" aria-label="outlined primary button group">
+        <ButtonGroup variant="contained" orientation={isMobile ? 'vertical' : 'horizontal'} aria-label="outlined primary button group">
             {categories.map((category, index) => (
-              <Button 
+              <Button
                 key={index}
                 onClick={() => handleCategoryClick(category)}
-                sx={{ 
+                sx={{
                   backgroundColor: activeCategory === category ? '#AE8ABE' : 'transparent',
                   '&:hover': {
                     backgroundColor: activeCategory === category ? '#AE8ABE' : 'rgba(255, 255, 255, 0.1)',
-                  }
+                  },
+                  mb: isMobile ? 1 : 0,
                 }}
               >
                 {category}
@@ -99,7 +102,7 @@ const Blog = () => {
                   <Typography variant="body2">
                     {post.subtitle}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography variant="body2" color="gray">
                     {post.date}
                   </Typography>
                 </CardContent>
