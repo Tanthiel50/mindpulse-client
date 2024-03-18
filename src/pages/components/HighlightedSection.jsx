@@ -7,7 +7,7 @@ const HighlightedSection = ({ title, text, highlightedText }) => {
   const styles = {
     section: {
         background: 'rgba(255, 255, 255, 0.16)',
-        boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
+        // boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
         backdropFilter: 'blur(5px)',
         webkitBackdropFilter: 'blur(5px)',
       color: theme.palette.common.white,
@@ -15,8 +15,9 @@ const HighlightedSection = ({ title, text, highlightedText }) => {
     },
     container: {
       maxWidth: 'lg', 
-      background: '#121212',
+    //   background: '#121212',
       padding: theme.spacing(6, 0), 
+      textAlign: 'center',
     },
     highlight: {
       display: 'inline-block', 
@@ -26,7 +27,7 @@ const HighlightedSection = ({ title, text, highlightedText }) => {
       border: `1px solid ${theme.palette.common.white}`, 
       textTransform: 'uppercase',
       cursor: 'default',
-      backgroundColor: '#AE8ABE',
+      backgroundColor: '#8390C8',
     },
   };
 

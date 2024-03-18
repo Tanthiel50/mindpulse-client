@@ -14,7 +14,7 @@ const ServiceCard = ({ icon, title }) => {
     color: theme.palette.common.white,
     height: '100%',
     border: `1px solid black`,
-    boxShadow: theme.shadows[4],
+    // boxShadow: theme.shadows[4],
     marginBottom: theme.spacing(2),
   };
 
@@ -41,12 +41,13 @@ const ServicesGrid = ({ services, title }) => {
     return (
       <Box
         sx={{
-          py: 4,
+        //   py: 4,
           px: 2,
+          paddingBottom: 4,
           background: 'rgba(255, 255, 255, 0.16)',
-          boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
+        //   boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
           backdropFilter: 'blur(5px)',
-          WebkitBackdropFilter: 'blur(5px)', // Notez que la propriété commence par une majuscule 'W'
+          WebkitBackdropFilter: 'blur(5px)',
         }}
       >
         <Container maxWidth="lg">
