@@ -34,7 +34,7 @@ const HighlightedSection = ({ title, text, highlightedText }) => {
   return (
     <Box sx={styles.section}>
       <Container sx={styles.container}>
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h2" gutterBottom>
           {title}
         </Typography>
         <Typography variant="body1" gutterBottom>
