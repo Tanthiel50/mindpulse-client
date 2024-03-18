@@ -90,7 +90,7 @@ const Accompagnement = () => {
         />
       </Box>
       <ServicesGrid
-        title="User Experience (UX) Design"
+        title="Nos services de marketing :"
         services={[
           { icon: acquisition, title: "User Research and Persona Development" },
           {
@@ -113,7 +113,7 @@ const Accompagnement = () => {
       />
     </Box>
     <ServicesGrid
-      title="Communication"
+      title="Nos services de communication :"
       services={[
         { icon: acquisition, title: "User Research and Persona Development" },
         {

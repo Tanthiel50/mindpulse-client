@@ -40,9 +40,9 @@ const HighlightedSection = ({ title, text, highlightedText }) => {
         <Typography variant="body1" gutterBottom>
           {text}
         </Typography>
-        <Box component="span" sx={styles.highlight}>
+        {/* <Box component="span" sx={styles.highlight}>
           {highlightedText}
-        </Box>
+        </Box> */}
       </Container>
     </Box>
   );
