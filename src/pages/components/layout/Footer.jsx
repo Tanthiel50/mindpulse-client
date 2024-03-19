@@ -4,8 +4,11 @@ import {ReactComponent as Logo} from '../../../../src/assets/logo/logo1.svg';
 import XIcon from '@mui/icons-material/X';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import FacebookIcon from '@mui/icons-material/Facebook';
+import { useNavigate } from 'react-router-dom';
 
 export const Footer = ({ isLoggedIn, handleLogout }) => {
+  const navigate = useNavigate();
+
   const footerStyle = {
     backgroundColor: "#121212",
     padding: "2rem 0",
@@ -27,6 +30,7 @@ export const Footer = ({ isLoggedIn, handleLogout }) => {
   const handleLogoutClick = (event) => {
     event.preventDefault();
     handleLogout();
+    navigate('/');
   };
 
   return (
