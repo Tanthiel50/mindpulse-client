@@ -41,7 +41,7 @@ const RouterOutlet = () => {
       <Route
         path="/admin"
         element={
-          <PrivateRoute>
+          <PrivateRoute roles={['admin']}>
             <Dashboard />
           </PrivateRoute>
         }
@@ -50,7 +50,7 @@ const RouterOutlet = () => {
       <Route
         path="/admin/posts"
         element={
-          <PrivateRoute>
+          <PrivateRoute roles={['admin']}>
             <PostPage />
           </PrivateRoute>
         }
@@ -58,7 +58,7 @@ const RouterOutlet = () => {
       <Route
         path="/admin/create-post"
         element={
-          <PrivateRoute>
+          <PrivateRoute roles={['admin']}>
             <CreatePost />
           </PrivateRoute>
         }
@@ -66,7 +66,7 @@ const RouterOutlet = () => {
       <Route
         path="/admin/edit-posts/:id"
         element={
-          <PrivateRoute>
+          <PrivateRoute roles={['admin']}>
             <EditPost />
           </PrivateRoute>
         }
@@ -75,7 +75,7 @@ const RouterOutlet = () => {
       <Route
         path="/admin/categories"
         element={
-          <PrivateRoute>
+          <PrivateRoute roles={['admin']}>
             <CategoryPage />
           </PrivateRoute>
         }
@@ -83,7 +83,7 @@ const RouterOutlet = () => {
       <Route
         path="/admin/create-categorie"
         element={
-          <PrivateRoute>
+          <PrivateRoute roles={['admin']}>
             <CreateCategorie />
           </PrivateRoute>
         }
@@ -91,7 +91,7 @@ const RouterOutlet = () => {
       <Route
         path="/admin/edit-categorie/:id"
         element={
-          <PrivateRoute>
+          <PrivateRoute roles={['admin']}>
             <EditCategorie />
           </PrivateRoute>
         }
@@ -101,7 +101,7 @@ const RouterOutlet = () => {
       <Route
         path="/admin/images"
         element={
-          <PrivateRoute>
+          <PrivateRoute roles={['admin']}>
             <ImagePage />
           </PrivateRoute>
         }
@@ -109,7 +109,7 @@ const RouterOutlet = () => {
       <Route
         path="/admin/create-image"
         element={
-          <PrivateRoute>
+          <PrivateRoute roles={['admin']}>
             <CreateImage />
           </PrivateRoute>
         }
@@ -117,7 +117,7 @@ const RouterOutlet = () => {
       <Route
         path="/admin/edit-image/:id"
         element={
-          <PrivateRoute>
+          <PrivateRoute roles={['admin']}>
             <EditImage />
           </PrivateRoute>
         }
@@ -126,7 +126,7 @@ const RouterOutlet = () => {
       <Route
         path="/admin/users"
         element={
-          <PrivateRoute>
+          <PrivateRoute roles={['admin']}>
             <UserPage />
           </PrivateRoute>
         }
@@ -134,7 +134,7 @@ const RouterOutlet = () => {
       <Route
         path="/admin/create-user"
         element={
-          <PrivateRoute>
+          <PrivateRoute roles={['admin']}>
             <CreateUser />
           </PrivateRoute>
         }
@@ -142,7 +142,7 @@ const RouterOutlet = () => {
       <Route
         path="/admin/edit-user/:id"
         element={
-          <PrivateRoute>
+          <PrivateRoute roles={['admin']}>
             <EditUser />
           </PrivateRoute>
         }
@@ -151,7 +151,7 @@ const RouterOutlet = () => {
       <Route
         path="/admin/message"
         element={
-          <PrivateRoute>
+          <PrivateRoute roles={['admin']}>
             <MessagePage />
           </PrivateRoute>
         }
@@ -159,7 +159,7 @@ const RouterOutlet = () => {
       <Route
         path="/admin/message/:id"
         element={
-          <PrivateRoute>
+          <PrivateRoute roles={['admin']}>
             <ViewMessage />
           </PrivateRoute>
         }

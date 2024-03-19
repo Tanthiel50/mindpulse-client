@@ -43,7 +43,7 @@ const defaultTheme = createTheme();
     
         if (response.status === 200) {
           toast.success('Connexion réussie !');
-          navigate('/admin');
+          navigate('/');
         } else {
           throw new Error('Erreur de connexion. Veuillez vérifier vos informations de connexion.');
         }
