@@ -8,6 +8,7 @@ export const UserProvider = ({ children }) => {
 
 
   const generateHash = (value) => {
+    if (!value) return null;
     return value.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0).toString();
   }
 

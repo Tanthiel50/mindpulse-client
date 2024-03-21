@@ -113,7 +113,7 @@ const Contact = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/messages",
+        "https://mindpulse.fr/api/messages",
         formData
       );
       toast.success("Votre message a bien été envoyé");
