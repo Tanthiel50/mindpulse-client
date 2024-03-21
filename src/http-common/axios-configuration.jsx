@@ -2,7 +2,7 @@
 import axios from "axios";
 
 // Configuration de l'URL de base et d'autres paramètres par défaut
-axios.defaults.baseURL = `http://127.0.0.1:8000/api`;
+axios.defaults.baseURL = `https://mindpulse.fr/api`;
 axios.defaults.withCredentials = false;
 
 // Ajout du token d'authentification aux headers par défaut s'il existe
