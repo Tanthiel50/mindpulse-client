@@ -104,15 +104,26 @@ const Home = () => {
           justifyContent: "center",
         }}
       >
-        <Container sx={{ textAlign: "left", position: "absolute", zIndex: 2 }}>
-          <Box sx={{ maxWidth: "100%" }}>
+        <Container 
+        sx={{ 
+          textAlign: "left", 
+          position: "absolute", 
+          zIndex: 2 
+          }}>
+          <Box 
+          sx={{ 
+            maxWidth: "50%" 
+            }}>
             <Typography
               variant="h2"
               component="h2"
               gutterBottom
-              sx={{ textTransform: "uppercase" }}
-            >
-              Influence <br /> Your <br /> Audience
+              sx={{ 
+                textTransform: "uppercase" 
+              }}>
+              Ce n'est pas le plus fort de l'espèce qui survit,  ni
+              le plus intelligent. C'est celui qui sait le mieux
+              s'adapter au changement
             </Typography>
             <Typography 
             variant="body1" 
@@ -120,8 +131,7 @@ const Home = () => {
               mb: 4 
             }}
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
-              tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+              Et il en va de-même pour les entreprises..
             </Typography>
             <BootstrapButton
               variant="contained"
@@ -133,7 +143,7 @@ const Home = () => {
                 paddingRight: 4,
               }}
             >
-              Read More
+              L’Avenir d’une entreprise ?
             </BootstrapButton>
           </Box>
         </Container>
@@ -151,20 +161,28 @@ const Home = () => {
         justifyContent="center"
         >
           <PercentageBoxes 
-          percentage="96 %"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+          percentage="250 000"
+          description="En moyenne c’est 250 000
+          entreprises crées chaque
+          années en france.
+          "
           backgroundColor="theme.palette.white" 
           color="theme.palette.black"
           />
           <PercentageBoxes
-            percentage="96 %"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            percentage="63 %"
+            description="Aujourd’hui les chances de
+            survie d’une entreprise face à la
+            concurrence sont de 63%."
             backgroundColor= 'black'
             color="white"
           />
           <PercentageBoxes
-            percentage="96 %"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            percentage="85 %"
+            description="85 % des entreprises
+            estiment qu'elles ne sont pas à
+            jour face à la concurrence.
+            "
             backgroundColor= '#AE8ABE'
             color="white"
           />
@@ -228,21 +246,28 @@ const Home = () => {
                 gutterBottom
                 sx={{ paddingBottom: 4, paddingTop: 4 }}
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
-                tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+                Nous constatons chaque année une augmentation de plus en
+                plus importante dans la création de nouvelles entreprises en
+                France, que ce soit de la part des Français eux-mêmes ou des
+                pays extérieurs. Il est clair qu'une augmentation de la
+                création de sociétés entraîne inévitablement le
+                développement d'une concurrence de plus en plus présente
+                sur tous les types de marchés professionnels.
+
               </Typography>
-              <BootstrapButton
-                variant="contained"
-                sx={{
-                  backgroundColor: theme.palette.purplish,
-                  paddingTop: 2,
-                  paddingBottom: 2,
-                  paddingLeft: 4,
-                  paddingRight: 4,
+              <Typography
+                variant="body1"
+                gutterBottom
+                sx={{ 
+                  paddingBottom: 4,
+                  fontWeight: 'bold', 
                 }}
               >
-                Read More
-              </BootstrapButton>
+                Une question se pose alors : comment se démarquer ?
+                Comment se développer face à un tel afflux de sociétés
+                concurrentes ?
+
+                </Typography>
             </Grid>
           </Grid>
         </Container>
@@ -260,20 +285,75 @@ const Home = () => {
         spacing={0} 
         alignItems="stretch"
         >
+<BoxesRight
+  icon={LoyaltyIcon}
+  title="ACQUISITION"
+  description="Il s'agit là du premier stade visant à développer la stratégie inbound et outbound de l'entreprise. Il précède naturellement la vente, car primordial, pour générer l'entrée d'un lead, d'un client, d'un partenaire. Ce processus est souvent sous-estimé par les entreprises et finit donc par poser des problèmes, généralement aux jeunes start-up et aux entreprises trop étroites d'esprit."
+/>
           <BoxesRight
-          icon={AcUnitIcon} 
-          title="ACQUISITION" 
-          description="Explication de l'acquisition." 
-          />
-          <BoxesRight
-          icon={CachedIcon} 
+          icon={LoyaltyIcon} 
           title="CONVERSION" 
-          description="Explication de la conversion." 
+          description="Nous entrons dans notre
+          deuxième étape, la
+          conversion. C'est ici que
+          se posent les questions
+          entourant le
+          tunnel/l'entonnoir de
+          vente et la logique
+          commerciale que nous
+          souhaitons instaurer. Elle
+          s'applique aussi bien à
+          un site internet qu'à un
+          processus de vente
+          commercial traditionnel.
+          Elle varie en fonction du
+          produit/service et de la
+          vision de l'entreprise.
+          " 
           />
           <BoxesRight
           icon={LoyaltyIcon} 
           title="FIDÉLISATION" 
-          description="Explication de la fidélisation." 
+          description="Une phase que bon nombre
+          d'entreprises négligent, ou
+          plutôt n'arrivent pas à
+          comprendre la profondeur
+          qu'elle représente. Il est
+          nécessaire de définir les
+          leviers et surtout la vision de
+          votre stratégie de fidélisation
+          : apporter une valeur
+          ajoutée, un sentiment de
+          considération, ou bien une
+          simple vente. Les entreprises
+          les plus en vue sur le marché
+          ont parfaitement compris
+          l'importance de cette
+          stratégie et l'appliquent au
+          quotidien, démontrant ainsi
+          son importance.
+          " 
+          />
+                    <BoxesRight
+          icon={LoyaltyIcon} 
+          title="DISRUPTION" 
+          description="Du latin disruptum signifiant briser en morceaux,
+          faire éclater. Il s'agit d'un
+          terme nouveau voire inconnu
+          pour de nombreuses
+          entreprises, et pourtant il
+          applique un concept existant
+          depuis la nuit des temps. Dans
+          notre contexte professionnel,
+          il s'agit donc de prendre un
+          processus existant, de le
+          disloquer et de le séquencer
+          afin d'en créer un nouveau, de
+          proposer une solution
+          nouvelle basée sur les
+          préceptes précédents, pour
+          une solution, un produit, ou
+          une entreprise" 
           />
         </Grid>
       </Box>

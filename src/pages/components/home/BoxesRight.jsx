@@ -4,9 +4,9 @@ import { Typography, Paper, Box, Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
-  padding: theme.spacing(1),
+  padding: theme.spacing(2),
   textAlign: 'center',
-  height: '50%',
+  height: '20%',
   borderRadius: 0,
   color: "white",
   background: "rgb(131,144,200)",
