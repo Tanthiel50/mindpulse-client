@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "@emotion/styled";
+import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import { Box, Container, Grid, Paper, Typography } from "@mui/material";
 import { theme } from "../styles/theme";
@@ -9,26 +9,9 @@ import ServicesGrid from "./components/ServiceGrid";
 import acquisition from "../assets/picto/acquisition.svg";
 import activeSearch from "../assets/picto/activeSearch.svg";
 import anchor from "../assets/picto/anchor.svg";
+import { BootstrapButton } from "./components/BootstrapButton";
 
 const Accompagnement = () => {
-  const BootstrapButton = styled(Button)({
-    boxShadow: "none",
-    textTransform: "none",
-    fontSize: 16,
-    padding: "6px 12px",
-    lineHeight: 1.5,
-    backgroundColor: "#AE8ABE",
-    color: "white",
-    marginBottom: "20px",
-    "&:hover": {
-      backgroundColor: "white",
-      color: "#AE8ABE",
-      boxShadow: "none",
-    },
-    "&:focus": {
-      boxShadow: "0 0 0 0.2rem rgba(0,123,255,.5)",
-    },
-  });
 
   return (
     <>
@@ -66,9 +49,9 @@ const Accompagnement = () => {
               omnis facilis aperiam ipsa, aliquam eaque natus.
             </Typography>
             <BootstrapButton
-              variant="contained"
               component={Link}
-              to="/contact"
+              to="/accompagnement"
+              variant="contained"
               sx={{
                 backgroundColor: theme.palette.purplish,
                 paddingTop: 2,

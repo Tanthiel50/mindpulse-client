@@ -11,10 +11,22 @@ import { Portal } from '@mui/base/Portal';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { useLoading } from "./context/LoadingContext.jsx";
 import LoadingIndicator from "./pages/components/LoadingIndicator.jsx";
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 
 function App() {
   const { isLoading } = useLoading();
+
+  function ScrollToTop() {
+    const { pathname } = useLocation();
+  
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [pathname]);
+  
+    return null;
+  }
   
 
   return (
@@ -47,6 +59,7 @@ function App() {
       </Portal>
       <Router>
         <UserProvider>
+        <ScrollToTop />
           <Layout>
             <RouterOutlet />
             <SpeedInsights />

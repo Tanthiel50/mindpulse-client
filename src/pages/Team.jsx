@@ -4,47 +4,34 @@ import Button from "@mui/material/Button";
 import { Box, Container, Grid, Paper, Typography } from "@mui/material";
 import { theme } from "../styles/theme";
 import { Link } from "react-router-dom";
+import { BootstrapButton } from "./components/BootstrapButton";
+import UserProfileCards from "./components/team/UserCard";
 
 const Team = () => {
-  const BootstrapButton = styled(Button)({
-    boxShadow: "none",
-    textTransform: "none",
-    fontSize: 16,
-    padding: "6px 12px",
-    lineHeight: 1.5,
-    backgroundColor: "#AE8ABE",
-    color: "white",
-    marginBottom: "20px",
-    "&:hover": {
-      backgroundColor: "white",
-      color: "#AE8ABE",
-      boxShadow: "none",
-    },
-    "&:focus": {
-      boxShadow: "0 0 0 0.2rem rgba(0,123,255,.5)",
-    },
-  });
-
   const stories = [
     {
       number: 1,
       title: "Design",
-      content: "Once upon a time, in a world driven by technology, a group of talented designers came together with a shared vision...",
+      content:
+        "Once upon a time, in a world driven by technology, a group of talented designers came together with a shared vision...",
     },
     {
       number: 2,
       title: "Engineering",
-      content: "Meanwhile, a team of brilliant engineers was busy crafting the backbone of digital innovation...",
+      content:
+        "Meanwhile, a team of brilliant engineers was busy crafting the backbone of digital innovation...",
     },
     {
       number: 3,
       title: "Marketing",
-      content: "And then, a group of savvy marketers joined the team to spread the word and make the magic happen...",
+      content:
+        "And then, a group of savvy marketers joined the team to spread the word and make the magic happen...",
     },
     {
       number: 4,
       title: "Growth",
-      content: "Finally, a team of growth experts came on board to help the company reach new heights and expand its horizons...",
+      content:
+        "Finally, a team of growth experts came on board to help the company reach new heights and expand its horizons...",
     },
     {
       number: 5,
@@ -54,9 +41,9 @@ const Team = () => {
     {
       number: 6,
       title: "Future",
-      content: "The future is bright, and the company is ready to take on the world and make a difference...",
-    }
-    
+      content:
+        "The future is bright, and the company is ready to take on the world and make a difference...",
+    },
   ];
 
   return (
@@ -78,23 +65,24 @@ const Team = () => {
               gutterBottom
               sx={{ textTransform: "uppercase", color: "white" }}
             >
-              About <br /> Mindpulse
+              UNE ÉQUIPE NÉ D’UNE PROBLÉMATIQUE..
             </Typography>
             <Typography variant="body1" sx={{ mb: 4, color: "white" }}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid,
-              delectus totam. Incidunt vero voluptates rem ipsam atque libero
-              omnis facilis quas, sint suscipit sunt deleniti nam necessitatibus
-              quasi doloribus non sit! Commodi, accusantium illum? Quibusdam
-              temporibus asperiores inventore nesciunt est praesentium corrupti
-              iste nihil porro cupiditate eos quam excepturi, ex officia illum
-              ipsa! Eaque rem aliquid incidunt reiciendis laboriosam obcaecati
-              vel ullam omnis vero eum aut porro quibusdam sequi consequatur
-              perspiciatis eos, excepturi quia a inventore reprehenderit, nam
-              voluptatibus eligendi. Perspiciatis veniam nam reprehenderit
-              assumenda vitae laboriosam animi minus illo obcaecati nobis quos
-              omnis facilis aperiam ipsa, aliquam eaque natus.
+              MindPulse est né de l'observation que, au cours des 5 dernières
+              années, de nombreuses entreprises ont constaté que malgré la
+              communication agressive de nombreuses sociétés liées au marketing,
+              à la communication, au design ou encore au développement web,
+              proposent des solutions et offres présentées comme uniques et
+              parfaites mais qui ne correspondent pas aux besoins et enjeux
+              réels des entreprises. C'est pourquoi notre équipe, composée de
+              trois experts passionnés par leurs domaines respectifs, aux aguets
+              sur des évolutions technologiques ainsi que des solutions
+              innovantes qui émergent chaque jour, vous propose aujourd'hui de
+              débuter, ensemble, une aventure professionnelle afin de faire face
+              à une concurrence grandissante !
             </Typography>
             <BootstrapButton
+              Link
               variant="contained"
               component={Link}
               to="/contact"
@@ -106,25 +94,52 @@ const Team = () => {
                 paddingRight: 4,
               }}
             >
-                Nous contacter
+              Votre solution ?
             </BootstrapButton>
           </Box>
         </Container>
       </Box>
-      <Box 
-      sx={{ 
-        py: 8, 
-        background: 'rgba(255, 255, 255, 0.16)',
-        boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
-        backdropFilter: 'blur(5px)',
-        webkitBackdropFilter: 'blur(5px)',
+      <Box
+        sx={{
+          py: 8,
+          background: "rgba(255, 255, 255, 0.16)",
+          boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+          backdropFilter: "blur(5px)",
+          webkitBackdropFilter: "blur(5px)",
         }}
-        >
-  <Container>
-    <Typography variant="h4" component="h2" gutterBottom sx={{ fontWeight: 'bold', color: 'white', mb: 4, textAlign: 'center' }}>
-      Our Story
-    </Typography>
-    <Grid container spacing={4}>
+      >
+        <Container>
+          <Typography
+            variant="h4"
+            component="h2"
+            gutterBottom
+            sx={{
+              fontWeight: "bold",
+              color: "white",
+              mb: 4,
+              textAlign: "center",
+            }}
+          >
+            DES PROFESSIONNELS AU SERVICE DE LA QUALITÉ..
+          </Typography>
+          <UserProfileCards />
+          <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
+            <BootstrapButton
+              component={Link}
+              to="/accompagnement"
+              variant="contained"
+              sx={{
+                backgroundColor: theme.palette.purplish,
+                paddingTop: 2,
+                paddingBottom: 2,
+                paddingLeft: 4,
+                paddingRight: 4,
+              }}
+            >
+              Découvrir notre univers
+            </BootstrapButton>
+          </Box>
+          {/* <Grid container spacing={4}>
       {stories.map((story, index) => (
         <Grid item xs={12} sm={6} key={index}>
           <Paper sx={{ padding: 3, backgroundColor: "#1e1e1e", color: 'white', mb: 2, display: 'flex</Grid>', flexDirection: 'column', justifyContent: 'center', minHeight: 200, boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px' }}>
@@ -142,9 +157,9 @@ const Team = () => {
           </Paper>
         </Grid>
       ))}
-    </Grid>
-  </Container>
-</Box>
+    </Grid> */}
+        </Container>
+      </Box>
     </>
   );
 };
