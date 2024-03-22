@@ -7,69 +7,74 @@ import LoyaltyIcon from "@mui/icons-material/Loyalty";
 import PercentageBoxes from "./components/home/PercentageBoxes";
 import BoxesRight from "./components/home/BoxesRight";
 import { DataBox } from "./components/home/DataBox";
+import SvgAcquisition from '../assets/pictoReact/Acquisition';
+import InfoBox from "./components/home/InfoBoxe";
+import SvgConversion from "../assets/pictoReact/Conversion";
+import SvgFidelisation from "../assets/pictoReact/Fidelisation";
+import SvgManBrainGear from "../assets/pictoReact/ManBrainGear";
+import SvgViralMarketing from "../assets/pictoReact/ViralMarketing";
+import SvgTargetKeywords from "../assets/pictoReact/TargetKeywords";
+import SvgWebsiteOptimisation from "../assets/pictoReact/WebsiteOptimization";
+import SvgAudienceTargeting from "../assets/pictoReact/AudienceTargeting";
+import SvgBarchartGearCircular from "../assets/pictoReact/BarchartGearCircular";
+import SvgManTalkingMarketing from "../assets/pictoReact/ManTalkingMarketing";
+import SvgSeoMonitoring from "../assets/pictoReact/SeoMonitoring";
+import SvgResponsiveWebDesign from "../assets/pictoReact/ResponsiveWebDesign";
+import SvgKeywordRanking from "../assets/pictoReact/KeywordRanking";
 
 const data = [
   {
-    icon: AcUnitIcon,
+    icon: SvgViralMarketing,
     background: "#000",
-    title: "Marketing",
-    description: "Innovative and effective design solutions.",
+    title: "Marketing & communication",
     color: "white",
   },
   {
-    icon: CachedIcon,
+    icon: SvgTargetKeywords,
     background: "#AE8ABE",
-    title: "Communication",
-    description: "High-quality web and mobile app development.",
+    title: "positionnement",
     color: "white",
   },
   {
-    icon: LoyaltyIcon,
+    icon: SvgWebsiteOptimisation,
     background: "#8390C8",
-    title: "UI/UX",
-    description: "High-quality web and mobile app development.",
+    title: "developpement web",
     color: "white",
   },
   {
-    icon: AcUnitIcon,
+    icon: SvgAudienceTargeting,
     background: "#AE8ABE",
-    title: "Stratégie",
-    description: "High-quality web and mobile app development.",
+    title: "strategie commerciale",
     color: "white",
   },
   {
-    icon: CachedIcon,
+    icon: SvgBarchartGearCircular,
     background: "#fff",
-    title: "SEO/SEA",
-    description: "High-quality web and mobile app development.",
+    title: "audit",
     color: "black",
   },
   {
-    icon: LoyaltyIcon,
+    icon: SvgManTalkingMarketing,
     background: "#000",
-    title: "DEV",
-    description: "High-quality web and mobile app development.",
+    title: "analyse",
     color: "white",
   },
   {
-    icon: AcUnitIcon,
+    icon: SvgSeoMonitoring,
     background: "#000",
-    title: "Data",
-    description: "High-quality web and mobile app development.",
+    title: "veille",
     color: "white",
   },
   {
-    icon: CachedIcon,
+    icon: SvgResponsiveWebDesign,
     background: "#8390C8",
-    title: "Positionnement",
-    description: "High-quality web and mobile app development.",
+    title: "ux/ui",
     color: "white",
   },
   {
-    icon: LoyaltyIcon,
+    icon: SvgKeywordRanking,
     background: "#fff",
-    title: "Analyse",
-    description: "High-quality web and mobile app development.",
+    title: "data",
     color: "black",
   },
 ];
@@ -283,78 +288,96 @@ const Home = () => {
         <Grid 
         container 
         spacing={0} 
-        alignItems="stretch"
         >
-<BoxesRight
-  icon={LoyaltyIcon}
-  title="ACQUISITION"
-  description="Il s'agit là du premier stade visant à développer la stratégie inbound et outbound de l'entreprise. Il précède naturellement la vente, car primordial, pour générer l'entrée d'un lead, d'un client, d'un partenaire. Ce processus est souvent sous-estimé par les entreprises et finit donc par poser des problèmes, généralement aux jeunes start-up et aux entreprises trop étroites d'esprit."
-/>
-          <BoxesRight
-          icon={LoyaltyIcon} 
-          title="CONVERSION" 
-          description="Nous entrons dans notre
-          deuxième étape, la
-          conversion. C'est ici que
-          se posent les questions
-          entourant le
-          tunnel/l'entonnoir de
-          vente et la logique
-          commerciale que nous
-          souhaitons instaurer. Elle
-          s'applique aussi bien à
-          un site internet qu'à un
-          processus de vente
-          commercial traditionnel.
-          Elle varie en fonction du
-          produit/service et de la
-          vision de l'entreprise.
-          " 
-          />
-          <BoxesRight
-          icon={LoyaltyIcon} 
-          title="FIDÉLISATION" 
-          description="Une phase que bon nombre
-          d'entreprises négligent, ou
-          plutôt n'arrivent pas à
-          comprendre la profondeur
-          qu'elle représente. Il est
-          nécessaire de définir les
-          leviers et surtout la vision de
-          votre stratégie de fidélisation
-          : apporter une valeur
-          ajoutée, un sentiment de
-          considération, ou bien une
-          simple vente. Les entreprises
-          les plus en vue sur le marché
-          ont parfaitement compris
-          l'importance de cette
-          stratégie et l'appliquent au
-          quotidien, démontrant ainsi
-          son importance.
-          " 
-          />
-                    <BoxesRight
-          icon={LoyaltyIcon} 
-          title="DISRUPTION" 
-          description="Du latin disruptum signifiant briser en morceaux,
-          faire éclater. Il s'agit d'un
-          terme nouveau voire inconnu
-          pour de nombreuses
-          entreprises, et pourtant il
-          applique un concept existant
-          depuis la nuit des temps. Dans
-          notre contexte professionnel,
-          il s'agit donc de prendre un
-          processus existant, de le
-          disloquer et de le séquencer
-          afin d'en créer un nouveau, de
-          proposer une solution
-          nouvelle basée sur les
-          préceptes précédents, pour
-          une solution, un produit, ou
-          une entreprise" 
-          />
+    <InfoBox
+      Icon={SvgAcquisition} 
+      title="ACQUISITION"
+      description="Il s'agit là du premier
+      stade visant à développer
+      la stratégie inbound et
+      outbound de l'entreprise.
+      Il précède naturellement
+      la vente, car primordial,
+      pour générer l'entrée
+      d'un lead, d'un client, d'un
+      partenaire. Ce processus
+      est souvent sous-estimé
+      par les entreprises et finit
+      donc par poser des
+      problèmes, généralement
+      aux jeunes start-up et aux
+      entreprises trop étroites
+      d'esprit.
+      "
+    />
+          <InfoBox
+      Icon={SvgConversion} 
+      title="CONVERSION"
+      description="Nous entrons dans notre
+      deuxième étape, la
+      conversion. C'est ici que
+      se posent les questions
+      entourant le
+      tunnel/l'entonnoir de
+      vente et la logique
+      commerciale que nous
+      souhaitons instaurer. Elle
+      s'applique aussi bien à
+      un site internet qu'à un
+      processus de vente
+      commercial traditionnel.
+      Elle varie en fonction du
+      produit/service et de la
+      vision de l'entreprise.
+      
+      "
+    />
+         <InfoBox
+      Icon={SvgFidelisation} 
+      title="FIDÉLISATION"
+      description="Une phase que bon nombre
+      d'entreprises négligent, ou
+      plutôt n'arrivent pas à
+      comprendre la profondeur
+      qu'elle représente. Il est
+      nécessaire de définir les
+      leviers et surtout la vision de
+      votre stratégie de fidélisation
+      : apporter une valeur
+      ajoutée, un sentiment de
+      considération, ou bien une
+      simple vente. Les entreprises
+      les plus en vue sur le marché
+      ont parfaitement compris
+      l'importance de cette
+      stratégie et l'appliquent au
+      quotidien, démontrant ainsi
+      son importance.
+      
+      "
+    />
+                    <InfoBox
+      Icon={SvgManBrainGear} 
+      title="DISRUPTION"
+      description="Du latin disruptum, signifiant briser en morceaux, faire éclater.Il s'agit d'un
+      terme nouveau voire inconnu
+      pour de nombreuses
+      entreprises, et pourtant il
+      applique un concept existant
+      depuis la nuit des temps. Dans
+      notre contexte professionnel,
+      il s'agit donc de prendre un
+      processus existant, de le
+      disloquer et de le séquencer
+      afin d'en créer un nouveau, de
+      proposer une solution
+      nouvelle basée sur les
+      préceptes précédents, pour
+      une solution, un produit, ou
+      une entreprise.
+      
+      "
+    />
         </Grid>
       </Box>
 
@@ -367,9 +390,21 @@ const Home = () => {
         fontWeight: 'bold',
         color: 'white',
         paddingTop: 8, 
+        textAlign: 'center'
         }}
         >
-            Services
+            Par ou commencer l’optimisation de mon entreprise ?
+        </Typography>
+        <Typography 
+      component="body" 
+      sx={{ 
+        color: 'white',
+        paddingTop: 8, 
+        textAlign: 'center'
+        }}
+        >
+            Avant de se poser ce genre de question, il est bon de comprendre et de se remémorer les
+grands points sur le fonctionnement du cycle de vie d'une entreprise..
         </Typography>
       </Container>
       <Box

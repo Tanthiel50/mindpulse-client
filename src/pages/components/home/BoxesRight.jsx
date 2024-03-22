@@ -6,7 +6,7 @@ import { styled } from '@mui/material/styles';
 const StyledPaper = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(2),
   textAlign: 'center',
-  height: '20%',
+  height: '30%',
   borderRadius: 0,
   color: "white",
   background: "rgb(131,144,200)",
@@ -19,7 +19,7 @@ const IconBox = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   // padding: theme.spacing(2),
   borderRadius: '50%',
-  marginBottom: theme.spacing(3), 
+  marginBottom: theme.spacing(2), 
 }));
 
 
