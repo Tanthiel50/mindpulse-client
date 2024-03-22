@@ -1,4 +1,4 @@
-import {ScrollControls, shaderMaterial, Float } from "@react-three/drei";
+import {shaderMaterial, Float } from "@react-three/drei";
 import React, { useEffect, useRef } from "react";
 import { useFrame, extend } from "@react-three/fiber";
 import { gradientVertexShader } from "./Shaders/gradient/vertex.js";
@@ -62,7 +62,6 @@ export default function Experience() {
       {/* outils de staging */}
       <Perf position="top-left" />
       <color args={["#030202"]} attach="background" />
-      <ScrollControls pages={3}/>
       {/* <ambientLight intensity={3} /> */}
 
       {/* lights */}
