@@ -117,6 +117,7 @@ const Home = () => {
             Influencez <br/> votre<br/> audience
             </Typography>
             <Typography
+            id="citation"
               variant="body1"
               sx={{
                 mb: 4,

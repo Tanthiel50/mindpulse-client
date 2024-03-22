@@ -1,5 +1,5 @@
-import { shaderMaterial, Float } from "@react-three/drei";
-import React, { useRef } from "react";
+import {ScrollControls, shaderMaterial, Float } from "@react-three/drei";
+import React, { useEffect, useRef } from "react";
 import { useFrame, extend } from "@react-three/fiber";
 import { gradientVertexShader } from "./Shaders/gradient/vertex.js";
 import { gradientFragmentShader } from "./Shaders/gradient/fragment.js";
@@ -40,7 +40,6 @@ extend({ GradientMaterial });
   extend({ MouseMove });
 
 export default function Experience() {
-
   const normalizeRatio = (value, min, max) => (value - min) / (max - min);
   const mousePosition = MouseMove();
   const mousePositionX =
@@ -54,14 +53,16 @@ export default function Experience() {
     gradientMaterial.current.uTime += delta;
     gradientMaterial.current.uMouse = new THREE.Vector2(
       mousePositionX,
-      mousePositionY)
-    });
-
+      mousePositionY
+    );
+  });
+  // Function Returns : 
   return (
     <>
       {/* outils de staging */}
       <Perf position="top-left" />
       <color args={["#030202"]} attach="background" />
+      <ScrollControls pages={3}/>
       {/* <ambientLight intensity={3} /> */}
 
       {/* lights */}
@@ -80,8 +81,9 @@ export default function Experience() {
         floatingRange={[0.015, -0.015]}
         speed={6}
       >
-        {window.innerWidth>768 ? <Model />:null}
+        {window.innerWidth > 768 ? <Model /> : null}
       </Float>
     </>
   );
 }
+
