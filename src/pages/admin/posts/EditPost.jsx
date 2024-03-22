@@ -157,7 +157,8 @@ const EditPost = () => {
         onSubmit={handleSubmit}
         noValidate
         sx={{
-          height: "auto", marginBottom: "2rem"
+          mt: 1,
+          width: "50%",
         }}
       >
         <Typography variant="h6" sx={{ mt: 2, color: "white" }}>
@@ -206,6 +207,7 @@ const EditPost = () => {
             <img
               src={thumbnailUrl}
               alt="Thumbnail actuel"
+              style={{ width: 500, height: "auto" }}
             />
           </Box>
         )}
@@ -266,6 +268,7 @@ const EditPost = () => {
           Catégories
         </Typography>
         <Select
+        fullWidth
           multiple
           sx={{ backgroundColor: "white" }}
           value={selectedCategories}

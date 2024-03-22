@@ -40,10 +40,10 @@ function PostPage() {
   const userFriendlyHeaders = {
     title: "Titre",
     slug: "Slug",
-    body: "Contenu",
+    // body: "Contenu",
+    metaDescription: "Meta description",
     thumbnail: "Thumbnail",
     publishedAt: "Date de publication",
-    metaDescription: "Meta description",
     categories: "Catégories",
     actions: "Actions",
   };

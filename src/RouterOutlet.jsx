@@ -32,7 +32,7 @@ const RouterOutlet = () => {
       <Route path="/login" element={<LoginForm />} />
       <Route path="/accompagnement" element={<Accompagnement/>} />
       <Route path="/blog" element={<Blog/>} />
-      <Route path="/blog/:id" element={<SingleBlog/>} />
+      <Route path="/blog/:slug" element={<SingleBlog/>} />
       <Route path="/contact" element={<Contact/>} />
       <Route path="/team" element={<Team/>} />
       {/* <Route path="/register" element={<RegisterForm />} /> */}
