@@ -145,6 +145,7 @@ const CreatePost = () => {
         noValidate
         sx={{
           mt: 1,
+          width: "50%",
         }}
       >
         <Typography variant="h6" sx={{ mt: 2, color: "white" }}>
@@ -239,9 +240,9 @@ const CreatePost = () => {
         <Typography variant="h6" sx={{ mt: 2, color: "white" }}>
           Catégories
         </Typography>
-        <InputLabel>Catégories</InputLabel>
         <Select
           multiple
+          fullWidth
           sx={{ backgroundColor: "white" }}
           value={selectedCategories}
           onChange={(event) => setSelectedCategories(event.target.value)}
