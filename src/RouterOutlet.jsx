@@ -64,7 +64,7 @@ const RouterOutlet = () => {
         }
       />
       <Route
-        path="/admin/edit-posts/:id"
+        path="/admin/edit-posts/:slug"
         element={
           <PrivateRoute roles={['admin']}>
             <EditPost />

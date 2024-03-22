@@ -16,7 +16,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import Sidebar from "../../components/admin/Sidebar";
 
 const EditPost = () => {
-  const { id } = useParams();
+  // const { id } = useParams();
+  const { slug } = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState({
@@ -37,7 +38,7 @@ const EditPost = () => {
       try {
         const imagesResponse = await axiosInstance.get("/images");
         const [postRes, categoriesRes] = await Promise.all([
-          axiosInstance.get(`/posts/${id}`),
+          axiosInstance.get(`/posts/${slug}`),
           axiosInstance.get("/categories"),
         ]);
         const postCategories = postRes.data.categories.map((cat) => cat.id); // Assurez-vous que cela correspond à votre structure de données
@@ -68,7 +69,7 @@ const EditPost = () => {
     };
 
     fetchCategoriesAndPostData();
-  }, [id]);
+  }, [slug]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -98,7 +99,7 @@ const EditPost = () => {
     });
 
     try {
-      await axiosInstance.post(`/posts/edit/${id}`, submitData, {
+      await axiosInstance.post(`/posts/edit/${slug}`, submitData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -187,10 +188,10 @@ const EditPost = () => {
               height: 500,
               menubar: false,
               plugins: [
-                "advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code fullscreen insertdatetime media table paste code help wordcount",
+                "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount",
               ],
               toolbar:
-                "undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help",
+              "undo redo | blocks fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
               content_style:
                 "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
               image_list: imageList,

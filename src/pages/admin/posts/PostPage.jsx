@@ -156,7 +156,7 @@ function PostPage() {
                   <TableCell>
                     <ActionButtons
                       row={post}
-                      onEdit={() => navigate(`/admin/edit-posts/${post.id}`)}
+                      onEdit={() => navigate(`/admin/edit-posts/${post.slug}`)}
                       onDelete={() => handleDelete(post.id)}
                     />
                   </TableCell>
