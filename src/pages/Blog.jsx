@@ -83,7 +83,7 @@ const Blog = () => {
         >
           Mind Pulse: The Tech Heartbeat
         </Typography>
-        {/* <Box sx={{ display: "flex", justifyContent: "center", mb: 2 }}>
+        <Box sx={{ display: "flex", justifyContent: "center", mb: 2 }}>
           <TextField
             placeholder="Search Article..."
             InputProps={{
@@ -102,7 +102,7 @@ const Blog = () => {
               width: "50%",
             }}
           />
-        </Box> */}
+        </Box>
         <Box sx={{ display: "flex", justifyContent: "center", mb: 4 }}>
           <ButtonGroup
             variant="contained"
