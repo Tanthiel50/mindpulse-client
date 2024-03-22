@@ -6,12 +6,16 @@ import { theme } from "../styles/theme";
 import { Link } from "react-router-dom";
 import HighlightedSection from "./components/HighlightedSection";
 import ServicesGrid from "./components/ServiceGrid";
-import acquisition from "../assets/picto/acquisition.svg";
-import activeSearch from "../assets/picto/activeSearch.svg";
-import anchor from "../assets/picto/anchor.svg";
 import { BootstrapButton } from "./components/BootstrapButton";
+import customCoding from "../assets/picto/customCoding.svg";
+import manConferance from "../assets/picto/man-conferance.svg";
+import audienceTargeting from "../assets/picto/audienceTargeting.svg";
+import pipeline from "../assets/picto/pipeline.svg";
+import keywordRanking from "../assets/picto/keywordRanking.svg";
+import viralMarketing from "../assets/picto/viralMarketing.svg";
 
 const Accompagnement = () => {
+  const imageUrl = "https://source.unsplash.com/1600x900/?business";
 
   return (
     <>
@@ -24,94 +28,131 @@ const Accompagnement = () => {
           justifyContent: "center",
         }}
       >
-        <Container sx={{ textAlign: "left", zIndex: 2 }}>
-          <Box sx={{ maxWidth: "100%" }}>
-            <Typography
-              variant="h2"
-              component="h2"
-              gutterBottom
-              sx={{ textTransform: "uppercase", color: "white" }}
-            >
-              About <br /> Mindpulse
-            </Typography>
-            <Typography variant="body1" sx={{ mb: 4, color: "white" }}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid,
-              delectus totam. Incidunt vero voluptates rem ipsam atque libero
-              omnis facilis quas, sint suscipit sunt deleniti nam necessitatibus
-              quasi doloribus non sit! Commodi, accusantium illum? Quibusdam
-              temporibus asperiores inventore nesciunt est praesentium corrupti
-              iste nihil porro cupiditate eos quam excepturi, ex officia illum
-              ipsa! Eaque rem aliquid incidunt reiciendis laboriosam obcaecati
-              vel ullam omnis vero eum aut porro quibusdam sequi consequatur
-              perspiciatis eos, excepturi quia a inventore reprehenderit, nam
-              voluptatibus eligendi. Perspiciatis veniam nam reprehenderit
-              assumenda vitae laboriosam animi minus illo obcaecati nobis quos
-              omnis facilis aperiam ipsa, aliquam eaque natus.
-            </Typography>
-            <BootstrapButton
-              component={Link}
-              to="/accompagnement"
-              variant="contained"
-              sx={{
-                backgroundColor: theme.palette.purplish,
-                paddingTop: 2,
-                paddingBottom: 2,
-                paddingLeft: 4,
-                paddingRight: 4,
-              }}
-            >
-              Nous contacter
-            </BootstrapButton>
-          </Box>
+        <Container>
+          <Grid container spacing={2} alignItems="center">
+            <Grid item xs={12} md={6}>
+              <Typography
+                variant="h2"
+                component="h2"
+                gutterBottom
+                sx={{ textTransform: "uppercase", color: "white" }}
+              >
+                VOUS PROPOSER UN PARCOURS ADAPTÉ À VOS
+                BESOINS !
+              </Typography>
+              <Typography variant="body1" sx={{ mb: 4, color: "white" }}>
+                Afin de ne pas vous faire perdre de temps tout en restant clair,
+                nous vous proposons de discuter de votre projet directement
+                ensemble. Nous déterminerons les enjeux qui définiront votre
+                projet, qu'il s'agisse de marketing, de communication, de design
+                ou encore de développement web !
+              </Typography>
+              <BootstrapButton
+                component={Link}
+                to="/accompagnement"
+                variant="contained"
+                sx={{
+                  backgroundColor: theme.palette.purplish,
+                  paddingTop: 2,
+                  paddingBottom: 2,
+                  paddingLeft: 4,
+                  paddingRight: 4,
+                }}
+              >
+                Nous contacter
+              </BootstrapButton>
+            </Grid>
+
+            <Grid item xs={12} md={6}>
+              <Box
+                component="img"
+                sx={{
+                  maxWidth: "100%",
+                  height: "auto",
+                }}
+                src={imageUrl}
+                alt="Description de l'image"
+              />
+            </Grid>
+          </Grid>
         </Container>
       </Box>
-      <Box>
-        <HighlightedSection
-          title="Marketing"
-          text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
-          highlightedText="Our maketing services include:"
+      <Box
+        sx={{
+          background: "rgba(255, 255, 255, 0.16)",
+          boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+          backdropFilter: "blur(5px)",
+          webkitBackdropFilter: "blur(5px)",
+          paddingBottom: 4,
+        }}
+      >
+        <Box>
+          <HighlightedSection
+            title="RÉPONDRE À VOS OBJECTIFS !"
+            text="Que vous soyez une entreprise récente, moderne, établie depuis de nombreuses
+          années, proposant des ventes de produits ou des solutions digitalisées, peu importe
+          votre marché, nous trouverons la solution pour répondre à vos besoins !
+          "
+          />
+        </Box>
+        <ServicesGrid
+          title=" "
+          services={[
+            { icon: customCoding, title: "Concevoir ou refondre votre site" },
+            {
+              icon: keywordRanking,
+              title: "Créer votre stratégie digitale",
+            },
+            { icon: viralMarketing, title: "Développer votre audience" },
+            { icon: pipeline, title: "Générez plus de contacts qualifiés" },
+            {
+              icon: audienceTargeting,
+              title: "Repenser votre stratégie de vente",
+            },
+            { icon: manConferance, title: "Vous former directement en intra" },
+          ]}
         />
+        <Container
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography
+            variant="h2"
+            component="h2"
+            sx={{
+              textTransform: "uppercase",
+              fontWeight: "bold",
+              color: "white",
+              paddingTop: 8,
+              paddingBottom: 4,
+              textAlign: "center",
+            }}
+          >
+            Une question ? Un projet ?
+          </Typography>
+          <BootstrapButton
+            component={Link}
+            to="/contact"
+            variant="contained"
+            sx={{
+              backgroundColor: theme.palette.purplish,
+              paddingTop: 2,
+              paddingBottom: 2,
+              paddingLeft: 4,
+              paddingRight: 4,
+              width: "30%",
+              textAlign: "center",
+            }}
+          >
+            Contactez nous
+          </BootstrapButton>
+        </Container>
       </Box>
-      <ServicesGrid
-        title="Nos services de marketing :"
-        services={[
-          { icon: acquisition, title: "User Research and Persona Development" },
-          {
-            icon: activeSearch,
-            title: "Information Architecture and Wireframing",
-          },
-          { icon: anchor, title: "User Interface (UI) Design" },
-          { icon: acquisition, title: "User Research and Persona Development" },
-          {
-            icon: activeSearch,
-            title: "Information Architecture and Wireframing",
-          },
-          { icon: anchor, title: "User Interface (UI) Design" },
-        ]}
-      /><Box>
-      <HighlightedSection
-        title="Communication"
-        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
-        highlightedText="Our communication services include:"
-      />
-    </Box>
-    <ServicesGrid
-      title="Nos services de communication :"
-      services={[
-        { icon: acquisition, title: "User Research and Persona Development" },
-        {
-          icon: activeSearch,
-          title: "Information Architecture and Wireframing",
-        },
-        { icon: anchor, title: "User Interface (UI) Design" },
-        { icon: acquisition, title: "User Research and Persona Development" },
-        {
-          icon: activeSearch,
-          title: "Information Architecture and Wireframing",
-        },
-        { icon: anchor, title: "User Interface (UI) Design" },
-      ]}
-    />
+      <Box></Box>
     </>
   );
 };

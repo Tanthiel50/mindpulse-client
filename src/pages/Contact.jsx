@@ -20,47 +20,48 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { toast } from "react-toastify";
+import { BootstrapButton } from "./components/BootstrapButton";
 
 const faqs = [
   {
-    question: "What services does MindPulse provide?",
+    question: "Quels sont les services offerts par Mind Pulse ?",
     answer:
-      "MindPulse offers a range of services including design, engineering, and project management...",
+      "Nous vous proposons un accompagnement basé sur les piliers de l'acquisition de la conversion et sur votre stratégie de fidélisation de votre entreprise.",
   },
   {
-    question: "How do I get started?",
+    question: "Comment Minde Pulse mesure le résultats des campagnes mises en place ?",
     answer:
-      "To get started, simply fill out the contact form on our website and we will be in touch shortly...",
+      "Les stratégies que nous développons pour vous se basent sur les données. Ainsi, nous mettons en place un suivi de vos données via des outils tels que SEMRUSH, GA4, Google Tag Manager, etc. De plus, nous définissons ensemble les KPI que vous souhaitez suivre pour évaluer la pertinence de nos actions et campagnes lors de notre accompagnement",
   },
   {
-    question: "What is the cost of your services?",
+    question: "Quelle est la portée géographique ou la marché cible couvert par Mind Pulse ?",
     answer:
-      "The cost of our services varies depending on the project. Once we have more information about your project...",
+      "Notre volonté est d'apporter de l'aide à quiconque souhaite faire évoluer et développer son entreprise. Ainsi, peu importe la région, le département ou la ville, nous sommes là pour créer ensemble, sans nous limiter à de simples barrières telles que la distance.",
   },
   {
-    question: "What is the timeline for project completion?",
+    question: "Combien coûte un accompagnement ?",
     answer:
-      "The timeline for project completion varies depending on the project. Once we have more information about your project...",
+      "Nous n'avons pas de prix fixes, car nous nous adaptons aux ressources et aux besoins des entreprises. C'est à travers un devis que nous déterminerons ensemble les tarifs.",
   },
   {
-    question: "What industries do you specialize in?",
+    question: "Comment Mind Pulse gère les situations d'urgence ou les ajustements rapides dans campagnes marketing ?",
     answer:
-      "We specialize in a wide range of industries including tech, e-commerce, and non-profit...",
+      "La qualité est notre première priorité ! Nous nous engageons à vous répondre dans les plus brefs délais en situation d'urgence",
   },
   {
-    question: "What makes your services unique?",
+    question: "Comment se déroule le processus de communication et de collaboration entre Mind Pulse et ses clients ?",
     answer:
-      "Our team is made up of some of the most talented individuals in the industry...",
+      "Nous favorisons la communication par visioconférence, et selon les besoins, nous pouvons également nous rencontrer dans vos locaux.",
   },
   {
-    question: "What is the cost of your services?",
+    question: "Quels sont les étapes du processus de travail avec Mind Pulse ?",
     answer:
-      "The cost of our services varies depending on the project. Once we have more information about your project...",
+      "Nous avons découpé notre processus de production en cinq étapes, à savoir : le premier contact, la définition de vos besoins, la proposition de votre devis, les modifications et la signature du contrat, la production et l'accompagnement, enfin le bilan et l'analyse du projet.",
   },
   {
-    question: "What is the timeline for project completion?",
+    question: "Comment Mind pulse  peut-elle nous aider à atteindre nos objectifs marketing ?",
     answer:
-      "The timeline for project completion varies depending on the project. Once we have more information about your project...",
+      "Nous vous proposons d'auditer ensemble les besoins de votre entreprise afin de répondre à vos enjeux. Notre objectif principal est de définir clairement les plans d'actions nécessaires pour assurer le bon développement de votre société.",
   },
 ];
 
@@ -79,31 +80,11 @@ const Contact = () => {
   });
 
   const subjects = [
-    "General Inquiry",
-    "Customer Support",
-    "Technical Issue",
-    "Billing and Payments",
-    "Feedback",
+    "J'ai une question",
+    "Je souhaite un devis",
+    "Je souhaite un rdv",
   ];
 
-  const BootstrapButton = styled(Button)({
-    boxShadow: "none",
-    textTransform: "none",
-    fontSize: 16,
-    padding: "6px 12px",
-    lineHeight: 1.5,
-    backgroundColor: "#AE8ABE",
-    color: "white",
-    marginBottom: "20px",
-    "&:hover": {
-      backgroundColor: "white",
-      color: "#AE8ABE",
-      boxShadow: "none",
-    },
-    "&:focus": {
-      boxShadow: "0 0 0 0.2rem rgba(0,123,255,.5)",
-    },
-  });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -172,12 +153,21 @@ const Contact = () => {
                   gutterBottom
                   sx={{ textTransform: "uppercase", color: "white" }}
                 >
-                  Let's <br /> get <br /> in touch
+                  UN BESOIN ? <br />
+UN PROJET ?<br />
+UN CONSEIL ?<br />
+CONTACTEZ-NOUS !
                 </Typography>
                 <Typography variant="body1" sx={{ mb: 4, color: "white" }}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
-                  elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus
-                  leo.
+                Chez MindPulse, que ce soit pour une simple
+prise de contact, un audit de votre site web,
+ou un complément d’informations sur nos
+prestations, nos consultants en stratégie
+digitale restent à votre disposition par
+téléphone ou par mail.
+Afin de répondre au mieux à vos besoins,
+nous vous remercions de compléter le
+formulaire ci-contre.
                 </Typography>
               </Box>
             </Grid>
@@ -306,7 +296,18 @@ const Contact = () => {
                       marginBottom: "20px",
                     }}
                   />
-                  <BootstrapButton type="submit">Envoyer</BootstrapButton>
+                  <BootstrapButton
+                  variant="contained"
+                  sx={{
+                  backgroundColor: "#AE8ABE",
+                  paddingTop: 2,
+                  paddingBottom: 2,
+                  paddingLeft: 4,
+                  paddingRight: 4,
+                }} 
+                type="submit">
+                  Envoyer
+                  </BootstrapButton>
                 </form>
               </Box>
             </Grid>
@@ -335,7 +336,7 @@ const Contact = () => {
             mb: 6,
           }}
         >
-          Frequently Asked Questions
+          FAQ
         </Typography>
         <Container>
           <Grid container spacing={2}>

@@ -42,9 +42,9 @@ export const Footer = ({ isLoggedIn, handleLogout }) => {
             <Typography variant="h6" gutterBottom >
               MindPulse
             </Typography>
-            <Typography variant="caption" sx={{ textAlign: "center" }}>
+            {/* <Typography variant="caption" sx={{ textAlign: "center" }}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur quod commodi aut pariatur debitis sunt harum facilis temporibus eius nisi at sed iste in laboriosam neque accusamus autem ut quo incidunt adipisci, rem aliquid. Sequi minima nemo quo quibusdam consequatur! Mollitia aperiam nemo temporibus assumenda provident ullam fugit vel. Nisi?
-            </Typography>
+            </Typography> */}
           </Grid>
           <Grid item xs={6} sm={2} 
           sx={{
@@ -91,7 +91,7 @@ export const Footer = ({ isLoggedIn, handleLogout }) => {
       </MuiLink>
     )}
           </Grid>
-          <Grid item xs={12} sm={2} sx={{
+          {/* <Grid item xs={12} sm={2} sx={{
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
@@ -103,7 +103,7 @@ export const Footer = ({ isLoggedIn, handleLogout }) => {
             <MuiLink component={Link} to="/" sx={linkStyle}> <XIcon /> </MuiLink>
             <MuiLink component={Link} to="/" sx={linkStyle}><LinkedInIcon/></MuiLink>
             <MuiLink component={Link} to="/" sx={linkStyle}><FacebookIcon/></MuiLink>
-          </Grid>
+          </Grid> */}
         </Grid>
       </Container>
     </Box>

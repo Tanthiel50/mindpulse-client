@@ -44,10 +44,10 @@ const ServicesGrid = ({ services, title }) => {
         //   py: 4,
           px: 2,
           paddingBottom: 4,
-          background: 'rgba(255, 255, 255, 0.16)',
+          // background: 'rgba(255, 255, 255, 0.16)',
         //   boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
-          backdropFilter: 'blur(5px)',
-          WebkitBackdropFilter: 'blur(5px)',
+          // backdropFilter: 'blur(5px)',
+          // WebkitBackdropFilter: 'blur(5px)',
         }}
       >
         <Container maxWidth="lg">

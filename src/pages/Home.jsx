@@ -107,15 +107,25 @@ const Home = () => {
             }}
           >
             <Typography
-              variant="h2"
-              component="h2"
+              variant="h1"
+              component="h1"
               gutterBottom
               sx={{
                 textTransform: "uppercase",
               }}
             >
-              Ce n'est pas le plus fort de l'espèce qui survit, ni le plus
-              intelligent. C'est celui qui sait le mieux s'adapter au changement
+            Influencez <br/> votre<br/> audience
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                mb: 4,
+                fontStyle: "italic",
+              }}
+            >
+              " Ce n'est pas le plus fort de l'espèce qui survit, ni
+le plus intelligent. C'est celui qui sait le mieux
+s'adapter au changement. " - Charles Darwin 
             </Typography>
             <Typography
               variant="body1"
@@ -123,7 +133,7 @@ const Home = () => {
                 mb: 4,
               }}
             >
-              Et il en va de-même pour les entreprises..
+Et il en va de-même pour les entreprises..
             </Typography>
             <BootstrapButton
               component={Link}
@@ -135,9 +145,10 @@ const Home = () => {
                 paddingBottom: 2,
                 paddingLeft: 4,
                 paddingRight: 4,
+                textAlign: "center",
               }}
             >
-              L’Avenir d’une entreprise ?
+              Je commence l'aventure
             </BootstrapButton>
           </Box>
         </Container>
@@ -410,7 +421,7 @@ grands points sur le fonctionnement du cycle de vie d'une entreprise..
             textAlign: "center",
           }}
         >
-          Un accompagnement sur tout les plans est t-il envisageable ?
+          Un accompagnement sur tout les plans est-il envisageable ?
         </Typography>
         <Typography
           component="body"
@@ -439,7 +450,7 @@ grands points sur le fonctionnement du cycle de vie d'une entreprise..
             paddingBottom: 2,
             paddingLeft: 4,
             paddingRight: 4,
-            width: "25%",
+            width: "30%",
           }}
         >
           Commencer l’aventure !
