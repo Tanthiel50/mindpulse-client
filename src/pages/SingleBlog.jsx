@@ -105,23 +105,24 @@ const SingleBlog = () => {
 
   return (
     <Container>
-      <Grid container spacing={4}>
-      <Grid item xs={12} sx={{ textAlign: "center", marginTop: "5rem" }}>
+      <Box sx={{ textAlign: 'center', paddingTop: '5rem',  }}>
           <Typography variant="overline" display="block" gutterBottom>
             {post.category}{" "}
-            {/* Assurez-vous que la structure de votre réponse correspond */}
           </Typography>
           <Typography
-            variant="h2"
+            variant="h2" 
             gutterBottom
-            sx={{ color: "white", marginTop: "5rem" }}
+            sx=
+            {{ 
+              color: "white" 
+            }}
           >
             {post.title}
           </Typography>
           <Typography variant="subtitle1" color="text.secondary">
             {new Date(post.publishedAt).toLocaleDateString()}
           </Typography>
-        </Grid>
+        </Box>
         <Grid item xs={12}>
         <CardMedia
           component="img"
@@ -130,40 +131,39 @@ const SingleBlog = () => {
           sx={{ width: "100%", height: "auto" }}
         />
         </Grid>
-        <Grid
-          item
+        <Container
           xs={12}
           md={8}
           sx={{
-            background: "rgba(255, 255, 255, 0.16)",
-            boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
-            backdropFilter: "blur(5px)",
-            webkitBackdropFilter: "blur(5px)",
-            color: "white",
-            padding: "20px",
-            paddingLeft: "none"
+            py: 8, 
+            background: 'rgba(255, 255, 255, 0.16)',
+            boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
+            backdropFilter: 'blur(5px)',
+            webkitBackdropFilter: 'blur(5px)',
           }}
         >
-          <Typography variant="body1" gutterBottom>
+          <Grid container >
+          <Grid item xs={12} md={8}>
+          <Typography variant="body1" 
+          gutterBottom 
+          component='div'
+          sx={{
+            paddingRight: '2rem',
+          }}>
             <div dangerouslySetInnerHTML={{ __html: post.body }} />
           </Typography>
         </Grid>
-        <Grid
-          item
-          xs={12}
-          md={4}
-          sx={{
-            position: "sticky",
-            top: "10vh",
-            height: "fit-content",
-          }}
-        >
+        <Grid item xs={12} md={4} sx={{
+          position: 'sticky',
+          top: '10vh', 
+          height: 'fit-content',
+        }}>
           {/* Le formulaire */}
           <form
             onSubmit={handleSubmit}
-            style={{ borderRadius: "8px", padding: "20px",}}
+            style={{ padding: '16px',  borderRadius: '8px' }}
           >
-            <Typography variant="h3" gutterBottom sx={{ color: "white" }}>
+            <Typography variant="h3" gutterBottom sx={{ color:"white" }}>
               Let's stay in touch
             </Typography>
             <InputLabel id="subject-label" sx={{ color: "white" }}>
@@ -280,6 +280,7 @@ const SingleBlog = () => {
           </form>
         </Grid>
       </Grid>
+    </Container>
     </Container>
   );
 };

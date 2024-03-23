@@ -82,7 +82,6 @@ const Team = () => {
               à une concurrence grandissante !
             </Typography>
             <BootstrapButton
-              Link
               variant="contained"
               component={Link}
               to="/contact"
