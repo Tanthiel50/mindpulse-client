@@ -74,8 +74,8 @@ export const Footer = ({ isLoggedIn, handleLogout }) => {
             <Typography variant="subtitle1" gutterBottom sx={{
               color: "#8390C8",
             }}>AUTRES</Typography>
-            <MuiLink component={Link} to="/" sx={linkStyle}>CONFIDENTIALITE</MuiLink>
-            <MuiLink component={Link} to="/" sx={linkStyle}>MENTIONS LEGALES</MuiLink>
+            <MuiLink component={Link} to="/charteconfidentialite" sx={linkStyle}>CONFIDENTIALITE</MuiLink>
+            <MuiLink component={Link} to="/mentionslegales" sx={linkStyle}>MENTIONS LEGALES</MuiLink>
             {isLoggedIn ? (
       <>
         <MuiLink component={Link} to="/admin" sx={linkStyle}>
