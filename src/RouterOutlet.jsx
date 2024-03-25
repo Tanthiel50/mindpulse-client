@@ -22,6 +22,8 @@ import EditImage from "./pages/admin/images/EditImage";
 import MessagePage from "./pages/admin/messages/MessagePage";
 import ViewMessage from "./pages/admin/messages/ViewMessage";
 import PrivateRoute from "./PrivateRoute";
+import MentionsLegales from "./pages/MentionsLegales";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 
 
 const RouterOutlet = () => {
@@ -35,6 +37,8 @@ const RouterOutlet = () => {
       <Route path="/blog/:slug" element={<SingleBlog/>} />
       <Route path="/contact" element={<Contact/>} />
       <Route path="/team" element={<Team/>} />
+      <Route path="/mentionslegales" element={<MentionsLegales/>} />
+      <Route path="/charteconfidentialite" element={<PrivacyPolicyPage/>} />
       {/* <Route path="/register" element={<RegisterForm />} /> */}
 
       {/* ADMIN NAVIGATION */}
