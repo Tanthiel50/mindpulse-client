@@ -1,6 +1,7 @@
 import React from 'react';
 import { Typography, Box, Grid } from '@mui/material';
 import { styled } from '@mui/system';
+import { Style } from '@mui/icons-material';
 
 
 const IconContainer = styled(Box)(({ theme }) => ({
@@ -16,24 +17,31 @@ const IconContainer = styled(Box)(({ theme }) => ({
 const InfoBox = ({ Icon, title, description }) => {
   return (
     <Grid item xs={12} sm={6} md={3}>
-    <Box sx={{ display: { xs: 'none', sm: 'flex', flexDirection: 'column', },  }}>
-      <IconContainer sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-        <Icon />
-      </IconContainer>
       <Box
+        sx={{ display: { xs: "none", sm: "flex", flexDirection: "column" } }}
+      >
+        <IconContainer
           sx={{
-            padding: '16px',
-            backgroundColor: 'transparent',
-            color: 'white',
-            textAlign: 'center',
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            color: "white",
           }}
         >
-        <Typography variant="h5" component="h2">{title}</Typography>
-        <Typography variant="body1">{description}</Typography>
+          <Icon width={"80px"} height={"76px"} />
+        </IconContainer>
+        <Box
+          sx={{
+            padding: "16px",
+            backgroundColor: "transparent",
+            color: "white",
+            textAlign: "center",
+          }}
+        >
+          <Typography variant="h5" component="h2">
+            {title}
+          </Typography>
+          <Typography variant="body1">{description}</Typography>
         </Box>
       </Box>
     </Grid>
