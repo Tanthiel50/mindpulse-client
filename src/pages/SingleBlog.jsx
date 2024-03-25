@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   Box,
   Container,
@@ -11,10 +11,13 @@ import {
   MenuItem,
   Select,
   Grid,
+  Breadcrumbs,
 } from "@mui/material";
 import { axiosInstance } from "../http-common/axios-configuration";
 import { toast } from "react-toastify";
 import { BootstrapButton } from "./components/BootstrapButton";
+import { Link as RouterLink } from "react-router-dom";
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
 const subjects = [
   "J'ai une question",
@@ -25,6 +28,7 @@ const subjects = [
 const SingleBlog = () => {
   const { slug } = useParams();
   const [post, setPost] = useState(null);
+  const articleTitle = post ? post.title : 'Loading...';
 
   const [formData, setFormData] = useState({
     senderFirstName: "",
@@ -40,6 +44,7 @@ const SingleBlog = () => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  const categoryName = post?.category || 'Loading...';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -119,6 +124,15 @@ const SingleBlog = () => {
           >
             {post.title}
           </Typography>
+          <Breadcrumbs aria-label="breadcrumb" separator={<NavigateNextIcon fontSize="small" />} sx={{ mb: 2 }}>
+        <Link component={RouterLink} to="/">
+          Home
+        </Link>
+        <Link component={RouterLink} to="/blog">
+          Blog
+        </Link>
+        <Typography color="text.primary">{articleTitle}</Typography>
+      </Breadcrumbs>
           <Typography variant="subtitle1" color="text.secondary">
             {new Date(post.publishedAt).toLocaleDateString()}
           </Typography>
