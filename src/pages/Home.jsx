@@ -8,7 +8,7 @@ import PercentageBoxes from "./components/home/PercentageBoxes";
 import BoxesRight from "./components/home/BoxesRight";
 import { DataBox } from "./components/home/DataBox";
 import SvgAcquisition from "../assets/pictoReact/Acquisition";
-import SvgAcquisition2 from "../assets/picto/acquisition.jsx";
+import SvgAnyPicto from "../assets/picto/activeSearch.jsx";
 import InfoBox from "./components/home/InfoBoxe";
 import SvgConversion from "../assets/picto/conversion.jsx";
 import SvgFidelisation from "../assets/pictoReact/Fidelisation";
