@@ -34,6 +34,7 @@ export function Model(props) {
   // Function Returns :
   return (
     <>
+    
       <group receiveShadow castShadow {...props} dispose={null}>
         <mesh
           //ref={logo}
@@ -41,9 +42,9 @@ export function Model(props) {
           receiveShadow
           geometry={nodes.Curve002.geometry}
           material={materials.material}
-          scale={[15, 5, 15]}
+          scale={[150, 50, 150]}
           rotation={[Math.PI * 0.5, 0, 0]}
-          position={[ 0.2, 0.96, 1.25]}
+          position={[ 4.5, 6, 2]}
         >
           <meshStandardMaterial colors={"white"} />
         </mesh>

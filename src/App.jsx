@@ -11,8 +11,10 @@ import { Portal } from '@mui/base/Portal';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { useLoading } from "./context/LoadingContext.jsx";
 import LoadingIndicator from "./pages/components/LoadingIndicator.jsx";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+
+
 
 
 function App() {
@@ -27,8 +29,9 @@ function App() {
   
     return null;
   }
-  
 
+
+  
   return (
     <>
       {isLoading && <LoadingIndicator />}
@@ -36,7 +39,7 @@ function App() {
         <div
           id="canvasId"
           style={{
-            position: "fixed",
+            position: "absolute",
             top: 0,
             left: 0,
             height: "100%",

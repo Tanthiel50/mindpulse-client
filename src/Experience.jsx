@@ -1,6 +1,12 @@
-import { shaderMaterial, Float, Text, OrthographicCamera } from "@react-three/drei";
-import React, { useEffect, useRef } from "react";
-import { useFrame, extend } from "@react-three/fiber";
+import {
+  shaderMaterial,
+  Float,
+  Text,
+  OrthographicCamera,
+  Preload,
+} from "@react-three/drei";
+import React, { useEffect, useRef, useState } from "react";
+import { useFrame, useThree, extend } from "@react-three/fiber";
 import { gradientVertexShader } from "./Shaders/gradient/vertex.js";
 import { gradientFragmentShader } from "./Shaders/gradient/fragment.js";
 import * as THREE from "three";
@@ -40,8 +46,6 @@ const MouseMove = () => {
 };
 extend({ MouseMove });
 
-console.log("width: " + window.innerWidth, "height: " + window.innerHeight);
-
 // beginning of the function
 
 export default function Experience() {
@@ -52,6 +56,8 @@ export default function Experience() {
   const mousePositionY =
     normalizeRatio(mousePosition.y, 0, window.innerWidth) - 0.5;
 
+  const { camera } = useThree();
+  const meshRef = useRef();
   const gradientMaterial = useRef();
 
   useFrame((state, delta) => {
@@ -73,21 +79,34 @@ export default function Experience() {
 
   //transform pixel position info into ratio to pass it to a const
   const [canvasX, canvasY] = CanvasId();
-  console.log(canvasX, canvasY);
+
+  // Gestion du défilement
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const scrollAmount = -scrollY * 0.005; // Ajustez ce facteur au besoin
+      console.log(scrollAmount);
+
+      // Ajustez la position de la caméra et du mesh en fonction du défilement
+      if (meshRef.current) {
+        meshRef.current.position.y = scrollAmount;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
 
   // Function Returns :
   return (
     <>
       <OrthographicCamera
         makeDefault
-        zoom={5}
-        top={50}
-        bottom={50}
-        left={50}
-        right={50}
+        zoom={100}
         near={0.1}
         far={200}
-        position={[0, -10, 190]}
+        position={[0, -10, 4]}
       />
       {/* outils de staging */}
       <Perf position="top-left" />
@@ -97,10 +116,8 @@ export default function Experience() {
       {/* lights */}
       <ambientLight intensity={3} />
       {/* rectangle dégradé + perlin noise */}
-      <mesh position={[0, 0, 0]}>
-        <planeGeometry
-          args={[canvasX , canvasY]}
-        />
+      <mesh ref={meshRef} scale={[100, 100, 1]} position={[0,30,0]}>
+        <planeGeometry args={[1, 1]} />
         <gradientMaterial ref={gradientMaterial} side={THREE.DoubleSide} />
       </mesh>
       {/* logo flottant */}
@@ -112,8 +129,8 @@ export default function Experience() {
         floatingRange={[0.015, -0.015]}
         speed={6}
       >
-        <Text textAlign="center" position={[0.2, 0.85, 1.25]} scale={0.03}>
-          {"X: " + Math.round(canvasX) + " / Y: " + Math.round(canvasY)}
+        <Text textAlign="center" position={[4.5, 4.5, 2]} scale={0.3}>
+          {"X: " + canvasX + " / Y: " + canvasY}
         </Text>
         {Math.round(canvasX) > 768 ? <Model /> : null}
       </Float>
