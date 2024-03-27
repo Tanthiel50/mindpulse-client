@@ -41,9 +41,9 @@ export function Model(props) {
           receiveShadow
           geometry={nodes.Curve002.geometry}
           material={materials.material}
-          scale={[150, 50, 150]}
+          scale={[15, 5, 15]}
           rotation={[Math.PI * 0.5, 0, 0]}
-          position={[ 2, 8, 1.25]}
+          position={[ 0.2, 0.96, 1.25]}
         >
           <meshStandardMaterial colors={"white"} />
         </mesh>

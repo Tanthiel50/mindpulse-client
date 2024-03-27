@@ -31,11 +31,12 @@ function App() {
 
   return (
     <>
-  {isLoading && <LoadingIndicator />}
+      {isLoading && <LoadingIndicator />}
       <Portal>
         <div
+          id="canvasId"
           style={{
-            position: "absolute",
+            position: "fixed",
             top: 0,
             left: 0,
             height: "100%",
@@ -43,23 +44,14 @@ function App() {
             zIndex: -1,
           }}
         >
-          <Canvas
-            flat
-            orthographic
-            camera={{
-              zoom:200,
-              near: 0.1,
-              far: 200,
-              position: [0, 0, 4],
-            }}
-          >
+          <Canvas flat>
             <Experience />
           </Canvas>
         </div>
       </Portal>
       <Router>
         <UserProvider>
-        <ScrollToTop />
+          <ScrollToTop />
           <Layout>
             <RouterOutlet />
             <SpeedInsights />
