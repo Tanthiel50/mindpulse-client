@@ -25,7 +25,7 @@ const HomeChart = () => {
         },
         visualMap: {
           type: 'piecewise',
-          text: [ 'crise sanitaire','creation auto-entreprise'],
+          text: [ 'crise sanitaire COVID',"Régime de l'auto-entreprise"],
           showLabel: false,
           textGap: 50,
           orient: 'horizontal',
