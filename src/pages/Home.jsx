@@ -24,6 +24,7 @@ import SvgResponsiveWebDesign from "../assets/pictoReact/ResponsiveWebDesign";
 import SvgKeywordRanking from "../assets/pictoReact/KeywordRanking";
 import { Link } from "react-router-dom";
 import { BootstrapButton } from "./components/BootstrapButton";
+import HomeChart from "../HomeChart.jsx";
 
 const data = [
   {
@@ -210,12 +211,11 @@ Et il en va de-même pour les entreprises..
           <Grid container spacing={4} alignItems="center">
             <Grid item xs={12} md={6}>
               <Box
-                component="img"
+                component={HomeChart}
                 sx={{
                   width: "100%",
                   height: "auto",
                 }}
-                src="https://img.freepik.com/premium-vector/chart-column-graph-infographic-element_627350-4.jpg?size=626&ext=jpg"
                 alt="Description de l'image"
               />
             </Grid>
