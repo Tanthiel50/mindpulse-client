@@ -42,7 +42,7 @@ export function Model(props) {
           receiveShadow
           geometry={nodes.Curve002.geometry}
           material={materials.material}
-          scale={[150, 50, 150]}
+          scale={[300, 50, 300]}
           rotation={[Math.PI * 0.5, 0, 0]}
           position={[ 4.5, 6, 2]}
         >

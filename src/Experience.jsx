@@ -56,7 +56,7 @@ export default function Experience() {
   const mousePositionY =
     normalizeRatio(mousePosition.y, 0, window.innerWidth) - 0.5;
 
-  const { camera } = useThree();
+  // references for the moving background
   const meshRef = useRef();
   const gradientMaterial = useRef();
 
@@ -68,6 +68,7 @@ export default function Experience() {
     );
   });
 
+  // function for having the size of the canvas at all time 
   function CanvasId() {
     const elem = document.getElementById("canvasId");
     const rect = elem.getBoundingClientRect();
@@ -84,10 +85,10 @@ export default function Experience() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      const scrollAmount = -scrollY * 0.005; // Ajustez ce facteur au besoin
+      const scrollAmount = -scrollY * 0.0055; // Ajuster ce facteur au besoin
       console.log(scrollAmount);
 
-      // Ajustez la position de la caméra et du mesh en fonction du défilement
+      // Ajuster la position du mesh en fonction du défilement
       if (meshRef.current) {
         meshRef.current.position.y = scrollAmount;
       }
@@ -97,6 +98,15 @@ export default function Experience() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+
+  // attempt to verify if the home page is active or not
+  const homeActive= true; 
+    try {
+      document.getElementById("citation");
+    } catch (err) {
+      homeActive=false
+    }
+console.log(homeActive);
 
   // Function Returns :
   return (
@@ -116,24 +126,30 @@ export default function Experience() {
       {/* lights */}
       <ambientLight intensity={3} />
       {/* rectangle dégradé + perlin noise */}
-      <mesh ref={meshRef} scale={[100, 100, 1]} position={[0,30,0]}>
+      <mesh ref={meshRef} scale={[100, 100, 1]} position={[0, 30, 0]}>
         <planeGeometry args={[1, 1]} />
         <gradientMaterial ref={gradientMaterial} side={THREE.DoubleSide} />
       </mesh>
       {/* logo flottant */}
-      <Float
-        floatIntensity={1}
-        scale={1}
-        rotationIntensity={0.1}
-        rotationSpeed={0.2}
-        floatingRange={[0.015, -0.015]}
-        speed={6}
-      >
-        <Text textAlign="center" position={[4.5, 4.5, 2]} scale={0.3}>
-          {"X: " + canvasX + " / Y: " + canvasY}
-        </Text>
-        {Math.round(canvasX) > 768 ? <Model /> : null}
-      </Float>
+      {Math.round(canvasX) > 768 && document.getElementById("citation") ? (
+        <Float
+          floatIntensity={3}
+          scale={1}
+          rotationIntensity={0.1}
+          rotationSpeed={0.2}
+          floatingRange={[0.035, -0.035]}
+          speed={6}
+        >
+          <Text textAlign="center" position={[4.5, 4, 2]} scale={0.3}>
+            {"largeur canvas: " +
+              canvasX +
+              " px || longueur canvas: " +
+              canvasY +
+              " px"}
+          </Text>
+          <Model />
+        </Float>
+      ) : null}
     </>
   );
 }
