@@ -11,11 +11,8 @@ import { Portal } from '@mui/base/Portal';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { useLoading } from "./context/LoadingContext.jsx";
 import LoadingIndicator from "./pages/components/LoadingIndicator.jsx";
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-
-
-
 
 function App() {
   const { isLoading } = useLoading();
@@ -30,8 +27,6 @@ function App() {
     return null;
   }
 
-
-  
   return (
     <>
       {isLoading && <LoadingIndicator />}
@@ -64,6 +59,5 @@ function App() {
       </Router>
     </>
   );
-}
-
+};
 export default App;

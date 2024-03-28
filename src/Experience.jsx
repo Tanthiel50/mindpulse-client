@@ -3,10 +3,9 @@ import {
   Float,
   Text,
   OrthographicCamera,
-  Preload,
 } from "@react-three/drei";
-import React, { useEffect, useRef, useState } from "react";
-import { useFrame, useThree, extend } from "@react-three/fiber";
+import React, { useEffect, useRef } from "react";
+import { useFrame, extend } from "@react-three/fiber";
 import { gradientVertexShader } from "./Shaders/gradient/vertex.js";
 import { gradientFragmentShader } from "./Shaders/gradient/fragment.js";
 import * as THREE from "three";
@@ -47,7 +46,6 @@ const MouseMove = () => {
 extend({ MouseMove });
 
 // beginning of the function
-
 export default function Experience() {
   const normalizeRatio = (value, min, max) => (value - min) / (max - min);
   const mousePosition = MouseMove();
@@ -97,16 +95,6 @@ export default function Experience() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-
-  // attempt to verify if the home page is active or not
-  const homeActive= true; 
-    try {
-      document.getElementById("citation");
-    } catch (err) {
-      homeActive=false
-    }
-console.log(homeActive);
 
   // Function Returns :
   return (
