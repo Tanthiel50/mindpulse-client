@@ -116,19 +116,20 @@ const Home = () => {
                 textTransform: "uppercase",
               }}
             >
-            Influencez <br/> votre<br/> audience
+              Influencez <br /> votre
+              <br /> audience
             </Typography>
             <Typography
-            id="citation"
+              id="citation"
               variant="body1"
               sx={{
                 mb: 4,
                 fontStyle: "italic",
               }}
             >
-              " Ce n'est pas le plus fort de l'espèce qui survit, ni
-le plus intelligent. C'est celui qui sait le mieux
-s'adapter au changement. " - Charles Darwin 
+              " Ce n'est pas le plus fort de l'espèce qui survit, ni le plus
+              intelligent. C'est celui qui sait le mieux s'adapter au
+              changement. " - Charles Darwin
             </Typography>
             <Typography
               variant="body1"
@@ -136,7 +137,7 @@ s'adapter au changement. " - Charles Darwin
                 mb: 4,
               }}
             >
-Et il en va de-même pour les entreprises..
+              Et il en va de-même pour les entreprises..
             </Typography>
             <BootstrapButton
               component={Link}
@@ -209,15 +210,20 @@ Et il en va de-même pour les entreprises..
           }}
         >
           <Grid container spacing={4} alignItems="center">
-            <Grid item xs={12} md={6}>
-              <Box
-                component={HomeChart}
-                sx={{
-                  width: "100%",
-                  height: "auto",
-                }}
-                alt="Description de l'image"
-              />
+            <Grid
+              item
+              xs={12}
+              md={6}
+              sx={{
+                width: "100%",
+                height: "auto",
+                display: {
+                  xs: "none",
+                  sm: "block",
+                },
+              }}
+            >
+              <Box component={HomeChart} alt="Description de l'image" />
             </Grid>
             {/* Colonne Texte */}
             <Grid
@@ -271,7 +277,6 @@ Et il en va de-même pour les entreprises..
           flexGrow: 1,
           backgroundColor: theme.palette.background,
           paddingBottom: 15,
-          
         }}
       >
         <Typography
@@ -288,7 +293,7 @@ Et il en va de-même pour les entreprises..
             display: {
               xs: "none",
               sm: "block",
-            }
+            },
           }}
         >
           Par ou commencer l’optimisation de mon entreprise ?
@@ -305,11 +310,12 @@ Et il en va de-même pour les entreprises..
             display: {
               xs: "none",
               sm: "block",
-            }
+            },
           }}
         >
-          Avant de se poser ce genre de question, il est bon de comprendre et de se remémorer les
-grands points sur le fonctionnement du cycle de vie d'une entreprise..
+          Avant de se poser ce genre de question, il est bon de comprendre et de
+          se remémorer les grands points sur le fonctionnement du cycle de vie
+          d'une entreprise..
         </Typography>
         <Grid container spacing={0}>
           <InfoBox
